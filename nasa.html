@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="icon" type="image/png" href="https://cdn-icons-png.flaticon.com/128/3594/3594083.png">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>NASA - Cosmic Voyagers</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet" />
+  <link rel="icon" type="image/png" href="https://cdn-icons-png.flaticon.com/128/3594/3594083.png" />
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Montserrat', sans-serif;
+      background: linear-gradient(to bottom, #0a0a20, #131342);
+      color: #ffffff;
+      overflow-x: hidden;
+    }
+
+    #bg-video {
+      position: fixed;
+      right: 0;
+      bottom: 0;
+      min-width: 100%;
+      min-height: 100%;
+      z-index: -2;
+      object-fit: cover;
+      opacity: 0.2;
+    }
+
+    .stars {
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      background: url('starback.html') repeat;
+      animation: twinkle 100s linear infinite;
+      z-index: -1;
+      opacity: 0.3;
+    }
+
+    @keyframes twinkle {
+      0% { background-position: 0 0; }
+      100% { background-position: -10000px 5000px; }
+    }
+
+    nav {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      background: rgba(10, 10, 40, 0.95);
+      padding: 1rem;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 4px 15px rgba(138, 43, 226, 0.3);
+    }
+
+    nav a {
+      color: #fff;
+      text-decoration: none;
+      font-weight: 600;
+      transition: color 0.3s ease;
+      background: linear-gradient(to right, #8a2be2, #4169e1);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    nav a:hover {
+      color: #8a2be2;
+      text-shadow: 0 0 10px rgba(138, 43, 226, 0.7);
+    }
+
+    header {
+      text-align: center;
+      padding: 2rem;
+      background: rgba(10, 10, 40, 0.9);
+      box-shadow: 0 4px 20px rgba(138, 43, 226, 0.4);
+    }
+
+    header h1 {
+      font-size: 3rem;
+      background: linear-gradient(to right, #8a2be2, #4169e1);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    section {
+      padding: 2rem 10%;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    section h2 {
+      font-size: 2rem;
+      color: #4169e1;
+      margin-bottom: 1rem;
+    }
+
+    section p {
+      font-size: 1.1rem;
+      line-height: 1.8;
+    }
+
+    .image-gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.5rem;
+      margin-top: 1.5rem;
+    }
+
+    .image-gallery img {
+      width: 100%;
+      height: 500px;
+      object-fit: cover;
+      border-radius: 1rem;
+      box-shadow: 0 4px 20px rgba(65, 105, 225, 0.5);
+      transition: transform 0.3s ease;
+    }
+
+    .image-gallery img:hover {
+      transform: scale(1.05);
+    }
+
+    footer {
+      text-align: center;
+      padding: 1rem;
+      background: rgba(10, 10, 40, 0.8);
+      font-size: 0.9rem;
+      color: #ccc;
+    }
+  </style>
+</head>
+<body>
+  <!-- Video Background -->
+  <video autoplay muted loop id="bg-video">
+    <source src="assets/nasa-bg.mp4" type="video/mp4">
+    Your browser does not support HTML5 video.
+  </video>
+
+  <!-- Star Animation -->
+  <div class="stars"></div>
+
+  <!-- Navbar -->
+  <nav>
+    <a href="organisations.html">Organisations</a>
+    <a href="isro.html">ISRO</a>
+    <a href="nasa.html">NASA</a>
+    <a href="esa.html">ESA</a>
+    <a href="roscosmos.html">ROSCOSMOS</a>
+    <a href="cnsa.html">CNSA</a>
+    <a href="jaxa.html">JAXA</a>
+    <a href="cnes.html">CNES</a>
+    <a href="ukspace.html">UK</a>
+    <a href="dlr.html">DLR</a>
+    <a href="kari.html">KARI</a>
+  </nav>
+
+  <header>
+    <h1>NASA - National Aeronautics and Space Administration</h1>
+  </header>
+
+  <section>
+    <h2>History & Overview</h2>
+    <p>
+      NASA was established in 1958 by the United States government, following the launch of Sputnik by the Soviet Union.
+      Its mission is to pioneer the future in space exploration, scientific discovery, and aeronautics research.
+      Over the decades, NASA has led humanity’s greatest space missions and scientific achievements, such as landing a man on the Moon in 1969.
+    </p>
+    <div class="image-gallery">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/e/e5/NASA_logo.svg" alt="NASA Logo" />
+    </div>
+  </section>
+
+  <section>
+    <h2>Famous Rockets</h2>
+    <p>
+      NASA developed iconic rockets like the <strong>Saturn V</strong>, which launched the Apollo missions,
+      and the <strong>Space Launch System (SLS)</strong>, designed for future deep-space exploration including Artemis missions.
+    </p>
+    <div class="image-gallery">
+      <img src="https://cloudfront-us-east-2.images.arcpublishing.com/reuters/BYECKTUWZ5JBFM2B5LJRFRJA5A.jpg" alt="SLS Rocket" />
+      <img src="https://cdn.firespring.com/images/bb4ce6c2-1e54-4e39-bcfd-6208b84b3737.jpg" alt="Saturn V Rocket" />
+    </div>
+  </section>
+
+  <section>
+    <h2>Satellites</h2>
+    <p>
+      NASA operates advanced satellites like <strong>Hubble Space Telescope</strong>, <strong>Terra</strong>, and <strong>Landsat</strong>
+      to observe Earth, the cosmos, and collect crucial environmental data.
+    </p>
+    <div class="image-gallery">
+      <img src="https://images.theconversation.com/files/78266/original/image-20150416-5606-1e4tgwi.jpg?ixlib=rb-4.1.0&q=45&auto=format&w=1356&h=668&fit=crop" alt="Hubble Telescope" />
+    </div>
+  </section>
+
+  <section>
+    <h2>Involvement with ISS</h2>
+    <p>
+      NASA is a key contributor to the International Space Station (ISS), working with global partners like ESA, Roscosmos, and JAXA.
+      It launches astronauts, provides supplies, and conducts experiments in low Earth orbit aboard the ISS.
+    </p>
+    <div class="image-gallery">
+      <img src="https://spaceflightnow.com/wp-content/uploads/2022/09/20220921soyuzms22launch.jpg" alt="NASA Soyuz Launch to ISS" />
+    </div>
+  </section>
+
+  <section>
+    <h2>Major Missions</h2>
+    <p>
+      NASA has spearheaded missions like <strong>Apollo</strong> (Moon), <strong>Voyager</strong> (interstellar space),
+      <strong>Mars Curiosity & Perseverance</strong> (rovers), <strong>Artemis</strong> (return to Moon), and <strong>James Webb Space Telescope</strong> (deep space observation).
+    </p>
+    <div class="image-gallery">
+      <img src="https://www.imeche.org/images/default-source/pe-news/pia22107-joseph-s-mac-mini.jpg?sfvrsn=0" alt="Perseverance Rover" />
+      <img src="https://live-production.wcms.abc-cdn.net.au/bbb9b76311f3931fc7b29a9ce2ca0e53?impolicy=wcms_crop_resize&cropH=518&cropW=921&xPos=0&yPos=0&width=862&height=485" alt="JWST First Light" />
+    </div>
+  </section>
+
+  <section>
+    <h2>Astronauts</h2>
+    <p>
+      NASA has trained and launched hundreds of astronauts, including legends like <strong>Neil Armstrong</strong>,
+      <strong>Sally Ride</strong> (first American woman in space), and <strong>Sunita Williams</strong> (Indian-American astronaut).
+    </p>
+    <div class="image-gallery">
+      <img src="http://www.collectspace.com/images/news-082512aa.jpg" alt="Neil Armstrong" />
+      <img src="https://static01.nyt.com/images/2012/07/24/science/24ride1/24ride1-superJumbo.jpg?quality=75&auto=webp" alt="Sally Ride" />
+      <img src="https://cdn.britannica.com/02/136002-050-14E6EFA2/Sunita-Williams-2004.jpg" alt="Sunita Williams" />
+    </div>
+  </section>
+
+  <section>
+    <h2>International Collaborations</h2>
+    <p>
+      NASA collaborates globally with agencies like ESA (Europe), Roscosmos (Russia), JAXA (Japan), ISRO (India), and CSA (Canada).
+      These partnerships drive forward missions, research, and development of cutting-edge technologies for peaceful space exploration.
+    </p>
+    <div class="image-gallery">
+      <img src="https://www.nasa.gov/wp-content/uploads/2022/06/jsc-interns.jpg?w=1536" alt="ESA and NASA Engineers" />
+    </div>
+  </section>
+
+  <section>
+    <h2>Internships & Student Opportunities</h2>
+    <p>
+      NASA offers <strong>internship programs</strong> for students from high school to graduate levels in fields like engineering, astrophysics, AI, and robotics.
+      Global students can participate via the <strong>NASA I2</strong> and <strong>LPI (Lunar and Planetary Institute)</strong> internships.
+      These programs aim to inspire the next generation of space explorers.
+    </p>
+    <div class="image-gallery">
+      <img src="https://www.nasa.gov/wp-content/uploads/2023/01/nasa-interns-hs-worm.jpg" alt="NASA Internship" />
+    </div>
+  </section>
+
+  <footer>
+    &copy; 2025 Cosmic Voyagers | Designed with ✫ in the stars
+  </footer>
+</body>
+</html>

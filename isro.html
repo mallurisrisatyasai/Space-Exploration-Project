@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="icon" type="image/png" href="https://cdn-icons-png.flaticon.com/128/3594/3594083.png">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>ISRO - Cosmic Voyagers</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet" />
+  <link rel="icon" type="image/png" href="https://cdn-icons-png.flaticon.com/128/3594/3594083.png" />
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Montserrat', sans-serif;
+      background: linear-gradient(to bottom, #0a0a20, #131342);
+      color: #ffffff;
+      overflow-x: hidden;
+    }
+
+    #bg-video {
+      position: fixed;
+      right: 0;
+      bottom: 0;
+      min-width: 100%;
+      min-height: 100%;
+      z-index: -2;
+      object-fit: cover;
+      opacity: 0.2;
+    }
+
+    .stars {
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      background: url('starback.html') repeat;
+      animation: twinkle 100s linear infinite;
+      z-index: -1;
+      opacity: 0.3;
+    }
+
+    @keyframes twinkle {
+      0% { background-position: 0 0; }
+      100% { background-position: -10000px 5000px; }
+    }
+
+    nav {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      background: rgba(10, 10, 40, 0.95);
+      padding: 1rem;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 4px 15px rgba(138, 43, 226, 0.3);
+    }
+
+    nav a {
+      color: #fff;
+      text-decoration: none;
+      font-weight: 600;
+      transition: color 0.3s ease;
+      background: linear-gradient(to right, #8a2be2, #4169e1);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    nav a:hover {
+      color: #8a2be2;
+      text-shadow: 0 0 10px rgba(138, 43, 226, 0.7);
+    }
+
+    header {
+      text-align: center;
+      padding: 2rem;
+      background: rgba(10, 10, 40, 0.9);
+      box-shadow: 0 4px 20px rgba(138, 43, 226, 0.4);
+    }
+
+    header h1 {
+      font-size: 3rem;
+      background: linear-gradient(to right, #8a2be2, #4169e1);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    section {
+      padding: 2rem 10%;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    section h2 {
+      font-size: 2rem;
+      color: #4169e1;
+      margin-bottom: 1rem;
+    }
+
+    section p {
+      font-size: 1.1rem;
+      line-height: 1.8;
+    }
+
+    .image-gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.5rem;
+      margin-top: 1.5rem;
+    }
+
+    .image-gallery img {
+      width: 100%;
+      height: 500px;
+      object-fit: cover;
+      border-radius: 1rem;
+      box-shadow: 0 4px 20px rgba(65, 105, 225, 0.5);
+      transition: transform 0.3s ease;
+    }
+
+    .image-gallery img:hover {
+      transform: scale(1.05);
+    }
+
+    footer {
+      text-align: center;
+      padding: 1rem;
+      background: rgba(10, 10, 40, 0.8);
+      font-size: 0.9rem;
+      color: #ccc;
+    }
+
+  </style>
+</head>
+<body>
+  <!-- Video Background -->
+  <video autoplay muted loop id="bg-video">
+    <source src="assets/isro-bg.mp4" type="video/mp4">
+    Your browser does not support HTML5 video.
+  </video>
+
+  <!-- Star Animation -->
+  <div class="stars"></div>
+
+  <!-- Navbar -->
+  <nav>
+    <a href="organisations.html">Organisations</a>
+    <a href="isro.html">ISRO</a>
+    <a href="nasa.html">NASA</a>
+    <a href="esa.html">ESA</a>
+    <a href="roscosmos.html">ROSCOSMOS</a>
+    <a href="cnsa.html">CNSA</a>
+    <a href="jaxa.html">JAXA</a>
+    <a href="cnes.html">CNES</a>
+    <a href="ukspace.html">UK</a>
+    <a href="dlr.html">DLR</a>
+    <a href="kari.html">KARI</a>
+  </nav>
+
+  <header>
+    <h1>ISRO - Indian Space Research Organisation</h1>
+  </header>
+
+  <section>
+    <h2>History & Overview</h2>
+    <p>
+      ISRO was founded in 1969 by Dr. Vikram Sarabhai, often regarded as the father of India's space program.
+      Its mission is to utilize space technology for national development, with a vision to become a global leader in space research and exploration.
+      ISRO has achieved several milestones, such as launching satellites, conducting space missions, and sending India's first interplanetary mission, Mars Orbiter Mission (Mangalyaan), to Mars in 2013.
+    </p>
+    <div class="image-gallery">
+      <img src="https://download.logo.wine/logo/Indian_Space_Research_Organisation/Indian_Space_Research_Organisation-Logo.wine.png" alt="ISRO Logo" />
+    </div>
+  </section>
+
+  <section>
+    <h2>Famous Rockets</h2>
+    <p>
+      ISRO has developed a range of rockets, including the <strong>PSLV</strong> (Polar Satellite Launch Vehicle), which is known for its reliability and successful launches.
+      The <strong>GSLV</strong> (Geosynchronous Satellite Launch Vehicle) is used for heavier payloads and has been pivotal in deploying communication satellites.
+    </p>
+    <div class="image-gallery">
+      <img src="https://i0.wp.com/spacenews.com/wp-content/uploads/2023/07/PSLV.jpg?fit=1200%2C707&quality=89&ssl=1" alt="PSLV Rocket Launch" />
+      <img src="https://www.orfonline.org/public/uploads/posts/image/GSLV-Mk-III-1.jpg" alt="GSLV Rocket" />
+    </div>
+  </section>
+
+  <section>
+    <h2>Satellites</h2>
+    <p>
+      ISRO has launched numerous satellites for various purposes, including communications, Earth observation, and navigation. Some notable satellites include:
+      <strong>INSAT</strong>, <strong>GSAT</strong>, <strong>NavIC</strong> (Indian Regional Navigation Satellite System), and <strong>RISAT</strong> for radar imaging.
+    </p>
+    <div class="image-gallery">
+      <img src="https://madhyamamonline.com/h-upload/2023/04/22/1968912-satellite.webp" alt="GSAT Satellite" />
+    </div>
+  </section>
+
+  <section>
+    <h2>Space Missions</h2>
+    <p>
+      ISRO's space missions include the successful launch of <strong>Chandrayaan-1</strong> (India's first lunar mission), the <strong>Chandrayaan-2</strong> mission to the Moon, and the <strong>Mangalyaan</strong> mission to Mars.
+      The recent <strong>Gaganyaan</strong> mission aims to send Indian astronauts into space for the first time.
+    </p>
+    <div class="image-gallery">
+      <img src="https://c.ndtvimg.com/2019-07/2fe7cuqo_chandrayaan-2-launch-pti-650_650x400_15_July_19.jpg" alt="Chandrayaan-1 Mission" />
+      <img src="https://i0.wp.com/spacenews.com/wp-content/uploads/2014/11/MangalyaanPSLV_ISRO4X3.jpg?fit=550%2C413&quality=89&ssl=1" alt="Mangalyaan" />
+    </div>
+  </section>
+
+  <section>
+    <h2>Astronauts</h2>
+    <p>
+      Notable astronauts include <strong>Rakesh Sharma</strong> (India's first man in space) and <strong>Kalpana Chawla</strong>, who flew on the Space Shuttle Columbia.
+      ISRO has also developed astronaut training programs and is planning to send Indian astronauts into space via the <strong>Gaganyaan</strong> mission.
+    </p>
+    <div class="image-gallery">
+      <img src="https://d2py10ayqu2jji.cloudfront.net/Feature-2.webp" alt="Rakesh Sharma" />
+      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9c/Kalpana_Chawla%2C_NASA_photo_portrait_in_orange_suit.jpg/1200px-Kalpana_Chawla%2C_NASA_photo_portrait_in_orange_suit.jpg" alt="Kalpana Chawla" />
+    </div>
+  </section>
+
+  <section>
+    <h2>Involvement with ISS</h2>
+    <p>
+      ISRO has yet to send astronauts to the International Space Station (ISS), but it collaborates with various space agencies like NASA, ESA, and Roscosmos for scientific research and technological exchange.
+    </p>
+    <div class="image-gallery">
+      <img src="https://img.jagranjosh.com/imported/images/E/Others/ISRO-to-launch-own-space-station.jpg" alt="ISS Launch" />
+    </div>
+  </section>
+
+  <section>
+    <h2>International Collaborations</h2>
+    <p>
+      ISRO has extensive international collaborations with agencies such as NASA, Roscosmos, ESA, CNES, and JAXA, covering various space missions, research, and satellite launches.
+    </p>
+    <div class="image-gallery">
+      <img src="https://i0.wp.com/spacenews.com/wp-content/uploads/2024/05/modi-indianastros.jpg?fit=1200%2C847&quality=89&ssl=1" alt="ISRO NASA Collaboration" />
+    </div>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 Cosmic Voyagers. All rights reserved.</p>
+  </footer>
+</body>
+</html>

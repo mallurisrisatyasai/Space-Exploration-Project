@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="icon" type="image/png" href="https://cdn-icons-png.flaticon.com/128/3594/3594083.png">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>UK Space Agency - Cosmic Voyagers</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet" />
+  <link rel="icon" type="image/png" href="https://cdn-icons-png.flaticon.com/128/3594/3594083.png" />
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Montserrat', sans-serif;
+      background: linear-gradient(to bottom, #0a0a20, #131342);
+      color: #ffffff;
+      overflow-x: hidden;
+    }
+    #bg-video {
+      position: fixed;
+      right: 0;
+      bottom: 0;
+      min-width: 100%;
+      min-height: 100%;
+      z-index: -2;
+      object-fit: cover;
+      opacity: 0.2;
+    }
+    .stars {
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      background: url('starback.html') repeat;
+      animation: twinkle 100s linear infinite;
+      z-index: -1;
+      opacity: 0.3;
+    }
+    @keyframes twinkle {
+      0% { background-position: 0 0; }
+      100% { background-position: -10000px 5000px; }
+    }
+    nav {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      background: rgba(10, 10, 40, 0.95);
+      padding: 1rem;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 4px 15px rgba(138, 43, 226, 0.3);
+    }
+    nav a {
+      color: #fff;
+      text-decoration: none;
+      font-weight: 600;
+      transition: color 0.3s ease;
+      background: linear-gradient(to right, #8a2be2, #4169e1);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    nav a:hover {
+      color: #8a2be2;
+      text-shadow: 0 0 10px rgba(138, 43, 226, 0.7);
+    }
+    header {
+      text-align: center;
+      padding: 2rem;
+      background: rgba(10, 10, 40, 0.9);
+      box-shadow: 0 4px 20px rgba(138, 43, 226, 0.4);
+    }
+    header h1 {
+      font-size: 3rem;
+      background: linear-gradient(to right, #8a2be2, #4169e1);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    section {
+      padding: 2rem 10%;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    section h2 {
+      font-size: 2rem;
+      color: #4169e1;
+      margin-bottom: 1rem;
+    }
+    section p {
+      font-size: 1.1rem;
+      line-height: 1.8;
+    }
+    .image-gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.5rem;
+      margin-top: 1.5rem;
+    }
+    .image-gallery img {
+      width: 100%;
+      height: 250px;
+      object-fit: cover;
+      border-radius: 1rem;
+      box-shadow: 0 4px 20px rgba(65, 105, 225, 0.5);
+      transition: transform 0.3s ease;
+    }
+    .image-gallery img:hover {
+      transform: scale(1.05);
+    }
+    footer {
+      text-align: center;
+      padding: 1rem;
+      background: rgba(10, 10, 40, 0.8);
+      font-size: 0.9rem;
+      color: #ccc;
+    }
+  </style>
+</head>
+<body>
+  <video autoplay muted loop id="bg-video">
+    <source src="assets/ukspace-bg.mp4" type="video/mp4">
+  </video>
+  <div class="stars"></div>
+
+  <nav>
+    <a href="organisations.html">Organisations</a>
+    <a href="isro.html">ISRO</a>
+    <a href="nasa.html">NASA</a>
+    <a href="esa.html">ESA</a>
+    <a href="roscosmos.html">ROSCOSMOS</a>
+    <a href="cnsa.html">CNSA</a>
+    <a href="jaxa.html">JAXA</a>
+    <a href="cnes.html">CNES</a>
+    <a href="ukspace.html">UK</a>
+    <a href="dlr.html">DLR</a>
+    <a href="kari.html">KARI</a>
+  </nav>
+
+  <header>
+    <h1>UK Space Agency</h1>
+  </header>
+
+  <section>
+    <h2>History & Overview</h2>
+    <p>
+      The UK Space Agency, established in 2010, is the United Kingdom’s governmental organization responsible for civil space activities. It coordinates space policy, international partnerships, and UK investments in ESA programs.
+    </p>
+    <div class="image-gallery">
+      <img src="https://www.esa.int/var/esa/storage/images/esa_multimedia/images/2015/06/united_kingdom_space_agency_uk_space_agency_logo/15438137-1-eng-GB/United_Kingdom_Space_Agency_UK_Space_Agency_logo_pillars.jpg" alt="UK Space Agency Logo" style="height:1100px"/>
+    </div>
+  </section>
+
+  <section>
+    <h2>Famous Rockets</h2>
+    <p>
+      The UK developed early rockets like Black Arrow and is now supporting commercial launch providers such as Skyrora and Orbex. Efforts are ongoing to establish launch sites like Spaceport Cornwall and Sutherland.
+    </p>
+    <div class="image-gallery">
+      <img src="https://journal.sciencemuseum.ac.uk/wp-content/uploads/2022/11/Fig-2-Black-Arrow-R4-in-Science-Museums-Exploration-of-Space-gallery-1986.jpg" alt="Black Arrow Rocket" style="height: 800px;"/>
+    </div>
+  </section>
+
+  <section>
+    <h2>Satellites</h2>
+    <p>
+      The UK is a global leader in small satellite development through companies like Surrey Satellite Technology Ltd (SSTL). It has contributed to missions such as NovaSAR, DMC satellites, and international satellite constellations.
+    </p>
+    <div class="image-gallery">
+      <img src="https://www.newelectronics.co.uk/media/j1udk0cq/novasar.jpg?width=1002&height=564&v=1d9d762c9f035f0" alt="NovaSAR Satellite" />
+      <img src="https://eo.belspo.be/sites/default/files/styles/xlarge/public/satellites/181._uk-dmc-2.jpg?itok=KrPS-GWg" alt="DMC satellite" />
+      <img src="https://tecknexus.com/wp-content/uploads/2023/11/Satellite-Constellations-TeckNexus.jpg" alt="international satellite constellations" />
+    </div>
+  </section>
+
+  <section>
+    <h2>Involvement with ISS</h2>
+    <p>
+      The UK contributes to the International Space Station through its ESA membership. British astronaut Tim Peake flew to the ISS in 2015 aboard the Soyuz spacecraft, conducting scientific research and outreach activities.
+    </p>
+    <div class="image-gallery">
+      <img src="https://www.esa.int/var/esa/storage/images/esa_multimedia/images/2016/01/esa_astronaut_tim_peake_in_cupola/15984193-1-eng-GB/ESA_astronaut_Tim_Peake_in_Cupola_pillars.jpg" alt="Tim Peake on ISS" style="height: 500px"/>
+    </div>
+  </section>
+
+  <section>
+    <h2>Major Missions</h2>
+    <p>
+      UK scientists and engineers are part of global missions like Gaia, Solar Orbiter, Rosalind Franklin (ExoMars), and the upcoming Lunar Pathfinder. The UK Space Agency also invests in climate and Earth observation programs.
+    </p>
+    <div class="image-gallery">
+      <img src="https://www.esa.int/var/esa/storage/images/esa_multimedia/videos/2019/10/gaia_astronomical_revolution/21106023-7-eng-GB/Gaia_astronomical_revolution_pillars.jpg" alt="Gaia" />
+      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/12/Solar_Orbiter_ESA20813950.jpg/1200px-Solar_Orbiter_ESA20813950.jpg" alt="Solar Orbiter" />
+      <img src="https://images.newscientist.com/wp-content/uploads/2019/02/07152428/rover1.jpg" alt="Rosalind Franklin" />
+      <img src="https://bsgn.esa.int/wp-content/uploads/2021/11/Lunar_Pathfinder.png" alt="Lunar Pathfinder" />
+    </div>
+  </section>
+
+  <section>
+    <h2>Astronauts</h2>
+    <p>
+      <strong>Tim Peake</strong> is the first officially UK Space Agency-sponsored astronaut. He spent over 180 days in space and became a key figure in promoting space science in British education and media.
+    </p>
+    <div class="image-gallery">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/8/87/Timothy_Peake%2C_official_portrait.jpg" alt="Tim Peake" style="height: 1000px;"/>
+    </div>
+  </section>
+
+  <section>
+    <h2>International Collaborations</h2>
+    <p>
+      The UK Space Agency is a major contributor to ESA and collaborates with NASA, JAXA, and other space agencies. It also partners with private companies like OneWeb and contributes to global space sustainability efforts.
+    </p>
+    <div class="image-gallery">
+      <img src="https://planet4589.org/space/con/ow/owfig2.jpg" alt="OneWeb Satellite" style="height: 500px;"/>
+    </div>
+  </section>
+
+  <section>
+    <h2>Internships & Student Opportunities</h2>
+    <p>
+      The UK Space Agency supports various student programs, including internships, PhD placements, and fellowships. It collaborates with ESA Education and UK universities to grow the future space workforce.
+    </p>
+  </section>
+
+  <footer>
+    &copy; 2025 Cosmic Voyagers | Designed with ✫ in the stars
+  </footer>
+</body>
+</html>

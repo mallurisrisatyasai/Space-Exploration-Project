@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="icon" type="image/png" href="https://cdn-icons-png.flaticon.com/128/3594/3594083.png">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Firefly Aerospace - Cosmic Voyagers</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet" />
+  <link rel="icon" type="image/png" href="https://cdn-icons-png.flaticon.com/128/3594/3594083.png" />
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Montserrat', sans-serif;
+      background: linear-gradient(to bottom, #0a0a20, #131342);
+      color: #ffffff;
+      overflow-x: hidden;
+    }
+    #bg-video {
+      position: fixed;
+      right: 0;
+      bottom: 0;
+      min-width: 100%;
+      min-height: 100%;
+      z-index: -2;
+      object-fit: cover;
+      opacity: 0.2;
+    }
+    .stars {
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      background: url('starback.html') repeat;
+      animation: twinkle 100s linear infinite;
+      z-index: -1;
+      opacity: 0.3;
+    }
+    @keyframes twinkle {
+      0% { background-position: 0 0; }
+      100% { background-position: -10000px 5000px; }
+    }
+    nav {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      background: rgba(10, 10, 40, 0.95);
+      padding: 1rem;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 4px 15px rgba(138, 43, 226, 0.3);
+    }
+    nav a {
+      color: #fff;
+      text-decoration: none;
+      font-weight: 600;
+      transition: color 0.3s ease;
+      background: linear-gradient(to right, #8a2be2, #4169e1);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    nav a:hover {
+      color: #8a2be2;
+      text-shadow: 0 0 10px rgba(138, 43, 226, 0.7);
+    }
+    header {
+      text-align: center;
+      padding: 2rem;
+      background: rgba(10, 10, 40, 0.9);
+      box-shadow: 0 4px 20px rgba(138, 43, 226, 0.4);
+    }
+    header h1 {
+      font-size: 3rem;
+      background: linear-gradient(to right, #8a2be2, #4169e1);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    section {
+      padding: 2rem 10%;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    section h2 {
+      font-size: 2rem;
+      color: #4169e1;
+      margin-bottom: 1rem;
+    }
+    section p {
+      font-size: 1.1rem;
+      line-height: 1.8;
+    }
+    .image-gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.5rem;
+      margin-top: 1.5rem;
+    }
+    .image-gallery img {
+      width: 100%;
+      height: 250px;
+      object-fit: cover;
+      border-radius: 1rem;
+      box-shadow: 0 4px 20px rgba(65, 105, 225, 0.5);
+      transition: transform 0.3s ease;
+    }
+    .image-gallery img:hover {
+      transform: scale(1.05);
+    }
+    footer {
+      text-align: center;
+      padding: 1rem;
+      background: rgba(10, 10, 40, 0.8);
+      font-size: 0.9rem;
+      color: #ccc;
+    }
+  </style>
+</head>
+<body>
+  <video autoplay muted loop id="bg-video">
+    <source src="assets/firefly-bg.mp4" type="video/mp4">
+  </video>
+  <div class="stars"></div>
+
+  <nav>
+    <a href="organisations.html">Organisations</a>
+    <a href="spacex.html">SpaceX</a>
+    <a href="blueorigin.html">Blue Origin</a>
+    <a href="virgingalactic.html">Virgin Galactic</a>
+    <a href="rocketlab.html">Rocket Lab</a>
+    <a href="firefly.html">Firefly Aerospace</a>
+    <a href="sierra.html">Sierra Space</a>
+  </nav>
+
+  <header>
+    <h1>Firefly Aerospace</h1>
+  </header>
+
+  <section>
+    <h2>History & Overview</h2>
+    <p>
+      Firefly Aerospace is an American aerospace manufacturer and small satellite launch service provider founded in 2014. The company focuses on providing low-cost, reliable launch services for small payloads to low Earth orbit. Its rockets are designed to serve both government and commercial clients with rapid access to space.
+    </p>
+    <div class="image-gallery">
+      <img src="https://logowik.com/content/uploads/images/firefly-aerospace5483.logowik.com.webp" alt="Firefly Aerospace Logo" style="height: 400px;"/>
+    </div>
+  </section>
+
+  <section>
+    <h2>Famous Rockets</h2>
+    <p>
+      Firefly Aerospace's primary rocket is the Alpha, a small satellite launch vehicle that is designed to provide frequent, low-cost access to space. The company is also working on a larger rocket, Beta, which will be capable of launching medium-sized payloads into low Earth orbit.
+    </p>
+    <div class="image-gallery">
+      <img src="https://spacewatch.global/wp-content/uploads/2023/11/Firefly-Aerospace-Alpha-rocket-lifting-off-in-2021.-Credit-Firefly-Aerospace-1.webp" alt="Firefly Alpha Rocket" style="height: 500px;"/>
+      <img src="https://www.statesman.com/gcdn/authoring/2019/05/03/NAAS/ghows-TX-87fdac92-f728-52fb-e053-0100007fe667-574e2fae.jpeg?crop=3605,2038,x0,y181&width=3200&height=1810&format=pjpg&auto=webp" alt="Firefly Beta Rocket" style="height: 500px;"/>
+    </div>
+  </section>
+
+  <section>
+    <h2>Satellites</h2>
+    <p>
+      Firefly Aerospace is focused on deploying small satellites into low Earth orbit for a variety of commercial, governmental, and scientific clients. These satellites are used for a range of applications including Earth observation, communications, and space science.
+    </p>
+    <div class="image-gallery">
+      <img src="https://d.newsweek.com/en/full/1886772/rocket-launch.jpg" alt="Firefly Satellite Launch" style="height: 770px;"/>
+    </div>
+  </section>
+
+  <section>
+    <h2>Involvement with ISS</h2>
+    <p>
+      Firefly Aerospace's rockets have been used to deploy payloads to the International Space Station (ISS) in support of scientific research and technological development. The company plays a key role in delivering small satellite payloads for ISS-related missions.
+    </p>
+  </section>
+
+  <section>
+    <h2>Major Missions</h2>
+    <p>
+      Firefly Aerospace has been involved in several missions to deploy small satellites for a variety of customers. Their missions support a broad range of applications, from communications to Earth observation.
+    </p>
+    <div class="image-gallery">
+      <img src="https://maxpolyakov.com/wp-content/uploads/2022/10/firefly-aerospace-has-successfully-launched-its-alpha-rocket-to-space.jpg" alt="Firefly Alpha Rocket Launch" style="height: 800px;"/>
+    </div>
+  </section>
+
+  <section>
+    <h2>Astronauts</h2>
+    <p>
+      Firefly Aerospace does not yet have a human spaceflight program, but the company is focused on small satellite launches and aims to develop rockets capable of delivering payloads to space for both government and commercial clients.
+    </p>
+  </section>
+
+  <section>
+    <h2>International Collaborations</h2>
+    <p>
+      Firefly Aerospace collaborates with various international clients and space agencies to provide launch services for small satellite missions. These collaborations support global space exploration and commercial space programs.
+    </p>
+    <div class="image-gallery">
+      <img src="https://fireflyspace.com/wp-content/uploads/2024/09/Blue-Ghost-team-e1725395204664.png" alt="Firefly Aerospace International Collaboration" style="height: 500px;"/>
+    </div>
+  </section>
+
+  <section>
+    <h2>Internships & Student Opportunities</h2>
+    <p>
+      Firefly Aerospace offers internships and student opportunities for individuals interested in aerospace engineering, satellite technology, and rocket science. These programs give students the chance to work on real-world space missions and innovations.
+    </p>
+  </section>
+
+  <footer>
+    &copy; 2025 Cosmic Voyagers | Designed with ✫ in the stars
+  </footer>
+</body>
+</html>

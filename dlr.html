@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="icon" type="image/png" href="https://cdn-icons-png.flaticon.com/128/3594/3594083.png">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>DLR - Cosmic Voyagers</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet" />
+  <link rel="icon" type="image/png" href="https://cdn-icons-png.flaticon.com/128/3594/3594083.png" />
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Montserrat', sans-serif;
+      background: linear-gradient(to bottom, #0a0a20, #131342);
+      color: #ffffff;
+      overflow-x: hidden;
+    }
+    #bg-video {
+      position: fixed;
+      right: 0;
+      bottom: 0;
+      min-width: 100%;
+      min-height: 100%;
+      z-index: -2;
+      object-fit: cover;
+      opacity: 0.2;
+    }
+    .stars {
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      background: url('starback.html') repeat;
+      animation: twinkle 100s linear infinite;
+      z-index: -1;
+      opacity: 0.3;
+    }
+    @keyframes twinkle {
+      0% { background-position: 0 0; }
+      100% { background-position: -10000px 5000px; }
+    }
+    nav {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      background: rgba(10, 10, 40, 0.95);
+      padding: 1rem;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 4px 15px rgba(138, 43, 226, 0.3);
+    }
+    nav a {
+      color: #fff;
+      text-decoration: none;
+      font-weight: 600;
+      transition: color 0.3s ease;
+      background: linear-gradient(to right, #8a2be2, #4169e1);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    nav a:hover {
+      color: #8a2be2;
+      text-shadow: 0 0 10px rgba(138, 43, 226, 0.7);
+    }
+    header {
+      text-align: center;
+      padding: 2rem;
+      background: rgba(10, 10, 40, 0.9);
+      box-shadow: 0 4px 20px rgba(138, 43, 226, 0.4);
+    }
+    header h1 {
+      font-size: 3rem;
+      background: linear-gradient(to right, #8a2be2, #4169e1);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    section {
+      padding: 2rem 10%;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    section h2 {
+      font-size: 2rem;
+      color: #4169e1;
+      margin-bottom: 1rem;
+    }
+    section p {
+      font-size: 1.1rem;
+      line-height: 1.8;
+    }
+    .image-gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.5rem;
+      margin-top: 1.5rem;
+    }
+    .image-gallery img {
+      width: 100%;
+      height: 250px;
+      object-fit: cover;
+      border-radius: 1rem;
+      box-shadow: 0 4px 20px rgba(65, 105, 225, 0.5);
+      transition: transform 0.3s ease;
+    }
+    .image-gallery img:hover {
+      transform: scale(1.05);
+    }
+    footer {
+      text-align: center;
+      padding: 1rem;
+      background: rgba(10, 10, 40, 0.8);
+      font-size: 0.9rem;
+      color: #ccc;
+    }
+  </style>
+</head>
+<body>
+  <video autoplay muted loop id="bg-video">
+    <source src="assets/dlr-bg.mp4" type="video/mp4">
+  </video>
+  <div class="stars"></div>
+
+  <nav>
+    <a href="organisations.html">Organisations</a>
+    <a href="isro.html">ISRO</a>
+    <a href="nasa.html">NASA</a>
+    <a href="esa.html">ESA</a>
+    <a href="roscosmos.html">ROSCOSMOS</a>
+    <a href="cnsa.html">CNSA</a>
+    <a href="jaxa.html">JAXA</a>
+    <a href="cnes.html">CNES</a>
+    <a href="ukspace.html">UK</a>
+    <a href="dlr.html">DLR</a>
+    <a href="kari.html">KARI</a>
+  </nav>
+
+  <header>
+    <h1>German Aerospace Center (DLR)</h1>
+  </header>
+
+  <section>
+    <h2>History & Overview</h2>
+    <p>
+      The German Aerospace Center (DLR) is the national organization for aerospace, energy, and transportation research in Germany. Founded in 1969, DLR is responsible for the development and testing of space technology, air traffic management, and energy solutions.
+    </p>
+    <div class="image-gallery">
+      <img src="https://www.copernicus-user-uptake.eu/fileadmin/logos_photos/DLR-icon-white.png" alt="DLR Logo" style="height:800px"/>
+    </div>
+  </section>
+
+  <section>
+    <h2>Famous Rockets</h2>
+    <p>
+      DLR is involved in various rocket development programs and testing, including its role in the European Ariane and Vega launch vehicles. It also conducts research on reusable space systems.
+    </p>
+    <div class="image-gallery">
+      <img src="https://ariane.group/app/uploads/2024/05/ariane-5-jwst-launch.jpg" alt="Ariane 5 Rocket" style="height: 500px;"/>
+    </div>
+  </section>
+
+  <section>
+    <h2>Satellites</h2>
+    <p>
+      DLR operates several space missions, including Earth observation satellites like TerraSAR-X, TanDEM-X, and the upcoming missions under the SpaceDataHighways initiative. It also participates in the European Space Agency’s Earth observation programs.
+    </p>
+    <div class="image-gallery">
+      <img src="https://www.dlr.de/en/images/2011/1/german-radar-satellite-terrasar-x_350/@@images/image-1000-61a701602065ce8cee2e5737ff967da4.jpeg" alt="TerraSAR-X Satellite" />
+      <img src="https://www.dlr.de/en/images/2018/4/twin-satellites-terrasar-x-tandem-x/@@images/image-1000-809458fcb55e124e5352b685fe0f2d01.jpeg" alt="TanDEM-X Satellite" />
+    </div>
+  </section>
+
+  <section>
+    <h2>Involvement with ISS</h2>
+    <p>
+      DLR contributes to the ISS through various research and technology development programs. It supports the European Space Agency (ESA) and is responsible for providing key scientific experiments on the ISS.
+    </p>
+    <div class="image-gallery">
+      <img src="https://www.dlr.de/en/images/2020/2/cimon-2-on-the-iss/@@images/image-1000-a376d811c0780b114972221fd4c274a1.jpeg" alt="DLR Astronaut on ISS" style="height: 400px;"/>
+    </div>
+  </section>
+
+  <section>
+    <h2>Major Missions</h2>
+    <p>
+      DLR has been involved in numerous high-profile missions, including participation in the Mars Express mission, the Rosetta comet mission, and the Galileo satellite navigation system.
+    </p>
+    <div class="image-gallery">
+      <img src="https://cdn.mos.cms.futurecdn.net/qVCLXjWC2fgrUrCq6NRPKQ.jpg" alt="Rosetta Mission" style="height: 350px;"/>
+    </div>
+  </section>
+
+  <section>
+    <h2>Astronauts</h2>
+    <p>
+      DLR has contributed astronauts to the European Space Agency's astronaut program, including <strong>Alexander Gerst</strong>, who completed two missions aboard the ISS.
+    </p>
+    <div class="image-gallery">
+      <img src="https://www.dlr.de/en/images/2018/4/alexander-gerst-back-on-earth/@@images/image-1000-809458fcb55e124e5352b685fe0f2d01.jpeg" alt="Alexander Gerst" style="height: 400px;"/>
+    </div>
+  </section>
+
+  <section>
+    <h2>International Collaborations</h2>
+    <p>
+      DLR collaborates with NASA, ESA, JAXA, and other global space agencies on joint missions and research. It plays a critical role in advancing space science, propulsion technology, and robotics.
+    </p>
+    <div class="image-gallery">
+      <img src="https://www.dlr.de/en/images/missions/astrolab/astrolab3/@@images/image-2000-b553464701692ed20b38fff23cbde8a5.jpeg" alt="DLR Mission Control" style="height: 400px;"/>
+    </div>
+  </section>
+
+  <section>
+    <h2>Internships & Student Opportunities</h2>
+    <p>
+      DLR offers various internships and student programs across its research areas, enabling young talents to work on space missions, satellite development, and energy research.
+    </p>
+  </section>
+
+  <footer>
+    &copy; 2025 Cosmic Voyagers | Designed with ✫ in the stars
+  </footer>
+</body>
+</html>

@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Rockets | Cosmic Voyagers</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet" />
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Montserrat', sans-serif;
+            background: linear-gradient(to bottom, #0a0a20, #131342);
+            color: #ffffff;
+            overflow-x: hidden;
+        }
+
+        .stars {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            background: url('https://raw.githubusercontent.com/VincentGarreau/particles.js/master/demo/img/stars.png') repeat;
+            animation: moveStars 60s linear infinite;
+            z-index: -1;
+        }
+
+        @keyframes moveStars {
+            from {
+                background-position: 0 0;
+            }
+
+            to {
+                background-position: 10000px 10000px;
+            }
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            padding: 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            backdrop-filter: blur(10px);
+            background-color: rgba(10, 10, 32, 0.7);
+            box-sizing: border-box;
+        }
+
+        nav.scrolled {
+            padding: 1rem;
+            background-color: rgba(10, 10, 32, 0.9);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: linear-gradient(45deg, #8a2be2, #4169e1);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .logo-text {
+            font-size: 1.5rem;
+            font-weight: 700;
+            background: linear-gradient(to right, #8a2be2, #4169e1);
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .logo-text a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+            margin: 0;
+            padding: 0;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #e0e0ff;
+            font-weight: 500;
+            position: relative;
+            padding: 0.5rem 0;
+        }
+
+        .nav-links a:hover {
+            color: #8a2be2;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background: linear-gradient(to right, #8a2be2, #4169e1);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            z-index: 1001;
+        }
+
+        .bar {
+            width: 30px;
+            height: 3px;
+            background: linear-gradient(to right, #8a2be2, #4169e1);
+            border-radius: 3px;
+            transition: all 0.3s ease;
+        }
+
+        .hamburger.active .bar:nth-child(1) {
+            transform: translateY(8px) rotate(45deg);
+        }
+
+        .hamburger.active .bar:nth-child(2) {
+            opacity: 0;
+        }
+
+        .hamburger.active .bar:nth-child(3) {
+            transform: translateY(-8px) rotate(-45deg);
+        }
+
+        header {
+            text-align: center;
+            padding: 6rem 1rem 3rem;
+            color: #8a2be2;
+        }
+
+        h1 {
+            font-size: 3rem;
+            margin-bottom: 0.5rem;
+        }
+
+        section {
+            padding: 2rem 5%;
+            max-width: 1000px;
+            margin: auto;
+            line-height: 1.6;
+        }
+
+        h2 {
+            color: #4169e1;
+            margin-top: 2rem;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1rem 0;
+        }
+
+        th,
+        td {
+            border: 1px solid #8a2be2;
+            padding: 0.75rem;
+            text-align: left;
+        }
+
+        th {
+            background-color: #1e1e3f;
+        }
+
+        .highlight {
+            color: #8a2be2;
+            font-weight: bold;
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                position: fixed;
+                top: 0;
+                left: -100%;
+                width: 70%;
+                height: 100vh;
+                background-color: rgba(10, 10, 32, 0.95);
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                gap: 2rem;
+                transition: left 0.3s ease;
+            }
+            
+            .nav-links.active {
+                left: 0;
+            }
+            
+            .hamburger {
+                display: flex;
+            }
+            
+            nav {
+                padding: 1rem;
+            }
+            
+            header {
+                padding-top: 4rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="stars"></div>
+    <nav id="navbar">
+        <div class="logo">
+            <div class="logo-icon">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <circle cx="12" cy="12" r="4"></circle>
+                    <line x1="21.17" y1="8" x2="12" y2="8"></line>
+                    <line x1="3.95" y1="6.06" x2="8.54" y2="14"></line>
+                    <line x1="10.88" y1="21.94" x2="15.46" y2="14"></line>
+                </svg>
+            </div>
+            <div class="logo-text"><a href="space-exploration-responsive.html" title="Redirect to Cosmic Voyager (Home Page)">COSMIC VOYAGER</a></div>
+        </div>
+        <ul class="nav-links">
+            <li><a href="#home">Home</a></li>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="index.html" target="_blank">Gallery</a></li>
+            <li><a href="organisations.html">Organisations</a></li>
+            <li><a href="machinery.html">Machinery</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+        <div class="hamburger">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </div>
+    </nav>
+    <header>
+        <h1>🚀 Rockets</h1>
+        <p class="highlight">The Powerhouses of Space Exploration</p>
+    </header>
+    <section>
+        <h2>🔹 What is a Rocket?</h2>
+        <p>A <strong>rocket</strong> is a vehicle propelled by the force of exhaust gases expelled from a combustion
+            reaction. Based on Newton's Third Law, rockets work even in the vacuum of space.</p>
+
+        <h2>🔹 Types of Rockets</h2>
+        <ul>
+            <li><strong>Launch Vehicles</strong>: Deliver payloads to space (e.g., Saturn V, Falcon 9, GSLV Mk III)</li>
+            <li><strong>Sounding Rockets</strong>: Suborbital flights for scientific experiments (e.g., RH-200)</li>
+            <li><strong>Missiles</strong>: Originated as weapons; some became launch systems</li>
+            <li><strong>Boosters</strong>: Provide extra thrust during liftoff</li>
+        </ul>
+
+        <h2>🔹 Types of Propulsion</h2>
+        <ul>
+            <li><strong>Solid</strong>: Simple, instant ignition, non-throttleable</li>
+            <li><strong>Liquid</strong>: Throttleable, restartable, more complex</li>
+            <li><strong>Hybrid</strong>: Mix of solid fuel and liquid oxidizer</li>
+        </ul>
+
+        <h2>🔹 Key Components of a Rocket</h2>
+        <ul>
+            <li>Propellant Tanks</li>
+            <li>Combustion Chamber</li>
+            <li>Nozzle</li>
+            <li>Payload Fairing</li>
+            <li>Guidance System</li>
+        </ul>
+
+        <h2>🔹 Famous Rockets</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Rocket</th>
+                    <th>Agency</th>
+                    <th>Achievement</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Saturn V</td>
+                    <td>NASA</td>
+                    <td>Took humans to the Moon</td>
+                </tr>
+                <tr>
+                    <td>Soyuz</td>
+                    <td>Roscosmos</td>
+                    <td>Most launched rocket ever</td>
+                </tr>
+                <tr>
+                    <td>Falcon 9</td>
+                    <td>SpaceX</td>
+                    <td>First reusable orbital-class rocket</td>
+                </tr>
+                <tr>
+                    <td>GSLV Mk III</td>
+                    <td>ISRO</td>
+                    <td>Launched Chandrayaan-2</td>
+                </tr>
+                <tr>
+                    <td>Ariane 5</td>
+                    <td>ESA</td>
+                    <td>Commercial satellite launcher</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h2>🔹 Reusable Rockets</h2>
+        <p>Modern rockets like <strong>Falcon 9</strong> and <strong>New Shepard</strong> can land and fly again,
+            reducing costs dramatically. Earlier examples include the Space Shuttle (partially reusable).</p>
+
+        <h2>🔹 Fun Fact</h2>
+        <p>To escape Earth's gravity, rockets need a speed of <strong>11.2 km/s</strong> (~40,270 km/h) — and rockets
+            are the only machines that can do it!</p>
+    </section>
+
+    <script>
+        // Hamburger menu toggle
+        const hamburger = document.querySelector('.hamburger');
+        const navLinks = document.querySelector('.nav-links');
+        
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            navLinks.classList.toggle('active');
+        });
+
+        // Navbar scroll effect
+        window.addEventListener('scroll', () => {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Close mobile menu when clicking a link
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                hamburger.classList.remove('active');
+                navLinks.classList.remove('active');
+            });
+        });
+    </script>
+</body>
+
+</html> 

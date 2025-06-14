@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Rovers | Cosmic Voyagers</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+  <style>
+    :root {
+      --primary: #8a2be2;
+      --secondary: #4169e1;
+      --dark-bg: #0a0a20;
+      --darker-bg: #131342;
+      --text-light: #e0e0ff;
+    }
+    
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    
+    body {
+      margin: 0;
+      font-family: 'Montserrat', sans-serif;
+      background: linear-gradient(to bottom, var(--dark-bg), var(--darker-bg));
+      color: #fff;
+      overflow-x: hidden;
+      line-height: 1.6;
+    }
+    
+    .stars {
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      background: url('https://raw.githubusercontent.com/VincentGarreau/particles.js/master/demo/img/stars.png') repeat;
+      animation: moveStars 60s linear infinite;
+      z-index: -1;
+    }
+    
+    @keyframes moveStars {
+      from {background-position: 0 0;}
+      to {background-position: 10000px 10000px;}
+    }
+
+    /* Navigation */
+    nav {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 1000;
+      padding: 1.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      backdrop-filter: blur(10px);
+      background-color: rgba(10, 10, 32, 0.7);
+      transition: all 0.3s ease;
+    }
+    
+    nav.scrolled {
+      padding: 1rem;
+      background-color: rgba(10, 10, 32, 0.9);
+      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+    }
+    
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      z-index: 1001;
+    }
+    
+    .logo-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: linear-gradient(45deg, var(--primary), var(--secondary));
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 1.5rem;
+    }
+    
+    .logo-text {
+      font-size: 1.5rem;
+      font-weight: 700;
+      background: linear-gradient(to right, var(--primary), var(--secondary));
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    
+    .nav-links {
+      display: flex;
+      list-style: none;
+      gap: 2rem;
+    }
+    
+    .nav-links a {
+      text-decoration: none;
+      color: var(--text-light);
+      font-weight: 500;
+      position: relative;
+      padding: 0.5rem 0;
+      transition: color 0.3s ease;
+    }
+    
+    .nav-links a:hover {
+      color: var(--primary);
+    }
+    
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 2px;
+      bottom: 0;
+      left: 0;
+      background: linear-gradient(to right, var(--primary), var(--secondary));
+      transition: width 0.3s ease;
+    }
+    
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+    
+    .menu-toggle {
+      display: none;
+      cursor: pointer;
+      z-index: 1001;
+    }
+    
+    /* Header */
+    header {
+      text-align: center;
+      padding: 8rem 1rem 3rem;
+      color: var(--primary);
+    }
+    
+    h1 {
+      font-size: clamp(2rem, 5vw, 3rem);
+      margin-bottom: 0.5rem;
+    }
+    
+    /* Main Content */
+    section {
+      padding: 2rem 5%;
+      max-width: 1000px;
+      margin: auto;
+    }
+    
+    h2 {
+      color: var(--secondary);
+      margin: 2rem 0 1rem;
+      font-size: 1.5rem;
+    }
+    
+    p {
+      margin-bottom: 1rem;
+    }
+    
+    ul {
+      padding-left: 1.2rem;
+      margin-bottom: 1.5rem;
+    }
+    
+    li {
+      margin-bottom: 0.5rem;
+    }
+    
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 1.5rem 0;
+      overflow-x: auto;
+      display: block;
+    }
+    
+    th, td {
+      border: 1px solid var(--primary);
+      padding: 0.75rem;
+      text-align: left;
+    }
+    
+    th {
+      background-color: #1e1e3f;
+    }
+    
+    tr:nth-child(even) {
+      background-color: rgba(138, 43, 226, 0.1);
+    }
+    
+    .highlight {
+      color: var(--primary);
+      font-weight: bold;
+    }
+    
+    /* Footer */
+    footer {
+      text-align: center;
+      padding: 2rem;
+      margin-top: 2rem;
+      background-color: rgba(10, 10, 32, 0.7);
+      backdrop-filter: blur(5px);
+    }
+    
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      nav {
+        padding: 1rem;
+      }
+      
+      .nav-links {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 70%;
+        height: 100vh;
+        background-color: rgba(10, 10, 32, 0.95);
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 2rem;
+        transition: right 0.3s ease;
+      }
+      
+      .nav-links.active {
+        right: 0;
+      }
+      
+      .menu-toggle {
+        display: block;
+        font-size: 1.5rem;
+        color: var(--text-light);
+      }
+      
+      header {
+        padding: 6rem 1rem 2rem;
+      }
+      
+      section {
+        padding: 2rem;
+      }
+    }
+    
+    @media (max-width: 480px) {
+      .logo-text {
+        font-size: 1.2rem;
+      }
+      
+      .logo-icon {
+        width: 35px;
+        height: 35px;
+        font-size: 1.2rem;
+      }
+      
+      h1 {
+        font-size: 2rem;
+      }
+      
+      table {
+        font-size: 0.9rem;
+      }
+      
+      th, td {
+        padding: 0.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="stars"></div>
+  <nav id="navbar">
+    <div class="logo">
+      <div class="logo-icon">🤖</div>
+      <a href="space-exploration-responsive.html" style="text-decoration: none;"><div class="logo-text">Cosmic Voyagers</div></a>
+    </div>
+    <div class="menu-toggle" id="mobile-menu">
+      <i class="fas fa-bars"></i>
+    </div>
+    <ul class="nav-links" id="nav-links">
+      <li><a href="space-exploration-responsive.html">Home</a></li>
+      <li><a href="organisations.html">Organisations</a></li>
+      <li><a href="machinery.html">Machinery</a></li>
+      <li><a href="rovers.html">Rovers</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+  </nav>
+  <header>
+    <h1>🤖 Rovers</h1>
+    <p class="highlight">Explorers on Other Worlds</p>
+  </header>
+  <section>
+    <h2>🔹 What is a Rover?</h2>
+    <p>A <strong>rover</strong> is a robotic spacecraft designed to move across the surface of planets or moons. Unlike landers that remain stationary, rovers explore terrain, conduct scientific experiments, and send data back to Earth.</p>
+
+    <h2>🔹 Purpose of Rovers</h2>
+    <ul>
+      <li>Exploration of planetary surfaces</li>
+      <li>Geological and atmospheric analysis</li>
+      <li>Search for signs of past or present life</li>
+      <li>Testing new technologies for future manned missions</li>
+    </ul>
+
+    <h2>🔹 Key Features of Rovers</h2>
+    <ul>
+      <li>Mobility systems like wheels or tracks</li>
+      <li>Scientific instruments (cameras, spectrometers, drills)</li>
+      <li>Communication systems for data relay</li>
+      <li>Power sources (solar panels or nuclear batteries)</li>
+      <li>Autonomous navigation and hazard avoidance</li>
+    </ul>
+
+    <h2>🔹 Famous Rovers</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Agency</th>
+          <th>Mission</th>
+          <th>Landing Date</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Sojourner</td>
+          <td>NASA</td>
+          <td>Mars Pathfinder</td>
+          <td>1997</td>
+        </tr>
+        <tr>
+          <td>Spirit</td>
+          <td>NASA</td>
+          <td>Mars Exploration Rover</td>
+          <td>2004</td>
+        </tr>
+        <tr>
+          <td>Opportunity</td>
+          <td>NASA</td>
+          <td>Mars Exploration Rover</td>
+          <td>2004</td>
+        </tr>
+        <tr>
+          <td>Curiosity</td>
+          <td>NASA</td>
+          <td>Mars Science Laboratory</td>
+          <td>2012</td>
+        </tr>
+        <tr>
+          <td>Perseverance</td>
+          <td>NASA</td>
+          <td>Mars 2020</td>
+          <td>2021</td>
+        </tr>
+        <tr>
+          <td>Yutu (Jade Rabbit)</td>
+          <td>CNSA</td>
+          <td>Chang'e 3 Moon Rover</td>
+          <td>2013</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h2>🔹 Challenges Faced by Rovers</h2>
+    <ul>
+      <li>Harsh and unpredictable terrain</li>
+      <li>Extreme temperature fluctuations</li>
+      <li>Communication delays with Earth</li>
+      <li>Limited power availability</li>
+    </ul>
+
+    <h2>🔹 Future of Rovers</h2>
+    <p>Next-generation rovers aim to explore Mars, the Moon, and even icy moons like Europa and Enceladus, with enhanced autonomy, advanced scientific payloads, and capabilities to support future human missions.</p>
+
+    <h2>🔹 Fun Fact</h2>
+    <p>The <strong>Perseverance rover</strong> carries a helicopter named <em>Ingenuity</em>, the first aircraft to fly on another planet!</p>
+  </section>
+  
+  <footer>
+    <p>&copy; 2023 Cosmic Voyagers. All rights reserved.</p>
+  </footer>
+
+  <script>
+    // Mobile menu toggle
+    const mobileMenu = document.getElementById('mobile-menu');
+    const navLinks = document.getElementById('nav-links');
+    
+    mobileMenu.addEventListener('click', () => {
+      navLinks.classList.toggle('active');
+      mobileMenu.innerHTML = navLinks.classList.contains('active') 
+        ? '<i class="fas fa-times"></i>' 
+        : '<i class="fas fa-bars"></i>';
+    });
+    
+    // Close mobile menu when clicking on a link
+    document.querySelectorAll('.nav-links a').forEach(link => {
+      link.addEventListener('click', () => {
+        navLinks.classList.remove('active');
+        mobileMenu.innerHTML = '<i class="fas fa-bars"></i>';
+      });
+    });
+    
+    // Navbar scroll effect
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 50) {
+        navbar.classList.add('scrolled');
+      } else {
+        navbar.classList.remove('scrolled');
+      }
+    });
+    
+    // Smooth scrolling for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        document.querySelector(this.getAttribute('href')).scrollIntoView({
+          behavior: 'smooth'
+        });
+      });
+    });
+  </script>
+</body>
+</html>

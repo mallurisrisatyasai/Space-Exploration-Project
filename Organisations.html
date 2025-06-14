@@ -1,0 +1,679 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link rel="icon" type="image/png" href="https://cdn-icons-png.flaticon.com/128/3594/3594083.png">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Organisations | Cosmic Voyager</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;500;700&display=swap" rel="stylesheet">
+    <style>
+        /* Preloader Styles */
+        #preloader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgb(33, 33, 33);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: opacity 0.5s ease;
+        }
+
+        #preloader.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .planet {
+            display: block;
+            width: 125px;
+            height: 125px;
+            position: relative;
+            transform-style: preserve-3d;
+            border-radius: 50%;
+            background: #fcc96b;
+            background: linear-gradient(180deg,
+                    #fcc96b 0%, #fcc96b 15%, #f7ae01 15%, #f7ae01 19%,
+                    #fcc96b 19%, #fcc96b 22%, #f7ae01 22%, #f7ae01 28%,
+                    #fcc96b 28%, #fcc96b 31%, #fcc96b 33%, #fcc96b 36%,
+                    #f7ae01 36%, #f7ae01 48%, #fcc96b 48%, #fcc96b 55%,
+                    #f7ae01 55%, #f7ae01 66%, #fcc96b 66%, #fcc96b 70%,
+                    #f7ae01 70%, #f7ae01 73%, #fcc96b 73%, #fcc96b 82%,
+                    #f7ae01 82%, #c7ba9d 86%, #fcc96b 86%);
+            box-shadow: inset 0 0 25px rgba(0, 0, 0, 0.25),
+                inset 8px -4px 6px rgba(199, 128, 0, 0.5),
+                inset -8px 4px 8px rgba(255, 235, 199, 0.5),
+                inset 20px -5px 12px #f7ae01,
+                0 0 100px #ffffff59;
+            transform: rotateZ(-15deg);
+        }
+
+        .planet::before {
+            position: absolute;
+            content: "";
+            display: block;
+            width: 100%;
+            height: 100%;
+            box-sizing: border-box;
+            border: 16px solid #e1a519;
+            border-top-width: 0;
+            border-radius: 50%;
+            box-shadow: 0 -2px 0 #c18620;
+            animation: rings1 0.8s infinite linear;
+        }
+
+        .planet::after {
+            position: absolute;
+            content: "";
+            display: block;
+            width: 100%;
+            height: 100%;
+            box-sizing: border-box;
+            border: 8px solid #d48b0c;
+            border-top-width: 0;
+            border-radius: 50%;
+            box-shadow: 0 -2px 0 #b99309;
+            animation: rings2 0.8s infinite linear;
+        }
+
+        @keyframes rings1 {
+            0% {
+                transform: rotateX(65deg) rotateZ(0deg) scale(1.75);
+            }
+
+            100% {
+                transform: rotateX(65deg) rotateZ(360deg) scale(1.75);
+            }
+        }
+
+        @keyframes rings2 {
+            0% {
+                transform: rotateX(65deg) rotateZ(0deg) scale(1.7);
+            }
+
+            100% {
+                transform: rotateX(65deg) rotateZ(360deg) scale(1.7);
+            }
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            margin: 0;
+            font-family: 'Montserrat', sans-serif;
+            color: white;
+            background-color: black;
+            /* Add this line */
+            overflow-x: hidden;
+            padding-top: 80px;
+            position: relative;
+            z-index: 1;
+        }
+
+
+
+        .background-video {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -1;
+            opacity: 0.5;
+            pointer-events: none;
+        }
+
+
+
+        .stars::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('https://raw.githubusercontent.com/PurpleBooth/starfield/master/starfield.png');
+            z-index: -1;
+            animation: moveStars 100s linear infinite;
+            opacity: 0.3;
+        }
+
+        @keyframes moveStars {
+            0% {
+                background-position: 0 0;
+            }
+
+            100% {
+                background-position: 1000px 1000px;
+            }
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            padding: 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            backdrop-filter: blur(10px);
+            background-color: rgba(10, 10, 32, 0.7);
+        }
+
+        nav.scrolled {
+            padding: 1rem;
+            background-color: rgba(10, 10, 32, 0.9);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: linear-gradient(45deg, #8a2be2, #4169e1);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .logo-text {
+            font-size: 1.5rem;
+            font-weight: 700;
+            background: linear-gradient(to right, #8a2be2, #4169e1);
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #e0e0ff;
+            font-weight: 500;
+            position: relative;
+            padding: 0.5rem 0;
+        }
+
+        .nav-links a:hover {
+            color: #8a2be2;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background: linear-gradient(to right, #8a2be2, #4169e1);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            z-index: 1001;
+        }
+
+        .bar {
+            width: 30px;
+            height: 3px;
+            background: linear-gradient(to right, #8a2be2, #4169e1);
+            border-radius: 3px;
+            transition: all 0.3s ease;
+        }
+
+        .hamburger.active .bar:nth-child(1) {
+            transform: translateY(8px) rotate(45deg);
+        }
+
+        .hamburger.active .bar:nth-child(2) {
+            opacity: 0;
+        }
+
+        .hamburger.active .bar:nth-child(3) {
+            transform: translateY(-8px) rotate(-45deg);
+        }
+
+        @media (max-width: 992px) {
+            .nav-links {
+                position: fixed;
+                top: 70px;
+                right: 0;
+                height: calc(100vh - 70px);
+                width: 60%;
+                background: rgba(10, 10, 32, 0.95);
+                flex-direction: column;
+                align-items: center;
+                justify-content: flex-start;
+                padding-top: 2rem;
+                transform: translateX(100%);
+                transition: transform 0.3s ease;
+            }
+
+            .nav-links.active {
+                transform: translateX(0%);
+            }
+
+            .hamburger {
+                display: flex;
+            }
+        }
+
+        /* Scroll to Top Button */
+        .scroll-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(45deg, #8a2be2, #4169e1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s, visibility 0.3s, transform 0.3s;
+            z-index: 1000;
+            box-shadow: 0 5px 15px rgba(138, 43, 226, 0.4);
+        }
+
+        .scroll-to-top.show {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .scroll-to-top:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 25px rgba(138, 43, 226, 0.6);
+        }
+
+        .scroll-to-top svg {
+            width: 24px;
+            height: 24px;
+            fill: #fff;
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                background-color: #0a0a20;
+                position: absolute;
+                top: 60px;
+                right: 20px;
+                padding: 1rem;
+                border-radius: 10px;
+                box-shadow: 0 0 10px rgba(138, 43, 226, 0.6);
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .hamburger {
+                display: flex;
+            }
+        }
+
+        .hero {
+            text-align: center;
+            padding: 5rem 2rem;
+            animation: fadeIn 2s ease;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            background: linear-gradient(to right, #8a2be2, #4169e1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: #ccc;
+            max-width: 700px;
+            margin: 1rem auto 0;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2rem;
+            color: #8a2be2;
+            margin-top: 3rem;
+        }
+
+        .org-section {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            padding: 3rem 2rem;
+        }
+
+        .org-card {
+            display: block;
+            background-size: 100%;
+            background-position: center;
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: 0 0 15px rgba(138, 43, 226, 0.3);
+            transition: transform 0.3s, box-shadow 0.3s, background-size 0.5s ease-in-out;
+            color: inherit;
+            text-decoration: none;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .org-card::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.4);
+            transition: background-color 0.3s;
+            z-index: 0;
+        }
+
+        .org-card:hover::before {
+            background-color: rgba(0, 0, 0, 0.2);
+        }
+
+        .org-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 0 20px rgba(138, 43, 226, 0.6);
+            background-size: 110%;
+        }
+
+        .org-card h2,
+        .org-card p {
+            position: relative;
+            z-index: 1;
+        }
+
+        .org-card h2 {
+            margin-top: 0;
+            color: #4169e1;
+        }
+
+        .org-card p {
+            color: #ccc;
+        }
+
+        footer {
+            text-align: center;
+            padding: 2rem;
+            background: rgba(10, 10, 40, 1);
+            font-size: 0.9rem;
+            color: #ccc;
+        }
+    </style>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        // Show preloader initially
+        const preloader = document.getElementById("preloader");
+        const mainContent = document.getElementById("main-content");
+
+        // Simulate content loading
+        setTimeout(function () {
+            preloader.classList.add("hidden");
+            mainContent.style.display = "block";
+            setTimeout(() => {
+                preloader.style.display = "none";
+            }, 500);
+        }, 1000);
+
+        // Scroll to Top Button Functionality
+        const scrollToTopBtn = document.getElementById("scrollToTop");
+        window.addEventListener("scroll", () => {
+            if (window.scrollY > 300) {
+                scrollToTopBtn.classList.add("show");
+            } else {
+                scrollToTopBtn.classList.remove("show");
+            }
+        });
+
+        scrollToTopBtn.addEventListener("click", () => {
+            window.scrollTo({
+                top: 0,
+                behavior: "smooth"
+            });
+        });
+
+        // Hamburger Menu Functionality
+        const hamburger = document.querySelector('.hamburger');
+        const navLinks = document.querySelector('.nav-links');
+
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            navLinks.classList.toggle('active');
+        });
+
+        // Close menu on link click (mobile)
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                hamburger.classList.remove('active');
+                navLinks.classList.remove('active');
+            });
+        });
+
+        // Navbar Scroll Effect
+        window.addEventListener("scroll", () => {
+            const navbar = document.getElementById("navbar");
+            if (window.scrollY > 50) {
+                navbar.classList.add("scrolled");
+            } else {
+                navbar.classList.remove("scrolled");
+            }
+        });
+    });
+</script>
+</head>
+<body>
+    <video class="background-video" autoplay muted loop>
+        <source src="https://cdn.pixabay.com/video/2022/12/15/143016-781982529_tiny.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+
+    <!-- Preloader -->
+    <div id="preloader">
+        <div class="planet"></div>
+    </div>
+    <div class="stars"></div>
+    <!-- Navigation -->
+    <nav id="navbar">
+        <div class="logo">
+            <div class="logo-icon">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <circle cx="12" cy="12" r="4"></circle>
+                    <line x1="21.17" y1="8" x2="12" y2="8"></line>
+                    <line x1="3.95" y1="6.06" x2="8.54" y2="14"></line>
+                    <line x1="10.88" y1="21.94" x2="15.46" y2="14"></line>
+                </svg>
+            </div>
+            <div class="logo-text"><a href="space-exploration-responsive.html"
+                    title="Redirect to Cosmic Voyager (Home Page)">COSMIC VOYAGER</a></div>
+        </div>
+        <ul class="nav-links">
+            <li><a href="space-exploration-responsive.html">Home</a></li>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="index.html">Gallery</a></li>
+            <li><a href="organisations.html">Organisations</a></li>
+            <li><a href="machinery.html">Machinery</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+        <div class="hamburger">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </div>
+    </nav>
+    <!-- Scroll to Top Button -->
+    <div id="scrollToTop" class="scroll-to-top">
+        <svg viewBox="0 0 24 24">
+            <path d="M12 5l-7 7h5v7h4v-7h5l-7-7z"></path>
+        </svg>
+    </div>
+
+    <section class="hero">
+        <h1>Global Space Organisations</h1>
+        <p>Learn about the leading space agencies shaping humanity's journey beyond Earth.</p>
+    </section>
+
+    <h2 class="section-title">Public Space Organisations</h2>
+    <section class="org-section">
+        <a href="nasa.html" class="org-card"
+            style="background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQuOeWde6z5Da1DvHiGcfaaWnWIg0fNgDeFlA&s');">
+            <h2>NASA (USA)</h2>
+            <p>Founded in 1958, the National Aeronautics and Space Administration is a pioneer in space science and
+                human exploration.</p>
+        </a>
+        <a href="isro.html" class="org-card"
+            style="background-image: url('https://ih1.redbubble.net/image.2582415602.7985/raf,360x360,075,t,fafafa:ca443f4786.jpg');">
+            <h2>ISRO (India)</h2>
+            <p>Indian Space Research Organisation, founded in 1969, is known for cost-effective missions like
+                Chandrayaan and Mangalyaan.</p>
+        </a>
+        <a href="esa.html" class="org-card"
+            style="background-image: url('https://esahubble.org/media/archives/logos/screen/esa_screen_white.jpg');">
+            <h2>ESA (Europe)</h2>
+            <p>The European Space Agency promotes cooperation among European nations for space science, launchers, and
+                exploration.</p>
+        </a>
+        <a href="roscosmos.html" class="org-card"
+            style="background-image: url('https://ih1.redbubble.net/image.1953381019.9500/raf,360x360,075,t,fafafa:ca443f4786.jpg');">
+            <h2>Roscosmos (Russia)</h2>
+            <p>Russia's federal space agency, key in early space achievements and ISS missions.</p>
+        </a>
+        <a href="cnsa.html" class="org-card"
+            style="background-image: url('https://ih1.redbubble.net/image.3308475212.3436/gbrf,8x10,f,540x540-pad,450x450,f8f8f8.jpg');">
+            <h2>CNSA (China)</h2>
+            <p>China National Space Administration leads missions like Chang'e Moon program and Mars Tianwen rover.</p>
+        </a>
+        <a href="jaxa.html" class="org-card"
+            style="background-image: url('https://images.steamusercontent.com/ugc/915794306419936334/3D9E8A4C0B1432012CC934A1A3979F51D505A917/?imw=637&imh=358&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=true');">
+            <h2>JAXA (Japan)</h2>
+            <p>Japan Aerospace Exploration Agency excels in planetary missions, technology, and international
+                collaboration.</p>
+        </a>
+        <a href="cnes.html" class="org-card"
+            style="background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcReufW_cf6kaRf_4fZXam3-Zjyy0jMjYbwtuw&s');">
+            <h2>CNES (France)</h2>
+            <p>The French National Centre for Space Studies conducts space missions, Earth observation, and participates
+                in ESA projects.</p>
+        </a>
+        <a href="ukspace.html" class="org-card"
+            style="background-image: url('https://www.esa.int/var/esa/storage/images/esa_multimedia/images/2016/10/uk_space_agency_logo/16166242-1-eng-GB/UK_Space_Agency_logo_pillars.jpg');">
+            <h2>UK Space Agency (UK)</h2>
+            <p>The UK Space Agency supports space exploration, satellite programs, and science collaborations globally.
+            </p>
+        </a>
+        <a href="dlr.html" class="org-card"
+            style="background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRWdGudZPE0DQzyCJgQzliFbnGgVZiKwdg3fQ&s');">
+            <h2>DLR (Germany)</h2>
+            <p>The German Aerospace Center conducts space missions, aviation research, and contributes to ESA
+                initiatives.</p>
+        </a>
+        <a href="kari.html" class="org-card"
+            style="background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSFPtBtgma1lF2CN3vNgmJaY-JlEoTurIICKA&s');">
+            <h2>KARI (South Korea)</h2>
+            <p>Korea Aerospace Research Institute handles launch vehicles, satellites, and lunar exploration programs.
+            </p>
+        </a>
+    </section>
+
+    <h2 class="section-title">Private Space Organisations</h2>
+    <section class="org-section">
+        <a href="spacex.html" class="org-card"
+            style="background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTeTK1SHgMevhoq2emu2TK63GeG6OhDCtPYDw&s');">
+            <h2>SpaceX (USA)</h2>
+            <p>Founded by Elon Musk, SpaceX is revolutionizing space technology with reusable rockets and ambitious
+                missions to Mars.</p>
+        </a>
+        <a href="blueorigin.html" class="org-card"
+            style="background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRZHjP1S03Vldcca98zUntgcwyhtvy60D7c3w&s');">
+            <h2>Blue Origin (USA)</h2>
+            <p>Founded by Jeff Bezos, Blue Origin focuses on building reusable rockets and promoting space tourism.</p>
+        </a>
+        <a href="virgingalactic.html" class="org-card"
+            style="background-image: url('https://www.logo-designer.co/storage/2022/02/2022-virgin-galactic-new-spaceship-logo-design-2.png');">
+            <h2>Virgin Galactic (UK/USA)</h2>
+            <p>Virgin Galactic is a spaceflight company within the Virgin Group, aiming to provide suborbital
+                spaceflights to tourists.</p>
+        </a>
+        <a href="rocketlab.html" class="org-card"
+            style="background-image: url('https://i.ytimg.com/vi/M-ozUCTeDFE/hq720.jpg?sqp=-oaymwEhCK4FEIIDSFryq4qpAxMIARUAAAAAGAElAADIQj0AgKJD&rs=AOn4CLBSmxurThtNYMATbKJ0c6rMkRkVXg');">
+            <h2>Rocket Lab (New Zealand/USA)</h2>
+            <p>Rocket Lab develops lightweight, cost-efficient launch solutions for small satellites and commercial
+                clients.</p>
+        </a>
+        <a href="firefly.html" class="org-card"
+            style="background-image: url('https://ih1.redbubble.net/image.3168444577.5243/raf,360x360,075,t,fafafa:ca443f4786.jpg');">
+            <h2>Firefly Aerospace (USA)</h2>
+            <p>Firefly focuses on providing economical and efficient launch services for small to medium payloads to
+                space.</p>
+        </a>
+        <a href="sierra.html" class="org-card"
+            style="background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRfvs3nrWapmaD0wk0-2eCQXP1aiVK9ci2R4g&s');">
+            <h2>Sierra Space (USA)</h2>
+            <p>Sierra Space develops the Dream Chaser spaceplane and contributes to future space habitat development.
+            </p>
+        </a>
+    </section>
+
+    <script>
+        function toggleMenu() {
+            document.getElementById('navLinks').classList.toggle('active');
+        }
+    </script>
+    <footer>
+        <p>&copy; 2025 Cosmic Voyagers. All rights reserved.</p>
+    </footer>
+</body>
+
+</html>

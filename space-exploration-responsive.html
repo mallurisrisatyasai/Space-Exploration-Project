@@ -1,0 +1,1072 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link rel="icon" type="image/png" href="https://cdn-icons-png.flaticon.com/128/3594/3594083.png">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cosmic Voyager | Space Exploration</title>
+    <style>
+
+        #preloader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgb(33, 33, 33);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: opacity 0.5s ease;
+        }
+
+        #preloader.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .planet {
+            display: block;
+            width: 125px;
+            height: 125px;
+            position: relative;
+            transform-style: preserve-3d;
+            border-radius: 50%;
+            background: #fcc96b;
+            background: linear-gradient(180deg,
+                    #fcc96b 0%, #fcc96b 15%, #f7ae01 15%, #f7ae01 19%,
+                    #fcc96b 19%, #fcc96b 22%, #f7ae01 22%, #f7ae01 28%,
+                    #fcc96b 28%, #fcc96b 31%, #fcc96b 33%, #fcc96b 36%,
+                    #f7ae01 36%, #f7ae01 48%, #fcc96b 48%, #fcc96b 55%,
+                    #f7ae01 55%, #f7ae01 66%, #fcc96b 66%, #fcc96b 70%,
+                    #f7ae01 70%, #f7ae01 73%, #fcc96b 73%, #fcc96b 82%,
+                    #f7ae01 82%, #c7ba9d 86%, #fcc96b 86%);
+            box-shadow: inset 0 0 25px rgba(0, 0, 0, 0.25),
+                inset 8px -4px 6px rgba(199, 128, 0, 0.5),
+                inset -8px 4px 8px rgba(255, 235, 199, 0.5),
+                inset 20px -5px 12px #f7ae01,
+                0 0 100px #ffffff59;
+            transform: rotateZ(-15deg);
+        }
+
+        .planet::before {
+            position: absolute;
+            content: "";
+            display: block;
+            width: 100%;
+            height: 100%;
+            box-sizing: border-box;
+            border: 16px solid #e1a519;
+            border-top-width: 0;
+            border-radius: 50%;
+            box-shadow: 0 -2px 0 #c18620;
+            animation: rings1 0.8s infinite linear;
+        }
+
+        .planet::after {
+            position: absolute;
+            content: "";
+            display: block;
+            width: 100%;
+            height: 100%;
+            box-sizing: border-box;
+            border: 8px solid #d48b0c;
+            border-top-width: 0;
+            border-radius: 50%;
+            box-shadow: 0 -2px 0 #b99309;
+            animation: rings2 0.8s infinite linear;
+        }
+
+        @keyframes rings1 {
+            0% {
+                transform: rotateX(65deg) rotateZ(0deg) scale(1.75);
+            }
+
+            100% {
+                transform: rotateX(65deg) rotateZ(360deg) scale(1.75);
+            }
+        }
+
+        @keyframes rings2 {
+            0% {
+                transform: rotateX(65deg) rotateZ(0deg) scale(1.7);
+            }
+
+            100% {
+                transform: rotateX(65deg) rotateZ(360deg) scale(1.7);
+            }
+        }
+
+
+        #main-content {
+            display: none;
+        }
+
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Montserrat', sans-serif;
+            transition: all 0.3s ease;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background: linear-gradient(to bottom, #0a0a20, #131342);
+            background-image: url('https://live.staticflickr.com/3669/19402296239_35e3b9fe23_h.jpg');
+            background-repeat: no-repeat;
+            background-size: cover;
+            color: #e0e0ff;
+            line-height: 1.6;
+            overflow-x: hidden;
+            background-attachment: fixed;
+        }
+
+        .stars {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        .star {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background-color: #fff;
+            border-radius: 50%;
+            animation: twinkle 5s infinite;
+        }
+
+        @keyframes twinkle {
+            0% {
+                opacity: 0.2;
+            }
+
+            50% {
+                opacity: 1;
+            }
+
+            100% {
+                opacity: 0.2;
+            }
+        }
+
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            padding: 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            backdrop-filter: blur(10px);
+            background-color: rgba(10, 10, 32, 0.7);
+        }
+
+        nav.scrolled {
+            padding: 1rem;
+            background-color: rgba(10, 10, 32, 0.9);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: linear-gradient(45deg, #8a2be2, #4169e1);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .logo-text {
+            font-size: 1.5rem;
+            font-weight: 700;
+            background: linear-gradient(to right, #8a2be2, #4169e1);
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #e0e0ff;
+            font-weight: 500;
+            position: relative;
+            padding: 0.5rem 0;
+        }
+
+        .nav-links a:hover {
+            color: #8a2be2;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background: linear-gradient(to right, #8a2be2, #4169e1);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            z-index: 1001;
+        }
+
+        .bar {
+            width: 30px;
+            height: 3px;
+            background: linear-gradient(to right, #8a2be2, #4169e1);
+            border-radius: 3px;
+            transition: all 0.3s ease;
+        }
+
+        .hamburger.active .bar:nth-child(1) {
+            transform: translateY(8px) rotate(45deg);
+        }
+
+        .hamburger.active .bar:nth-child(2) {
+            opacity: 0;
+        }
+
+        .hamburger.active .bar:nth-child(3) {
+            transform: translateY(-8px) rotate(-45deg);
+        }
+
+        .scroll-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(45deg, #8a2be2, #4169e1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s, visibility 0.3s, transform 0.3s;
+            z-index: 1000;
+            box-shadow: 0 5px 15px rgba(138, 43, 226, 0.4);
+        }
+
+        .scroll-to-top.show {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .scroll-to-top:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 25px rgba(138, 43, 226, 0.6);
+        }
+
+        .scroll-to-top svg {
+            width: 24px;
+            height: 24px;
+            fill: #fff;
+        }
+
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            padding: 0 5%;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('/api/placeholder/1920/1080') center/cover no-repeat;
+            opacity: 0.2;
+            z-index: -1;
+        }
+
+        .hero-content {
+            max-width: 700px;
+        }
+
+        .hero h1 {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+            background: linear-gradient(to right, #e0e0ff, #a088ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero p {
+            font-size: clamp(1rem, 2vw, 1.25rem);
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .btn-primary {
+            background: linear-gradient(45deg, #8a2be2, #4169e1);
+            color: rgb(255, 255, 255);
+            box-shadow: 0 5px 15px rgba(138, 43, 226, 0.4);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: #847c7c;
+            border: 2px solid #8a2be2;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, #4169e1, #8a2be2);
+            transition: left 0.5s;
+            z-index: -1;
+        }
+
+        .btn:hover::before {
+            left: 0;
+        }
+
+        .btn-primary:hover {
+            box-shadow: 0 5px 25px rgba(138, 43, 226, 0.6);
+            transform: translateY(-3px);
+        }
+
+        .btn-secondary:hover {
+            color: white;
+            border-color: transparent;
+        }
+
+        .section {
+            padding: 100px 5%;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+
+        .section-title h2 {
+            font-size: clamp(2rem, 4vw, 2.5rem);
+            background: linear-gradient(to right, #8a2be2, #4169e1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            padding-bottom: 1rem;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            width: 80px;
+            height: 3px;
+            background: linear-gradient(to right, #8a2be2, #4169e1);
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .missions-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        a.mission-link {
+            display: block;
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .mission-card {
+            background: rgba(30, 30, 70, 0.4);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            position: relative;
+            isolation: isolate;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+        }
+
+        .mission-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, rgba(138, 43, 226, 0.1), rgba(65, 105, 225, 0.1));
+            z-index: -1;
+        }
+
+        .mission-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .mission-img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+
+        .mission-card:hover .mission-img {
+            transform: scale(1.1);
+        }
+
+        .mission-content {
+            padding: 1.5rem;
+        }
+
+        .mission-content h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(to right, #e0e0ff, #a088ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .mission-date {
+            font-size: 0.85rem;
+            color: #a088ff;
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        .planets {
+            background: linear-gradient(to bottom, #131342, #0a0a20);
+            position: relative;
+        }
+
+        .planets::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('/api/placeholder/1920/1080') center/cover no-repeat;
+            opacity: 0.1;
+            z-index: -1;
+        }
+
+        .planet-container {
+            display: flex;
+            flex-direction: column;
+            gap: 6rem;
+        }
+
+        .planet-row {
+            display: flex;
+            align-items: center;
+            gap: 4rem;
+        }
+
+        .planet-row:nth-child(even) {
+            flex-direction: row-reverse;
+        }
+
+        .planet-img-wrapper {
+            flex: 1;
+            position: relative;
+            min-width: 300px;
+        }
+
+        .planet-img {
+            width: 100%;
+            height: auto;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            transition: transform 0.5s, box-shadow 0.5s;
+        }
+
+        .planet-img:hover {
+            transform: scale(1.05);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
+        }
+
+        .planet-info {
+            flex: 1;
+        }
+
+        .planet-info h3 {
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(to right, #e0e0ff, #a088ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .planet-stats {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+
+        .stat-item {
+            background: rgba(30, 30, 70, 0.4);
+            padding: 1rem;
+            border-radius: 10px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .stat-value {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #a088ff;
+        }
+
+        .stat-label {
+            font-size: 0.85rem;
+            opacity: 0.8;
+        }
+
+        @media (max-width: 992px) {
+            .nav-links {
+                position: fixed;
+                top: 70px;
+                right: 0;
+                height: calc(100vh - 70px);
+                width: 60%;
+                background: rgba(10, 10, 32, 0.95);
+                flex-direction: column;
+                align-items: center;
+                justify-content: flex-start;
+                padding-top: 2rem;
+                transform: translateX(100%);
+                transition: transform 0.3s ease;
+            }
+
+            .nav-links.active {
+                transform: translateX(0%);
+            }
+
+            .hamburger {
+                display: flex;
+            }
+
+            .planet-row {
+                flex-direction: column;
+                gap: 2rem;
+            }
+
+            .planet-row:nth-child(even) {
+                flex-direction: column;
+            }
+
+            .planet-img-wrapper {
+                width: 100%;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+            }
+
+            .scroll-to-top {
+                bottom: 20px;
+                right: 20px;
+                width: 40px;
+                height: 40px;
+            }
+
+            .scroll-to-top svg {
+                width: 20px;
+                height: 20px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .section {
+                padding: 80px 5%;
+            }
+
+            .planet-stats {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        footer {
+            text-align: center;
+            padding: 2rem;
+            background: rgba(10, 10, 40, 1);
+            font-size: 0.9rem;
+            color: #ccc;
+        }
+    </style>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+        
+            const preloader = document.getElementById("preloader");
+            const mainContent = document.getElementById("main-content");
+
+            setTimeout(function () {
+                preloader.classList.add("hidden");
+                mainContent.style.display = "block";
+                setTimeout(() => {
+                    preloader.style.display = "none";
+                }, 500);
+            }, 1000);
+
+            const scrollToTopBtn = document.getElementById("scrollToTop");
+            window.addEventListener("scroll", () => {
+                if (window.scrollY > 300) {
+                    scrollToTopBtn.classList.add("show");
+                } else {
+                    scrollToTopBtn.classList.remove("show");
+                }
+            });
+
+            scrollToTopBtn.addEventListener("click", () => {
+                window.scrollTo({
+                    top: 0,
+                    behavior: "smooth"
+                });
+            });
+
+            const hamburger = document.querySelector('.hamburger');
+            const navLinks = document.querySelector('.nav-links');
+
+            hamburger.addEventListener('click', () => {
+                hamburger.classList.toggle('active');
+                navLinks.classList.toggle('active');
+            });
+
+            document.querySelectorAll('.nav-links a').forEach(link => {
+                link.addEventListener('click', () => {
+                    hamburger.classList.remove('active');
+                    navLinks.classList.remove('active');
+                });
+            });
+        });
+    </script>
+</head>
+
+<body>
+    <div id="preloader">
+        <div class="planet"></div>
+    </div>
+
+    <div id="main-content">
+        <div class="stars" id="stars"></div>
+
+        <nav id="navbar">
+            <div class="logo">
+                <div class="logo-icon">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <circle cx="12" cy="12" r="4"></circle>
+                        <line x1="21.17" y1="8" x2="12" y2="8"></line>
+                        <line x1="3.95" y1="6.06" x2="8.54" y2="14"></line>
+                        <line x1="10.88" y1="21.94" x2="15.46" y2="14"></line>
+                    </svg>
+                </div>
+                <div class="logo-text"><a href="space-exploration-responsive.html"
+                        title="Redirect to Cosmic Voyager (Home Page)">COSMIC VOYAGER</a></div>
+            </div>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="index.html" target="_blank">Gallery</a></li>
+                <li><a href="organisations.html">Organisations</a></li>
+                <li><a href="machinery.html">Machinery</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </nav>
+
+        <div id="scrollToTop" class="scroll-to-top">
+            <svg viewBox="0 0 24 24">
+                <path d="M12 5l-7 7h5v7h4v-7h5l-7-7z"></path>
+            </svg>
+        </div>
+
+        <section class="hero" id="home">
+            <div class="hero-content">
+                <h1>Journey Beyond The Stars</h1>
+                <p>Explore the wonders of our universe, from neighboring planets to distant galaxies. Join us on a
+                    cosmic adventure that spans billions of light years.</p>
+                <div class="cta-buttons">
+                    <a href="index.html" class="btn btn-primary">Explore Gallery</a>
+                    <a href="#planets" class="btn btn-secondary">Discover Cosmos</a>
+                </div>
+            </div>
+        </section>
+
+        <section class="section" id="missions">
+            <div class="section-title">
+                <h2>INTERNET ARTICLES</h2>
+            </div>
+            <div class="missions-grid">
+                <a href="https://mars.nasa.gov/mars2020/" target="_blank" class="mission-link">
+                    <div class="mission-card">
+                        <img src="https://images.newscientist.com/wp-content/uploads/2021/02/26010720/25-feb_peserverance4.jpg"
+                            alt="Mars Rover" class="mission-img">
+                        <div class="mission-content">
+                            <span class="mission-date">Launched: July 30, 2020</span>
+                            <h3>Mars Perseverance Rover</h3>
+                            <p>Seeking signs of ancient life and collecting samples of rock and regolith for possible
+                                return to Earth, while testing new technology for future human exploration.</p>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="https://webb.nasa.gov/" target="_blank" class="mission-link">
+                    <div class="mission-card">
+                        <img src="https://www.slashgear.com/img/gallery/heres-how-james-webb-telescope-will-detect-exoplanets/l-intro-1657751982.jpg"
+                            alt="James Webb Telescope" class="mission-img">
+                        <div class="mission-content">
+                            <span class="mission-date">Launched: December 25, 2021</span>
+                            <h3>James Webb Space Telescope</h3>
+                            <p>The largest, most powerful and complex space telescope ever built, capable of looking
+                                back in time to see the first galaxies that formed in the early universe.</p>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="https://www.nasa.gov/specials/artemis/" target="_blank" class="mission-link">
+                    <div class="mission-card">
+                        <img src="https://orbitaltoday.com/wp-content/uploads/2024/12/Orion-on-the-moon.jpg"
+                            alt="Artemis Program" class="mission-img">
+                        <div class="mission-content">
+                            <span class="mission-date">First Mission: 2024</span>
+                            <h3>Artemis Program</h3>
+                            <p>NASA's ambitious initiative to return humans to the Moon, including landing the first
+                                woman and the next man on the lunar surface.</p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </section>
+
+        <section class="section planets" id="planets">
+            <div class="section-title">
+                <h2>Exploring Our Solar System</h2>
+            </div>
+            <div class="planet-container">
+                <div class="planet-row">
+                    <div class="planet-img-wrapper">
+                        <img src="https://space-facts.com/wp-content/uploads/mercury.png" alt="Mercury"
+                            class="planet-img">
+                    </div>
+                    <div class="planet-info">
+                        <h3>Mercury: The Swift Planet</h3>
+                        <p>Mercury is the smallest planet in the Solar System and the closest to the Sun. It has no
+                            atmosphere to retain heat, resulting in extreme temperature fluctuations.</p>
+                        <div class="planet-stats">
+                            <div class="stat-item">
+                                <div class="stat-value">4,879 km</div>
+                                <div class="stat-label">Diameter</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-value">88 days</div>
+                                <div class="stat-label">Orbital Period</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-value">167°C</div>
+                                <div class="stat-label">Average Temperature</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-value">0</div>
+                                <div class="stat-label">Number of Moons</div>
+                            </div>
+                        </div>
+                        <p>Despite being closest to the Sun, Mercury is not the hottest planet. NASA's MESSENGER mission
+                            has extensively studied its surface and magnetic field.</p>
+                    </div>
+                </div>
+                <div class="planet-row">
+                    <div class="planet-img-wrapper">
+                        <img src="https://space-facts.com/wp-content/uploads/venus.png" alt="Venus" class="planet-img">
+                    </div>
+                    <div class="planet-info">
+                        <h3>Venus: Earth's Twin</h3>
+                        <p>Venus is the second planet from the Sun and similar in size to Earth. Its thick atmosphere
+                            traps heat, making it the hottest planet in the Solar System.</p>
+                        <div class="planet-stats">
+                            <div class="stat-item">
+                                <div class="stat-value">12,104 km</div>
+                                <div class="stat-label">Diameter</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-value">225 days</div>
+                                <div class="stat-label">Orbital Period</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-value">464°C</div>
+                                <div class="stat-label">Average Temperature</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-value">0</div>
+                                <div class="stat-label">Number of Moons</div>
+                            </div>
+                        </div>
+                        <p>Venus has a dense atmosphere composed mainly of carbon dioxide, with clouds of sulfuric acid.
+                            It rotates in the opposite direction to most planets.</p>
+                    </div>
+                </div>
+                <div class="planet-row">
+                    <div class="planet-img-wrapper">
+                        <img src="https://space-facts.com/wp-content/uploads/earth.png" alt="Earth" class="planet-img">
+                    </div>
+                    <div class="planet-info">
+                        <h3>Earth: Our Home</h3>
+                        <p>Earth is the third planet from the Sun and the only known world to support life. It has
+                            abundant water, a stable climate, and a protective magnetic field.</p>
+                        <div class="planet-stats">
+                            <div class="stat-item">
+                                <div class="stat-value">12,742 km</div>
+                                <div class="stat-label">Diameter</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-value">365 days</div>
+                                <div class="stat-label">Orbital Period</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-value">15°C</div>
+                                <div class="stat-label">Average Temperature</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-value">1</div>
+                                <div class="stat-label">Number of Moons</div>
+                            </div>
+                        </div>
+                        <p>Earth's atmosphere is rich in oxygen and nitrogen. It has a diverse ecosystem and a vast
+                            array of natural phenomena such as auroras, volcanoes, and weather systems.</p>
+                    </div>
+                </div>
+                <div class="planet-row">
+                    <div class="planet-img-wrapper">
+                        <img src="https://cdn.outsideonline.com/wp-content/uploads/2025/01/mars-illustration-space_s.jpg"
+                            alt="Mars" class="planet-img">
+                    </div>
+                    <div class="planet-info">
+                        <h3>Mars: The Red Planet</h3>
+                        <p>Mars is the fourth planet from the Sun and the second-smallest planet in the Solar System.
+                            Named after the Roman god of war, it is often described as the "Red Planet" due to its
+                            reddish appearance from iron oxide on its surface.</p>
+                        <div class="planet-stats">
+                            <div class="stat-item">
+                                <div class="stat-value">6,779 km</div>
+                                <div class="stat-label">Diameter</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-value">687 days</div>
+                                <div class="stat-label">Orbital Period</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-value">-63°C</div>
+                                <div class="stat-label">Average Temperature</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-value">2</div>
+                                <div class="stat-label">Number of Moons</div>
+                            </div>
+                        </div>
+                        <p>Mars has been explored more than any other planet beyond Earth. It is currently home to eight
+                            functioning spacecraft: six in orbit and two on the surface.</p>
+                    </div>
+                </div>
+
+                <div class="planet-row">
+                    <div class="planet-img-wrapper">
+                        <img src="https://assets.science.nasa.gov/dynamicimage/assets/science/psd/solar/internal_resources/4204/Jupiter_against_black_background_of_space.jpeg?w=2260&h=2260&fit=clip&crop=faces%2Cfocalpoint"
+                            alt="Jupiter" class="planet-img">
+                    </div>
+                    <div class="planet-info">
+                        <h3>Jupiter: King of Planets</h3>
+                        <p>Jupiter is the fifth planet from the Sun and the largest in the Solar System. It is a gas
+                            giant with a mass two and a half times that of all the other planets combined. Jupiter is
+                            primarily composed of hydrogen and helium.</p>
+                        <div class="planet-stats">
+                            <div class="stat-item">
+                                <div class="stat-value">139,820 km</div>
+                                <div class="stat-label">Diameter</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-value">12 years</div>
+                                <div class="stat-label">Orbital Period</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-value">-145°C</div>
+                                <div class="stat-label">Average Temperature</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-value">79+</div>
+                                <div class="stat-label">Number of Moons</div>
+                            </div>
+                        </div>
+                        <p>Jupiter's iconic Great Red Spot is a giant storm bigger than Earth that has been raging for
+                            hundreds of years. The planet also has the strongest magnetic field in the Solar System.</p>
+                    </div>
+                </div>
+
+                <div class="planet-row">
+                    <div class="planet-img-wrapper">
+                        <img src="https://i.pinimg.com/736x/6d/2d/c9/6d2dc9c647a63ae0a51e607b84b7a7d5.jpg" alt="Saturn"
+                            class="planet-img">
+                    </div>
+                    <div class="planet-info">
+                        <h3>Saturn: The Ringed Wonder</h3>
+                        <p>Saturn is the sixth planet from the Sun and the second-largest in the Solar System, after
+                            Jupiter. It is a gas giant with an average radius about nine times that of Earth. It has
+                            only one-eighth the average density of Earth.</p>
+                        <div class="planet-stats">
+                            <div class="stat-item">
+                                <div class="stat-value">116,460 km</div>
+                                <div class="stat-label">Diameter</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-value">29 years</div>
+                                <div class="stat-label">Orbital Period</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-value">-178°C</div>
+                                <div class="stat-label">Average Temperature</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-value">82</div>
+                                <div class="stat-label">Number of Moons</div>
+                            </div>
+                        </div>
+                        <p>Saturn is known for its stunning rings, which are made up of ice and rock particles.</p>
+                    </div>
+                </div>
+                <div class="planet-row">
+                    <div class="planet-img-wrapper">
+                        <img src="https://i.guim.co.uk/img/media/bd886036e953306ce6e44c0602854b195705291f/0_0_1601_1561/master/1601.jpg?width=445&dpr=1&s=none&crop=none"
+                            alt="Uranus" class="planet-img">
+                    </div>
+                    <div class="planet-info">
+                        <h3>Uranus: The Ice Giant</h3>
+                        <p>Uranus is the seventh planet from the Sun and has a unique sideways rotation. It is composed
+                            mostly of ice and gas and has a pale blue color due to methane in its atmosphere.</p>
+                        <div class="planet-stats">
+                            <div class="stat-item">
+                                <div class="stat-value">50,724 km</div>
+                                <div class="stat-label">Diameter</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-value">84 years</div>
+                                <div class="stat-label">Orbital Period</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-value">-224°C</div>
+                                <div class="stat-label">Average Temperature</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-value">27</div>
+                                <div class="stat-label">Number of Moons</div>
+                            </div>
+                        </div>
+                        <p>Uranus was the first planet discovered with a telescope. It has faint rings and rotates on
+                            its side, possibly due to a massive collision in its past.</p>
+                    </div>
+                </div>
+                <div class="planet-row">
+                    <div class="planet-img-wrapper">
+                        <img src="https://space-facts.com/wp-content/uploads/neptune.png" alt="Neptune"
+                            class="planet-img">
+                    </div>
+                    <div class="planet-info">
+                        <h3>Neptune: The Windy Blue World</h3>
+                        <p>Neptune is the eighth and farthest known planet from the Sun. It is similar in composition to
+                            Uranus and is known for its deep blue color and supersonic winds.</p>
+                        <div class="planet-stats">
+                            <div class="stat-item">
+                                <div class="stat-value">49,244 km</div>
+                                <div class="stat-label">Diameter</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-value">165 years</div>
+                                <div class="stat-label">Orbital Period</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-value">-214°C</div>
+                                <div class="stat-label">Average Temperature</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-value">14</div>
+                                <div class="stat-label">Number of Moons</div>
+                            </div>
+                        </div>
+                        <p>Neptune has the strongest winds in the Solar System. It was discovered through mathematical
+                            prediction before it was directly observed.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+    <footer>
+        <p>© 2025 Cosmic Voyagers. All rights reserved.</p>
+    </footer>
+</body>
+
+</html>

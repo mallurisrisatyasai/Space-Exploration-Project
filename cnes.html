@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="icon" type="image/png" href="https://cdn-icons-png.flaticon.com/128/3594/3594083.png">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>CNES - Cosmic Voyagers</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet" />
+  <link rel="icon" type="image/png" href="https://cdn-icons-png.flaticon.com/128/3594/3594083.png" />
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Montserrat', sans-serif;
+      background: linear-gradient(to bottom, #0a0a20, #131342);
+      color: #ffffff;
+      overflow-x: hidden;
+    }
+    #bg-video {
+      position: fixed;
+      right: 0;
+      bottom: 0;
+      min-width: 100%;
+      min-height: 100%;
+      z-index: -2;
+      object-fit: cover;
+      opacity: 0.2;
+    }
+    .stars {
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      background: url('starback.html') repeat;
+      animation: twinkle 100s linear infinite;
+      z-index: -1;
+      opacity: 0.3;
+    }
+    @keyframes twinkle {
+      0% { background-position: 0 0; }
+      100% { background-position: -10000px 5000px; }
+    }
+    nav {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      background: rgba(10, 10, 40, 0.95);
+      padding: 1rem;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 4px 15px rgba(138, 43, 226, 0.3);
+    }
+    nav a {
+      color: #fff;
+      text-decoration: none;
+      font-weight: 600;
+      transition: color 0.3s ease;
+      background: linear-gradient(to right, #8a2be2, #4169e1);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    nav a:hover {
+      color: #8a2be2;
+      text-shadow: 0 0 10px rgba(138, 43, 226, 0.7);
+    }
+    header {
+      text-align: center;
+      padding: 2rem;
+      background: rgba(10, 10, 40, 0.9);
+      box-shadow: 0 4px 20px rgba(138, 43, 226, 0.4);
+    }
+    header h1 {
+      font-size: 3rem;
+      background: linear-gradient(to right, #8a2be2, #4169e1);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    section {
+      padding: 2rem 10%;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    section h2 {
+      font-size: 2rem;
+      color: #4169e1;
+      margin-bottom: 1rem;
+    }
+    section p {
+      font-size: 1.1rem;
+      line-height: 1.8;
+    }
+    .image-gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.5rem;
+      margin-top: 1.5rem;
+    }
+    .image-gallery img {
+      width: 100%;
+      height: 250px;
+      object-fit: cover;
+      border-radius: 1rem;
+      box-shadow: 0 4px 20px rgba(65, 105, 225, 0.5);
+      transition: transform 0.3s ease;
+    }
+    .image-gallery img:hover {
+      transform: scale(1.05);
+    }
+    footer {
+      text-align: center;
+      padding: 1rem;
+      background: rgba(10, 10, 40, 0.8);
+      font-size: 0.9rem;
+      color: #ccc;
+    }
+  </style>
+</head>
+<body>
+  <video autoplay muted loop id="bg-video">
+    <source src="assets/cnes-bg.mp4" type="video/mp4">
+  </video>
+  <div class="stars"></div>
+
+  <nav>
+    <a href="organisations.html">Organisations</a>
+    <a href="isro.html">ISRO</a>
+    <a href="nasa.html">NASA</a>
+    <a href="esa.html">ESA</a>
+    <a href="roscosmos.html">ROSCOSMOS</a>
+    <a href="cnsa.html">CNSA</a>
+    <a href="jaxa.html">JAXA</a>
+    <a href="cnes.html">CNES</a>
+    <a href="ukspace.html">UK</a>
+    <a href="dlr.html">DLR</a>
+    <a href="kari.html">KARI</a>
+  </nav>
+
+  <header>
+    <h1>CNES - French Space Agency</h1>
+  </header>
+
+  <section>
+    <h2>History & Overview</h2>
+    <p>
+      CNES (Centre National d'Études Spatiales) is the French government space agency, established in 1961. It is responsible for shaping and implementing France’s space policy in Europe and supports both civilian and military space efforts.
+    </p>
+    <div class="image-gallery">
+      <img src="https://www.esa.int/var/esa/storage/images/esa_multimedia/images/2016/10/cnes_logo/16166276-7-eng-GB/CNES_logo_pillars.jpg" alt="CNES Logo" style="height:600px"/>
+    </div>
+  </section>
+
+  <section>
+    <h2>Famous Rockets</h2>
+    <p>
+      CNES developed the Diamant rocket and has been a key partner in the Ariane series of rockets with ESA and Arianespace. Ariane 5 and Ariane 6 are major European launch vehicles supported by CNES expertise.
+    </p>
+    <div class="image-gallery">
+      <img src="https://cdn.mos.cms.futurecdn.net/v2/t:144,l:0,cw:2000,ch:1125,q:80,w:2000/zViobhSTbf87gmjWs4LrsE.jpg" alt="Ariane5 Rocket Launch" style="height:500px"/>
+      <img src="https://europeanspaceflight.com/wp-content/uploads/2024/07/Ariane-6-Anomaly-Will-Have-No-Consequence-On-Upcoming-Missions.png" alt="Ariane5 Rocket Launch" style="height:500px"/>
+    </div>
+  </section>
+
+  <section>
+    <h2>Satellites</h2>
+    <p>
+      CNES operates Earth observation satellites like SPOT, Helios, and SWOT, which monitor the environment, climate, and support defense and disaster response missions. It also works on scientific satellites like COROT and MICROSCOPE.
+    </p>
+    <div class="image-gallery">
+      <img src="https://content.satimagingcorp.com/media2/filer_public_thumbnails/filer_public/43/dc/43dcc513-d070-4df4-9f2b-0033d15afd41/cms_page_media1414spot-7.png__450.0x315.0_subsampling-2.png" alt="SPOT Satellite" />
+      <img src="https://preview.redd.it/gjs8jhv1b4r81.jpg?width=640&crop=smart&auto=webp&s=90e4bae6eeb1f1794dfe904a3012dbce309fdf20" alt="Helios Satellite" />
+      <img src="https://www.eoportal.org/ftp/satellite-missions/s/SWOT_250722/SWOT_Auto35.jpeg" alt="SWOT Satellite" />
+      <img src="https://space.skyrocket.de/img_sat/microscope__2.jpg" alt="MICROSCOPE Satellite" />
+    </div>
+    <div class="image-gallery">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/d/de/COROT_integration.jpg" alt="MICROSCOPE Satellite" style="height: 700px;"/>
+    </div>
+  </section>
+
+  <section>
+    <h2>Involvement with ISS</h2>
+    <p>
+      France contributes to the ISS through ESA. French astronauts regularly participate in missions to the space station, and CNES supports European experiments and modules on board.
+    </p>
+    <div class="image-gallery">
+      <img src="https://media.cnn.com/api/v1/images/stellar/prod/220120105210-restricted-thomas-pesquet-100-days.jpg?q=h_1682,w_2523,x_0,y_0" alt="Thomas Pesquet on ISS" style="height:600px"/>
+    </div>
+  </section>
+
+  <section>
+    <h2>Major Missions</h2>
+    <p>
+      CNES has collaborated on landmark missions like Mars Express, Rosetta, and Philae (comet landing). It also partners with NASA on oceanography satellites like Jason-3 and SWOT.
+    </p>
+    <div class="image-gallery">
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTzszmVmHyzrhY9orelb_2PSO7i_sOndcnryw&s" alt="Mars Express" />
+      <img src="https://cdn.mos.cms.futurecdn.net/fn5Kp2ZztX7sNSFzR88AaE.jpg" alt="Rosetta Lander" />
+      <img src="https://www.esa.int/var/esa/storage/images/esa_multimedia/images/2013/12/philae_on_the_comet_front_view/13467154-1-eng-GB/Philae_on_the_comet_Front_view_pillars.jpg" alt="Philae Lander" />
+      <img src="https://www.whoi.edu/wp-content/uploads/2021/12/87_swot_artist_eos_800.jpg2_.jpg" alt="Jason-3" />
+      </div>
+      <div class="image-gallery">
+      <img src="https://nesdis.noaa.gov/s3/styles/webp/s3/2021-07/jason-3-thumbnail.jpg.webp?itok=_Q9ztDpT" alt="SWOT Satellite" style="height: 600px;"/>
+    </div>
+  </section>
+
+  <section>
+    <h2>Astronauts</h2>
+    <p>
+      French astronauts include <strong>Thomas Pesquet</strong>, <strong>Jean-François Clervoy</strong>, and <strong>Claudie Haigneré</strong>. Thomas Pesquet flew aboard SpaceX Crew-2 and served aboard the ISS multiple times.
+    </p>
+    <div class="image-gallery">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/d/dc/Thomas_Pesquet%2C_official_portrait_in_EMU_%282020%29_cropped.jpg" alt="Thomas Pesquet" style="height: 500px;"/>
+      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/43/Jean-Francois_Clervoy.jpg/1200px-Jean-Francois_Clervoy.jpg" alt="Jean-François Clervoy" style="height: 500px;"/>
+      <img src="https://www.esa.int/var/esa/storage/images/esa_multimedia/images/2001/09/claudie_haignere_during_her_training_in_star_city_for_the_andromede_mission_to_the_iss/9135541-5-eng-GB/Claudie_Haignere_during_her_training_in_Star_City_for_the_Andromede_mission_to_the_ISS_pillars.jpg" alt="Claudie Haigneré" style="height: 500px;"/>
+    </div>
+  </section>
+
+  <section>
+    <h2>International Collaborations</h2>
+    <p>
+      CNES works closely with ESA, NASA, ISRO, and other space agencies. It contributes to many global missions, shares data with international partners, and helps advance European space ambitions.
+    </p>
+    <div class="image-gallery">
+      <img src="https://www.isro.gov.in/media_isro/image/index/ADI_3622.jpg.webp" alt="CNES Collaboration" style="height:400px"/>
+    </div>
+  </section>
+
+  <section>
+    <h2>Internships & Student Opportunities</h2>
+    <p>
+      CNES offers internships to students through its education portal, supporting engineering, physics, and space science. Collaborations with French universities and ESA offer young researchers hands-on experience.
+    </p>
+  </section>
+
+  <footer>
+    &copy; 2025 Cosmic Voyagers | Designed with ✫ in the stars
+  </footer>
+</body>
+</html>

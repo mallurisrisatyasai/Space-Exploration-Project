@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Space Stations | Cosmic Voyagers</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+  <style>
+    :root {
+      --primary: #8a2be2;
+      --secondary: #4169e1;
+      --dark-bg: #0a0a20;
+      --darker-bg: #131342;
+      --text-light: #e0e0ff;
+    }
+    
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    
+    body {
+      margin: 0;
+      font-family: 'Montserrat', sans-serif;
+      background: linear-gradient(to bottom, var(--dark-bg), var(--darker-bg));
+      color: #fff;
+      overflow-x: hidden;
+      line-height: 1.6;
+    }
+    
+    .stars {
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      background: url('https://raw.githubusercontent.com/VincentGarreau/particles.js/master/demo/img/stars.png') repeat;
+      animation: moveStars 60s linear infinite;
+      z-index: -1;
+    }
+    
+    @keyframes moveStars {
+      from {background-position: 0 0;}
+      to {background-position: 10000px 10000px;}
+    }
+
+    /* Navigation */
+    nav {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 1000;
+      padding: 1.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      backdrop-filter: blur(10px);
+      background-color: rgba(10, 10, 32, 0.7);
+      transition: all 0.3s ease;
+    }
+    
+    nav.scrolled {
+      padding: 1rem;
+      background-color: rgba(10, 10, 32, 0.9);
+      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+    }
+    
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      z-index: 1001;
+    }
+    
+    .logo-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: linear-gradient(45deg, var(--primary), var(--secondary));
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 1.5rem;
+    }
+    
+    .logo-text {
+      font-size: 1.5rem;
+      font-weight: 700;
+      background: linear-gradient(to right, var(--primary), var(--secondary));
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    
+    .nav-links {
+      display: flex;
+      list-style: none;
+      gap: 2rem;
+    }
+    
+    .nav-links a {
+      text-decoration: none;
+      color: var(--text-light);
+      font-weight: 500;
+      position: relative;
+      padding: 0.5rem 0;
+      transition: color 0.3s ease;
+    }
+    
+    .nav-links a:hover {
+      color: var(--primary);
+    }
+    
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 2px;
+      bottom: 0;
+      left: 0;
+      background: linear-gradient(to right, var(--primary), var(--secondary));
+      transition: width 0.3s ease;
+    }
+    
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+    
+    .menu-toggle {
+      display: none;
+      cursor: pointer;
+      z-index: 1001;
+    }
+    
+    /* Header */
+    header {
+      text-align: center;
+      padding: 8rem 1rem 3rem;
+      color: var(--primary);
+    }
+    
+    h1 {
+      font-size: clamp(2rem, 5vw, 3rem);
+      margin-bottom: 0.5rem;
+    }
+    
+    /* Main Content */
+    section {
+      padding: 2rem 5%;
+      max-width: 1000px;
+      margin: auto;
+    }
+    
+    h2 {
+      color: var(--secondary);
+      margin: 2rem 0 1rem;
+      font-size: 1.5rem;
+    }
+    
+    p {
+      margin-bottom: 1rem;
+    }
+    
+    ul {
+      padding-left: 1.2rem;
+      margin-bottom: 1.5rem;
+    }
+    
+    li {
+      margin-bottom: 0.5rem;
+    }
+    
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 1.5rem 0;
+      overflow-x: auto;
+      display: block;
+    }
+    
+    th, td {
+      border: 1px solid var(--primary);
+      padding: 0.75rem;
+      text-align: left;
+    }
+    
+    th {
+      background-color: #1e1e3f;
+    }
+    
+    tr:nth-child(even) {
+      background-color: rgba(138, 43, 226, 0.1);
+    }
+    
+    .highlight {
+      color: var(--primary);
+      font-weight: bold;
+    }
+    
+    /* Footer */
+    footer {
+      text-align: center;
+      padding: 2rem;
+      margin-top: 2rem;
+      background-color: rgba(10, 10, 32, 0.7);
+      backdrop-filter: blur(5px);
+    }
+    
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      nav {
+        padding: 1rem;
+      }
+      
+      .nav-links {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 70%;
+        height: 100vh;
+        background-color: rgba(10, 10, 32, 0.95);
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 2rem;
+        transition: right 0.3s ease;
+      }
+      
+      .nav-links.active {
+        right: 0;
+      }
+      
+      .menu-toggle {
+        display: block;
+        font-size: 1.5rem;
+        color: var(--text-light);
+      }
+      
+      header {
+        padding: 6rem 1rem 2rem;
+      }
+      
+      section {
+        padding: 2rem;
+      }
+    }
+    
+    @media (max-width: 480px) {
+      .logo-text {
+        font-size: 1.2rem;
+      }
+      
+      .logo-icon {
+        width: 35px;
+        height: 35px;
+        font-size: 1.2rem;
+      }
+      
+      h1 {
+        font-size: 2rem;
+      }
+      
+      table {
+        font-size: 0.9rem;
+      }
+      
+      th, td {
+        padding: 0.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="stars"></div>
+  <nav id="navbar">
+    <div class="logo">
+      <div class="logo-icon">🛰️</div>
+      <div class="logo-text">Cosmic Voyagers</div>
+    </div>
+    <div class="menu-toggle" id="mobile-menu">
+      <i class="fas fa-bars"></i>
+    </div>
+    <ul class="nav-links" id="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="organisations.html">Organisations</a></li>
+      <li><a href="machinery.html">Machinery</a></li>
+      <li><a href="rovers.html">Rovers</a></li>
+      <li><a href="stations.html">Stations</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+  </nav>
+  <header>
+    <h1>🛰️ Space Stations</h1>
+    <p class="highlight">Habitats and Laboratories in Orbit</p>
+  </header>
+  <section>
+    <h2>🔹 What is a Space Station?</h2>
+    <p>A <strong>space station</strong> is a large spacecraft in orbit around Earth or another celestial body, designed for humans to live and work in space for extended periods. They serve as laboratories for scientific research, technology testing, and international cooperation in space exploration.</p>
+
+    <h2>🔹 Purpose of Space Stations</h2>
+    <ul>
+      <li>Scientific experiments in microgravity</li>
+      <li>Earth and space observation</li>
+      <li>Testing technologies for long-duration spaceflight</li>
+      <li>International collaboration and crew training</li>
+    </ul>
+
+    <h2>🔹 Key Features of Space Stations</h2>
+    <ul>
+      <li>Habitability modules for crew living</li>
+      <li>Scientific laboratories and equipment</li>
+      <li>Docking ports for spacecraft</li>
+      <li>Power generation (solar arrays)</li>
+      <li>Life support and environmental control systems</li>
+    </ul>
+
+    <h2>🔹 Famous Space Stations</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Agency</th>
+          <th>Operational Period</th>
+          <th>Orbit</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Mir</td>
+          <td>Roscosmos (Russia)</td>
+          <td>1986 - 2001</td>
+          <td>Low Earth Orbit (LEO)</td>
+        </tr>
+        <tr>
+          <td>International Space Station (ISS)</td>
+          <td>NASA, Roscosmos, ESA, JAXA, CSA</td>
+          <td>2000 - Present</td>
+          <td>Low Earth Orbit (LEO)</td>
+        </tr>
+        <tr>
+          <td>Skylab</td>
+          <td>NASA</td>
+          <td>1973 - 1979</td>
+          <td>Low Earth Orbit (LEO)</td>
+        </tr>
+        <tr>
+          <td>Tianhe (CSS Core Module)</td>
+          <td>CNSA (China)</td>
+          <td>2021 - Present</td>
+          <td>Low Earth Orbit (LEO)</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h2>🔹 Challenges Faced by Space Stations</h2>
+    <ul>
+      <li>Maintaining life support and safety</li>
+      <li>Protection from space debris and radiation</li>
+      <li>Logistics of crew rotation and supply missions</li>
+      <li>Technical complexity and maintenance</li>
+    </ul>
+
+    <h2>🔹 Future of Space Stations</h2>
+    <p>Plans include commercial space stations, lunar orbital platforms, and long-term habitats for missions to Mars and beyond, expanding human presence in space.</p>
+
+    <h2>🔹 Fun Fact</h2>
+    <p>The ISS travels around Earth approximately every 90 minutes, orbiting at about 28,000 kilometers per hour (17,500 miles per hour)!</p>
+  </section>
+  
+  <footer>
+    <p>&copy; 2023 Cosmic Voyagers. All rights reserved.</p>
+  </footer>
+
+  <script>
+    // Mobile menu toggle
+    const mobileMenu = document.getElementById('mobile-menu');
+    const navLinks = document.getElementById('nav-links');
+    
+    mobileMenu.addEventListener('click', () => {
+      navLinks.classList.toggle('active');
+      mobileMenu.innerHTML = navLinks.classList.contains('active') 
+        ? '<i class="fas fa-times"></i>' 
+        : '<i class="fas fa-bars"></i>';
+    });
+    
+    // Close mobile menu when clicking on a link
+    document.querySelectorAll('.nav-links a').forEach(link => {
+      link.addEventListener('click', () => {
+        navLinks.classList.remove('active');
+        mobileMenu.innerHTML = '<i class="fas fa-bars"></i>';
+      });
+    });
+    
+    // Navbar scroll effect
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 50) {
+        navbar.classList.add('scrolled');
+      } else {
+        navbar.classList.remove('scrolled');
+      }
+    });
+    
+    // Smooth scrolling for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        document.querySelector(this.getAttribute('href')).scrollIntoView({
+          behavior: 'smooth'
+        });
+      });
+    });
+  </script>
+</body>
+</html>

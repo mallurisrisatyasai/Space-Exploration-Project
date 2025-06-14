@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="icon" type="image/png" href="https://cdn-icons-png.flaticon.com/128/3594/3594083.png">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>SpaceX - Cosmic Voyagers</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet" />
+  <link rel="icon" type="image/png" href="https://cdn-icons-png.flaticon.com/128/3594/3594083.png" />
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Montserrat', sans-serif;
+      background: linear-gradient(to bottom, #0a0a20, #131342);
+      color: #ffffff;
+      overflow-x: hidden;
+    }
+    #bg-video {
+      position: fixed;
+      right: 0;
+      bottom: 0;
+      min-width: 100%;
+      min-height: 100%;
+      z-index: -2;
+      object-fit: cover;
+      opacity: 0.2;
+    }
+    .stars {
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      background: url('starback.html') repeat;
+      animation: twinkle 100s linear infinite;
+      z-index: -1;
+      opacity: 0.3;
+    }
+    @keyframes twinkle {
+      0% { background-position: 0 0; }
+      100% { background-position: -10000px 5000px; }
+    }
+    nav {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      background: rgba(10, 10, 40, 0.95);
+      padding: 1rem;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 4px 15px rgba(138, 43, 226, 0.3);
+    }
+    nav a {
+      color: #fff;
+      text-decoration: none;
+      font-weight: 600;
+      transition: color 0.3s ease;
+      background: linear-gradient(to right, #8a2be2, #4169e1);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    nav a:hover {
+      color: #8a2be2;
+      text-shadow: 0 0 10px rgba(138, 43, 226, 0.7);
+    }
+    header {
+      text-align: center;
+      padding: 2rem;
+      background: rgba(10, 10, 40, 0.9);
+      box-shadow: 0 4px 20px rgba(138, 43, 226, 0.4);
+    }
+    header h1 {
+      font-size: 3rem;
+      background: linear-gradient(to right, #8a2be2, #4169e1);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    section {
+      padding: 2rem 10%;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    section h2 {
+      font-size: 2rem;
+      color: #4169e1;
+      margin-bottom: 1rem;
+    }
+    section p {
+      font-size: 1.1rem;
+      line-height: 1.8;
+    }
+    .image-gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.5rem;
+      margin-top: 1.5rem;
+    }
+    .image-gallery img {
+      width: 100%;
+      height: 250px;
+      object-fit: cover;
+      border-radius: 1rem;
+      box-shadow: 0 4px 20px rgba(65, 105, 225, 0.5);
+      transition: transform 0.3s ease;
+    }
+    .image-gallery img:hover {
+      transform: scale(1.05);
+    }
+    footer {
+      text-align: center;
+      padding: 1rem;
+      background: rgba(10, 10, 40, 0.8);
+      font-size: 0.9rem;
+      color: #ccc;
+    }
+  </style>
+</head>
+<body>
+  <video autoplay muted loop id="bg-video">
+    <source src="assets/spacex-bg.mp4" type="video/mp4">
+  </video>
+  <div class="stars"></div>
+
+  <nav>
+    <a href="organisations.html">Organisations</a>
+    <a href="spacex.html">SpaceX</a>
+    <a href="blueorigin.html">Blue Origin</a>
+    <a href="virgingalactic.html">Virgin Galactic</a>
+    <a href="rocketlab.html">Rocket Lab</a>
+    <a href="firefly.html">Firefly Aerospace</a>
+    <a href="sierra.html">Sierra Space</a>
+  </nav>
+
+  <header>
+    <h1>SpaceX</h1>
+  </header>
+
+  <section>
+    <h2>History & Overview</h2>
+    <p>
+      SpaceX was founded in 2002 by Elon Musk with the aim of reducing space transportation costs and enabling the colonization of Mars. The company has revolutionized space travel with the development of the Falcon rockets, Dragon spacecraft, and the Starship program, alongside various successful missions to the ISS.
+    </p>
+    <div class="image-gallery">
+      <img src="https://spaceexplored.com/wp-content/uploads/sites/10/2021/05/SpaceX-logo-cropped.jpg?quality=82&strip=all&w=1000" alt="SpaceX Logo" />
+    </div>
+  </section>
+
+  <section>
+    <h2>Famous Rockets</h2>
+    <p>
+      SpaceX is known for its Falcon series of rockets, including the Falcon 1, Falcon 9, and Falcon Heavy. These rockets have achieved numerous milestones, including the first privately funded spacecraft to reach orbit and the first privately funded spacecraft to dock with the International Space Station.
+    </p>
+    <div class="image-gallery">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/c/c8/Falcon_1_Flight_4_liftoff.jpg" alt="Falcon1" />
+      <img src="https://hips.hearstapps.com/hmg-prod/images/in-this-spacex-handout-image-a-falcon-9-rocket-carrying-the-news-photo-1591219555.jpg" alt="Falcon9" />
+      <img src="https://cdn.mos.cms.futurecdn.net/fnfyE7cDwV9JWCopNK8Ycb-1200-80.jpg" alt="Falcon Heavy" />
+    </div>
+  </section>
+
+  <section>
+    <h2>Satellites</h2>
+    <p>
+      SpaceX has launched numerous satellites, including the Starlink satellites, which aim to provide global internet coverage. SpaceX has also played a pivotal role in satellite launches for NASA, commercial companies, and international organizations.
+    </p>
+    <div class="image-gallery">
+      <img src="https://sm.pcmag.com/t/pcmag_me/news/s/spacex-act/spacex-actually-dying-starlink-satellites-dont-always-fully_pc6c.1920.jpg" alt="Starlink Satellites" />
+      <img src="https://dq0hsqwjhea1.cloudfront.net/Starlink-concept-solar-array-wing-unfurled-SpaceX-628x360-1-1.jpg" alt="Starlink Satellites" />
+    </div>
+  </section>
+
+  <section>
+    <h2>Involvement with ISS</h2>
+    <p>
+      SpaceX has been heavily involved in missions to the International Space Station (ISS), providing cargo resupply missions and crew transport through its Dragon spacecraft. The company became the first private company to send astronauts to the ISS in May 2020 with the Crew Dragon.
+    </p>
+    <div class="image-gallery">
+      <img src="https://c02.purpledshub.com/uploads/sites/41/2019/04/Dragon_Carousel_0007_2-0aa00b4.jpg" alt="Crew Dragon" style="height: 500px;"/>
+    </div>
+  </section>
+
+  <section>
+    <h2>Major Missions</h2>
+    <p>
+      SpaceX has undertaken several high-profile missions, such as the successful Falcon 9 launches, the Dragon spacecraft missions, and the Starship program designed for Mars colonization. Their crewed missions to the ISS, such as Crew Dragon's Demo-2 mission, have been landmark achievements.
+    </p>
+    <div class="image-gallery">
+      <img src="https://scitechdaily.com/images/SpaceX-Crew-Dragon-Spacecraft-Approaches-International-Space-Station-scaled.jpg" alt="Dragon spacecraft missions" />
+      <img src="https://media-cldnry.s-nbcnews.com/image/upload/t_fit-1500w,f_auto,q_auto:best/newscms/2019_47/3108836/191119-spacex-starship-artist-rendering-ew-1204p.jpg" alt="Crew Dragon approaching ISS" />
+      <img src="https://cdn.mos.cms.futurecdn.net/h56p4N6QqxRUSyQptUpNiC.jpg" alt="Crew Dragon approaching ISS" />
+    </div>
+  </section>
+
+  <section>
+    <h2>Astronauts</h2>
+    <p>
+      SpaceX has collaborated with NASA and other space agencies to send astronauts to the ISS. Their notable crewed missions include the launch of astronauts Doug Hurley and Bob Behnken aboard Crew Dragon, marking the first commercial crew launch to the ISS.
+    </p>
+    <div class="image-gallery">
+      <img src="https://static.foxbusiness.com/foxbusiness.com/content/uploads/2020/05/Robert-Behnken-Douglas-Hurley-AP.jpg" alt="Astronauts Doug Hurley and Bob Behnken" style="height: 550px;"/>
+    </div>
+  </section>
+
+  <section>
+    <h2>International Collaborations</h2>
+    <p>
+      SpaceX collaborates with NASA, the European Space Agency (ESA), and various international space organizations. Their collaborations range from cargo deliveries to crewed missions to the ISS and launching payloads into space for other countries and entities.
+    </p>
+    <div class="image-gallery">
+      <img src="https://media.cnn.com/api/v1/images/stellar/prod/220831181503-nasa-spacex-crew-launches-contract-extension-scn.jpg?c=original" alt="SpaceX International Collaboration" style="height: 400px;"/>
+    </div>
+  </section>
+
+  <section>
+    <h2>Internships & Student Opportunities</h2>
+    <p>
+      SpaceX offers internships and opportunities for students in aerospace engineering, mechanical engineering, and related fields. These programs allow students to contribute to cutting-edge space technologies and missions.
+    </p>
+  </section>
+
+  <footer>
+    &copy; 2025 Cosmic Voyagers | Designed with ✫ in the stars
+  </footer>
+</body>
+</html>

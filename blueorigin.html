@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="icon" type="image/png" href="https://cdn-icons-png.flaticon.com/128/3594/3594083.png">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Blue Origin - Cosmic Voyagers</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet" />
+  <link rel="icon" type="image/png" href="https://cdn-icons-png.flaticon.com/128/3594/3594083.png" />
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Montserrat', sans-serif;
+      background: linear-gradient(to bottom, #0a0a20, #131342);
+      color: #ffffff;
+      overflow-x: hidden;
+    }
+    #bg-video {
+      position: fixed;
+      right: 0;
+      bottom: 0;
+      min-width: 100%;
+      min-height: 100%;
+      z-index: -2;
+      object-fit: cover;
+      opacity: 0.2;
+    }
+    .stars {
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      background: url('starback.html') repeat;
+      animation: twinkle 100s linear infinite;
+      z-index: -1;
+      opacity: 0.3;
+    }
+    @keyframes twinkle {
+      0% { background-position: 0 0; }
+      100% { background-position: -10000px 5000px; }
+    }
+    nav {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      background: rgba(10, 10, 40, 0.95);
+      padding: 1rem;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 4px 15px rgba(138, 43, 226, 0.3);
+    }
+    nav a {
+      color: #fff;
+      text-decoration: none;
+      font-weight: 600;
+      transition: color 0.3s ease;
+      background: linear-gradient(to right, #8a2be2, #4169e1);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    nav a:hover {
+      color: #8a2be2;
+      text-shadow: 0 0 10px rgba(138, 43, 226, 0.7);
+    }
+    header {
+      text-align: center;
+      padding: 2rem;
+      background: rgba(10, 10, 40, 0.9);
+      box-shadow: 0 4px 20px rgba(138, 43, 226, 0.4);
+    }
+    header h1 {
+      font-size: 3rem;
+      background: linear-gradient(to right, #8a2be2, #4169e1);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    section {
+      padding: 2rem 10%;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    section h2 {
+      font-size: 2rem;
+      color: #4169e1;
+      margin-bottom: 1rem;
+    }
+    section p {
+      font-size: 1.1rem;
+      line-height: 1.8;
+    }
+    .image-gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.5rem;
+      margin-top: 1.5rem;
+    }
+    .image-gallery img {
+      width: 100%;
+      height: 250px;
+      object-fit: cover;
+      border-radius: 1rem;
+      box-shadow: 0 4px 20px rgba(65, 105, 225, 0.5);
+      transition: transform 0.3s ease;
+    }
+    .image-gallery img:hover {
+      transform: scale(1.05);
+    }
+    footer {
+      text-align: center;
+      padding: 1rem;
+      background: rgba(10, 10, 40, 0.8);
+      font-size: 0.9rem;
+      color: #ccc;
+    }
+  </style>
+</head>
+<body>
+  <video autoplay muted loop id="bg-video">
+    <source src="assets/blueorigin-bg.mp4" type="video/mp4">
+  </video>
+  <div class="stars"></div>
+
+  <nav>
+    <a href="organisations.html">Organisations</a>
+    <a href="spacex.html">SpaceX</a>
+    <a href="blueorigin.html">Blue Origin</a>
+    <a href="virgingalactic.html">Virgin Galactic</a>
+    <a href="rocketlab.html">Rocket Lab</a>
+    <a href="firefly.html">Firefly Aerospace</a>
+    <a href="sierra.html">Sierra Space</a>
+  </nav>
+
+  <header>
+    <h1>Blue Origin</h1>
+  </header>
+
+  <section>
+    <h2>History & Overview</h2>
+    <p>
+      Blue Origin was founded in 2000 by Jeff Bezos with the goal of reducing the cost of space travel and making space more accessible. The company is known for its development of reusable rockets like the New Shepard and the New Glenn, as well as their work on long-term space exploration with the Blue Moon lander and Orbital Reef space station.
+    </p>
+    <div class="image-gallery">
+      <img src="https://logowik.com/content/uploads/images/blue-origin8550.jpg" alt="Blue Origin Logo" style="height: 500px;"/>
+    </div>
+  </section>
+
+  <section>
+    <h2>Famous Rockets</h2>
+    <p>
+      Blue Origin's key rockets include New Shepard, which is designed for suborbital flights and space tourism, and New Glenn, a larger, orbital-class rocket under development for crewed and cargo missions to low Earth orbit (LEO) and beyond.
+    </p>
+    <div class="image-gallery">
+      <img src="https://i0.wp.com/spacenews.com/wp-content/uploads/2017/06/launch.jpg?fit=1000%2C667&quality=89&ssl=1" alt="New Shepard Rocket" />
+      <img src="https://payloadspace.com/wp-content/uploads/2025/01/new-glenn.jpeg" alt="New Glenn" />
+    </div>
+  </section>
+
+  <section>
+    <h2>Satellites</h2>
+    <p>
+      Blue Origin has focused on launching satellites into low Earth orbit (LEO), primarily for its customers. Its New Glenn rocket will also be capable of launching heavier payloads, including commercial satellites, scientific instruments, and space exploration devices.
+    </p>
+    <div class="image-gallery">
+      <img src="https://cdn.geekwire.com/wp-content/uploads/2024/02/240221-rocket2.jpg" alt="New Glenn Rocket" style="height: 480px;"/>
+    </div>
+  </section>
+
+  <section>
+    <h2>Involvement with ISS</h2>
+    <p>
+      Blue Origin has not yet conducted missions to the International Space Station (ISS). However, the development of New Glenn is expected to play a significant role in future ISS resupply and crewed missions as it becomes operational.
+    </p>
+    <div class="image-gallery">
+      <img src="https://media.cnn.com/api/v1/images/stellar/prod/ns25-egress-ed-dwight.jpg?c=original" alt="Blue Origin Rocket" style="height: 490px;"/>
+    </div>
+  </section>
+
+  <section>
+    <h2>Major Missions</h2>
+    <p>
+      Blue Origin's major missions include the successful suborbital flights of the New Shepard rocket, which carried science experiments and private passengers. The company is also preparing for more ambitious missions, such as its lunar lander Blue Moon and the Orbital Reef space station in collaboration with other private space companies.
+    </p>
+    <div class="image-gallery">
+      <img src="https://images.firstpost.com/wp-content/uploads/2020/10/EkNiBjmU8AERqqz-1.jpg" alt="New Shepard Launch" style="height: 450px;"/>
+    </div>
+  </section>
+
+  <section>
+    <h2>Astronauts</h2>
+    <p>
+      Blue Origin has begun to launch civilian astronauts into space, with notable flights including the crewed New Shepard launch in 2021, which included Jeff Bezos himself, along with other space tourists.
+    </p>
+    <div class="image-gallery">
+      <img src="https://media-cldnry.s-nbcnews.com/image/upload/t_fit-1500w,f_auto,q_auto:best/rockcms/2021-07/210720-jeff-bezos-ew-716p-ab4df8.jpg" alt="Jeff Bezos New Shepard Flight" style="height: 500px;"/>
+    </div>
+  </section>
+
+  <section>
+    <h2>International Collaborations</h2>
+    <p>
+      Blue Origin has engaged in international collaborations, notably with NASA and other private companies. The company is also working on Blue Moon, a lunar lander designed to deliver payloads to the moon's surface in collaboration with various space agencies and organizations.
+    </p>
+    <div class="image-gallery">
+      <img src="https://d1o72l87sylvqg.cloudfront.net/blue-origin/BlueMoon_mk1.png" alt="Blue Moon Lander" style="height: 570px;"/>
+    </div>
+  </section>
+
+  <section>
+    <h2>Internships & Student Opportunities</h2>
+    <p>
+      Blue Origin offers various internships and opportunities for students in engineering, aerospace, and related fields, allowing them to gain hands-on experience in space exploration and technology development.
+    </p>
+  </section>
+
+  <footer>
+    &copy; 2025 Cosmic Voyagers | Designed with ✫ in the stars
+  </footer>
+</body>
+</html>

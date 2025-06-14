@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Satellite Visualization</title>
+  <style>
+    canvas {
+      background: black;
+    }
+    #earth {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      width: 200px;
+      height: 200px;
+      background: radial-gradient(circle, #00f 0%, #00a 70%, #000 100%);
+      border-radius: 50%;
+    }
+  </style>
+</head>
+<body>
+  <canvas id="orbitCanvas" width="800" height="600"></canvas>
+  <div id="earth"></div>
+
+  <script>
+    const canvas = document.getElementById('orbitCanvas');
+    const ctx = canvas.getContext('2d');
+    const earth = document.getElementById('earth');
+    const earthX = canvas.width / 2;
+    const earthY = canvas.height / 2;
+    const earthRadius = 100;
+
+    // Simulated satellite data (simplified orbits)
+    const satellites = [
+      { id: 'Chandra', angle: 0, radius: 200, speed: 0.02 },
+      { id: 'CAPSTONE', angle: 0, radius: 250, speed: 0.015 },
+      { id: 'TDRS-8', angle: 0, radius: 300, speed: 0.01 }
+    ];
+
+    function draw() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+      // Draw orbit paths
+      ctx.strokeStyle = 'rgba(255, 255, 255, 0.5)';
+      ctx.lineWidth = 1;
+      satellites.forEach(sat => {
+        ctx.beginPath();
+        ctx.ellipse(earthX, earthY, sat.radius, sat.radius, 0, 0, Math.PI * 2);
+        ctx.stroke();
+      });
+
+      // Draw and move satellites
+      satellites.forEach(sat => {
+        sat.angle += sat.speed;
+        const x = earthX + sat.radius * Math.cos(sat.angle);
+        const y = earthY + sat.radius * Math.sin(sat.angle);
+
+        // Draw satellite
+        ctx.beginPath();
+        ctx.arc(x, y, 5, 0, Math.PI * 2);
+        ctx.fillStyle = 'white';
+        ctx.fill();
+
+        // Add label
+        ctx.fillStyle = 'white';
+        ctx.font = '12px Arial';
+        ctx.fillText(sat.id, x + 10, y);
+      });
+
+      requestAnimationFrame(draw);
+    }
+
+    draw();
+  </script>
+</body>
+</html>

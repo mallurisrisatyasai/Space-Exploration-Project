@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="icon" type="image/png" href="https://cdn-icons-png.flaticon.com/128/3594/3594083.png">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>CNSA - Cosmic Voyagers</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet" />
+  <link rel="icon" type="image/png" href="https://cdn-icons-png.flaticon.com/128/3594/3594083.png" />
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Montserrat', sans-serif;
+      background: linear-gradient(to bottom, #0a0a20, #131342);
+      color: #ffffff;
+      overflow-x: hidden;
+    }
+    #bg-video {
+      position: fixed;
+      right: 0;
+      bottom: 0;
+      min-width: 100%;
+      min-height: 100%;
+      z-index: -2;
+      object-fit: cover;
+      opacity: 0.2;
+    }
+    .stars {
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      background: url('starback.html') repeat;
+      animation: twinkle 100s linear infinite;
+      z-index: -1;
+      opacity: 0.3;
+    }
+    @keyframes twinkle {
+      0% { background-position: 0 0; }
+      100% { background-position: -10000px 5000px; }
+    }
+    nav {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      background: rgba(10, 10, 40, 0.95);
+      padding: 1rem;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 4px 15px rgba(138, 43, 226, 0.3);
+    }
+    nav a {
+      color: #fff;
+      text-decoration: none;
+      font-weight: 600;
+      transition: color 0.3s ease;
+      background: linear-gradient(to right, #8a2be2, #4169e1);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    nav a:hover {
+      color: #8a2be2;
+      text-shadow: 0 0 10px rgba(138, 43, 226, 0.7);
+    }
+    header {
+      text-align: center;
+      padding: 2rem;
+      background: rgba(10, 10, 40, 0.9);
+      box-shadow: 0 4px 20px rgba(138, 43, 226, 0.4);
+    }
+    header h1 {
+      font-size: 3rem;
+      background: linear-gradient(to right, #8a2be2, #4169e1);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    section {
+      padding: 2rem 10%;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    section h2 {
+      font-size: 2rem;
+      color: #4169e1;
+      margin-bottom: 1rem;
+    }
+    section p {
+      font-size: 1.1rem;
+      line-height: 1.8;
+    }
+    .image-gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.5rem;
+      margin-top: 1.5rem;
+    }
+    .image-gallery img {
+      width: 100%;
+      height: 250px;
+      object-fit: cover;
+      border-radius: 1rem;
+      box-shadow: 0 4px 20px rgba(65, 105, 225, 0.5);
+      transition: transform 0.3s ease;
+    }
+    .image-gallery img:hover {
+      transform: scale(1.05);
+    }
+    footer {
+      text-align: center;
+      padding: 1rem;
+      background: rgba(10, 10, 40, 0.8);
+      font-size: 0.9rem;
+      color: #ccc;
+    }
+  </style>
+</head>
+<body>
+  <video autoplay muted loop id="bg-video">
+    <source src="assets/cnsa-bg.mp4" type="video/mp4">
+  </video>
+  <div class="stars"></div>
+
+  <nav>
+    <a href="organisations.html">Organisations</a>
+    <a href="isro.html">ISRO</a>
+    <a href="nasa.html">NASA</a>
+    <a href="esa.html">ESA</a>
+    <a href="roscosmos.html">ROSCOSMOS</a>
+    <a href="cnsa.html">CNSA</a>
+    <a href="jaxa.html">JAXA</a>
+    <a href="cnes.html">CNES</a>
+    <a href="ukspace.html">UK</a>
+    <a href="dlr.html">DLR</a>
+    <a href="kari.html">KARI</a>
+  </nav>
+
+  <header>
+    <h1>CNSA - China National Space Administration</h1>
+  </header>
+
+  <section>
+    <h2>History & Overview</h2>
+    <p>
+      The China National Space Administration (CNSA) was established in 1993 as the national space agency of China. CNSA oversees China’s space activities including space exploration, satellite programs, and international collaborations. It represents the next major power in global space exploration after the US and Russia.
+    </p>
+    <div class="image-gallery">
+      <img src="https://upload.wikimedia.org/wikipedia/en/thumb/c/cf/China_National_Space_Administration.svg/1200px-China_National_Space_Administration.svg.png" alt="CNSA Logo" style="height: 1000px;"/>
+    </div>
+  </section>
+
+  <section>
+    <h2>Famous Rockets</h2>
+    <p>
+      CNSA uses the Long March (Chang Zheng) rocket family, which includes Long March 2F (manned missions), Long March 3B (heavy-lift), and the modern Long March 5B for launching modules of space stations and interplanetary missions.
+    </p>
+    <div class="image-gallery">
+      <img src="https://news.cgtn.com/news/2022-05-30/China-s-manned-rocket-Long-March-2F-deemed-safe-reliable-for-launch-1arXUxsYmuA/img/ca940e48956d489f97ec1b12fb1180bf/ca940e48956d489f97ec1b12fb1180bf.png" alt="Long March 5B Rocket" />
+      <img src="https://everydayastronaut.com/wp-content/uploads/2023/01/CZ-3BE-SY1002-001.jpg" alt="Long March 5B Rocket" />
+      <img src="https://everydayastronaut.com/wp-content/uploads/Prelaunch-Preview/CNSA/Long-March-5B.jpeg" alt="Long March 5B Rocket" />
+    </div>
+  </section>
+
+  <section>
+    <h2>Satellites</h2>
+    <p>
+      CNSA has launched numerous satellites under programs like Beidou Navigation System, Gaofen for Earth Observation, and Tiantong communication satellites. These serve civil, scientific, and defense purposes.
+    </p>
+    <div class="image-gallery">
+      <img src="https://d.newsweek.com/en/full/2107258/satellite-space.jpg?w=1600&h=1200&q=88&f=9bff9195df341bb4ded9ea9f1b89e564" alt="Goafen Satellite" style="height:400px"/>
+      <img src="https://www.itu.int/hub/wp-content/uploads/sites/4/2023/05/China_BDS_satellite_navigation_system.jpg.optimal.jpg" alt="Beidou Satellite" style="height:400px"/>
+      <img src="https://images.firstpost.com/uploads/2024/04/Chinese-scientists-develop-worlds-first-orbiter-that-allows-smartphones-to-make-direct-satellite-calls-2024-04-2c3720ba84cd892fb07ae8afa97301b9-1200x675.jpg?im=FitAndFill=(596,336)" alt="Tiantong Satellite" style="height:400px"/>
+    </div>
+  </section>
+
+  <section>
+    <h2>Involvement with ISS</h2>
+    <p>
+      China is not a partner of the ISS due to political restrictions. However, CNSA has developed its own independent space station called <strong>Tiangong</strong>, which became fully operational in 2022 and hosts regular manned missions.
+    </p>
+    <div class="image-gallery">
+      <img src="https://cdn.mos.cms.futurecdn.net/KuJC3eTPtcwP6gpXLAbNjQ.jpeg" alt="Tiangong Space Station" style="height:360px"/>
+    </div>
+  </section>
+
+  <section>
+    <h2>Major Missions</h2>
+    <p>
+      CNSA has conducted impressive interplanetary missions like <strong>Chang'e</strong> missions to the Moon, <strong>Tianwen-1</strong> to Mars (first successful Mars orbiter and rover combo), and future missions include asteroid sample return and manned Moon missions.
+    </p>
+    <div class="image-gallery">
+      <img src="https://www.globaltimes.cn/Portals/0/attachment/2020/2020-12-17/2c536ed9-82d9-492f-afc8-99c14dd5bbfa.jpeg" alt="Chang'e 5 Return" />
+      <img src="https://www.spacerobotics.eu/wp-content/uploads/2020/04/spacerobotics.eu_mars_martian_china_chinese_rover_14.jpg" alt="Tianwen-1 Mars Mission" />
+    </div>
+  </section>
+
+  <section>
+    <h2>Astronauts</h2>
+    <p>
+      CNSA astronauts (taikonauts) have flown since 2003. Famous astronauts include <strong>Yang Liwei</strong> (first Chinese astronaut), <strong>Liu Yang</strong> (first Chinese woman in space), and <strong>Nie Haisheng</strong> (veteran commander).
+    </p>
+    <div class="image-gallery">
+      <img src="https://news.cgtn.com/news/346b444f32597a6333566d54/img/8315b249-8775-4d85-983c-36407bf34172.jpg" alt="Yang Liwei" />
+      <img src="https://i.guim.co.uk/img/static/sys-images/Observer/Columnist/Columnists/2012/6/16/1339856185619/Liu-Yang-Chinas-first-fem-008.jpg?width=465&dpr=1&s=none&crop=none" alt="Liu Yang" />
+      <img src="https://lh3.googleusercontent.com/proxy/mXhG2s3FTwmWG4Hn8EBSrI0E7RZHJqufoEzFSNP8UNJb7t28U1fxLaqWcCSE2iZIyJ0d4tKtVMLn_QNL6EyiyFNW3dVwyP8sJSfhp7Xk14Sr_CsrYD3FGTAqZ7b0Re0w" alt="Nie Haisheng" />
+    </div>
+  </section>
+
+  <section>
+    <h2>International Collaborations</h2>
+    <p>
+      CNSA works with the European Space Agency (ESA), Roscosmos, and countries like Argentina and Pakistan. They have shared data from missions like Chang’e and Tianwen with the international scientific community.
+    </p>
+    <div class="image-gallery">
+      <img src="https://www.globaltimes.cn/Portals/0/attachment/2025/2025-04-24/87035a1f-cc13-47ce-9109-4a6f8e2a4262.jpeg" alt="ESA and CNSA Collaboration" style="height:700px"/>
+    </div>
+  </section>
+
+  <section>
+    <h2>Internships & Student Opportunities</h2>
+    <p>
+      CNSA-related educational opportunities are available primarily through Chinese universities and institutions like the China Academy of Space Technology (CAST). International collaboration programs may offer limited access for foreign students.
+    </p>
+  </section>
+
+  <footer>
+    &copy; 2025 Cosmic Voyagers | Designed with ✫ in the stars
+  </footer>
+</body>
+</html>

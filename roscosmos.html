@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="icon" type="image/png" href="https://cdn-icons-png.flaticon.com/128/3594/3594083.png">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>ROSCOSMOS - Cosmic Voyagers</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet" />
+  <link rel="icon" type="image/png" href="https://cdn-icons-png.flaticon.com/128/3594/3594083.png" />
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Montserrat', sans-serif;
+      background: linear-gradient(to bottom, #0a0a20, #131342);
+      color: #ffffff;
+      overflow-x: hidden;
+    }
+    #bg-video {
+      position: fixed;
+      right: 0;
+      bottom: 0;
+      min-width: 100%;
+      min-height: 100%;
+      z-index: -2;
+      object-fit: cover;
+      opacity: 0.2;
+    }
+    .stars {
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      background: url('starback.html') repeat;
+      animation: twinkle 100s linear infinite;
+      z-index: -1;
+      opacity: 0.3;
+    }
+    @keyframes twinkle {
+      0% { background-position: 0 0; }
+      100% { background-position: -10000px 5000px; }
+    }
+    nav {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      background: rgba(10, 10, 40, 0.95);
+      padding: 1rem;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 4px 15px rgba(138, 43, 226, 0.3);
+    }
+    nav a {
+      color: #fff;
+      text-decoration: none;
+      font-weight: 600;
+      transition: color 0.3s ease;
+      background: linear-gradient(to right, #8a2be2, #4169e1);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    nav a:hover {
+      color: #8a2be2;
+      text-shadow: 0 0 10px rgba(138, 43, 226, 0.7);
+    }
+    header {
+      text-align: center;
+      padding: 2rem;
+      background: rgba(10, 10, 40, 0.9);
+      box-shadow: 0 4px 20px rgba(138, 43, 226, 0.4);
+    }
+    header h1 {
+      font-size: 3rem;
+      background: linear-gradient(to right, #8a2be2, #4169e1);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    section {
+      padding: 2rem 10%;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    section h2 {
+      font-size: 2rem;
+      color: #4169e1;
+      margin-bottom: 1rem;
+    }
+    section p {
+      font-size: 1.1rem;
+      line-height: 1.8;
+    }
+    .image-gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.5rem;
+      margin-top: 1.5rem;
+    }
+    .image-gallery img {
+      width: 100%;
+      height: 250px;
+      object-fit: cover;
+      border-radius: 1rem;
+      box-shadow: 0 4px 20px rgba(65, 105, 225, 0.5);
+      transition: transform 0.3s ease;
+    }
+    .image-gallery img:hover {
+      transform: scale(1.05);
+    }
+    footer {
+      text-align: center;
+      padding: 1rem;
+      background: rgba(10, 10, 40, 0.8);
+      font-size: 0.9rem;
+      color: #ccc;
+    }
+  </style>
+</head>
+<body>
+  <video autoplay muted loop id="bg-video">
+    <source src="assets/roscosmos-bg.mp4" type="video/mp4">
+  </video>
+  <div class="stars"></div>
+  <nav>
+    <a href="organisations.html">Organisations</a>
+    <a href="isro.html">ISRO</a>
+    <a href="nasa.html">NASA</a>
+    <a href="esa.html">ESA</a>
+    <a href="roscosmos.html">ROSCOSMOS</a>
+    <a href="cnsa.html">CNSA</a>
+    <a href="jaxa.html">JAXA</a>
+    <a href="cnes.html">CNES</a>
+    <a href="ukspace.html">UK</a>
+    <a href="dlr.html">DLR</a>
+    <a href="kari.html">KARI</a>
+  </nav>
+
+  <header>
+    <h1>ROSCOSMOS - Russian Federal Space Agency</h1>
+  </header>
+
+  <section>
+    <h2>History & Overview</h2>
+    <p>
+      ROSCOSMOS is the governmental body responsible for the space science program of the Russian Federation and general aerospace research.
+      Established in 1992 following the dissolution of the Soviet Union, it continues the legacy of the Soviet space program that launched Sputnik and sent Yuri Gagarin into space.
+    </p>
+    <div class="image-gallery">
+      <img src="https://a3space.org/wp-content/uploads/2024/03/roscosmos-1024x646.png" alt="Roscosmos Logo" style="height: 900px"/>
+    </div>
+  </section>
+
+  <section>
+    <h2>Famous Rockets</h2>
+    <p>
+      The Soyuz and Proton rockets are some of the most reliable and frequently used launch vehicles in history.
+      Soyuz has transported astronauts to the ISS for decades and remains a cornerstone of human spaceflight.
+    </p>
+    <div class="image-gallery">
+      <img src="https://www.nasa.gov/wp-content/uploads/2021/10/soyuz_launch.jpg" alt="Soyuz Launch" style="height:600px"/>
+      <img src="https://cdn-media.tass.ru/width/1020_b9261fa1/tass/m2/en/uploads/i/20150804/1102013.jpg" alt="Proton Rocket" style="height:600px"/>
+    </div>
+  </section>
+
+  <section>
+    <h2>Satellites</h2>
+    <p>
+      ROSCOSMOS has launched numerous satellites including navigation systems like <strong>GLONASS</strong>, weather satellites like <strong>Elektro-L</strong>,
+      and Earth-observation satellites for remote sensing and defense.
+    </p>
+    <div class="image-gallery">
+      <img src="https://spaceflightnow.com/wp-content/uploads/2016/06/glonass-m.jpg" alt="GLONASS Satellite" style="height:400px"/>
+    </div>
+  </section>
+
+  <section>
+    <h2>Involvement with ISS</h2>
+    <p>
+      ROSCOSMOS is a founding partner of the ISS. It manages modules like <strong>Zvezda</strong> and <strong>Zarya</strong>, and provides crew transport using Soyuz and Progress spacecraft.
+    </p>
+    <div class="image-gallery">
+      <img src="https://st.depositphotos.com/2197700/4776/i/950/depositphotos_47768927-stock-photo-international-space-station-module-zvezda.jpg" alt="Zvezda Module" style="height:400px"/>
+    </div>
+  </section>
+
+  <section>
+    <h2>Major Missions</h2>
+    <p>
+      Key missions include <strong>Luna</strong> moon exploration program, <strong>Venera</strong> missions to Venus, the ongoing <strong>ExoMars</strong> collaboration with ESA, and upcoming missions like <strong>Luna 25</strong> and <strong>Oryol</strong>.
+    </p>
+    <div class="image-gallery">
+      <img src="https://img.theweek.in/content/dam/week/news/2023/images/2023/7/10/Russia-Luna-25-lander-Illustration-using-elements-furnished-by-NASA-Shutterstock.jpg" alt="Luna25" style="height: 400px"/>
+      <img src="https://gizmodo.com/app/uploads/2022/10/f03027e93923418a0ac8a0ce2a92b1e0.jpg" alt="ExoMars" style="height: 400px"/>
+      <img src="https://cdn.mos.cms.futurecdn.net/9asSDsR6kPCRrqkUosmybA-1200-80.jpg" alt="venera" style="height:400px"/>
+      <img src="https://discourse-data-fra.fra1.cdn.digitaloceanspaces.com/original/3X/1/f/1f14a3ad5703735f2bb6b37c6edaf2d4f96e2414.jpeg" alt="oryol" style="height:400px"/>
+    </div>
+  </section>
+
+  <section>
+    <h2>Astronauts</h2>
+    <p>
+      Russian cosmonauts have played vital roles in space exploration history. Famous cosmonauts include <strong>Yuri Gagarin</strong> (first human in space), <strong>Valentina Tereshkova</strong> (first woman in space), and <strong>Gennady Padalka</strong> (record holder for most time spent in space).
+    </p>
+    <div class="image-gallery">
+      <img src="https://www.astronomy.com/wp-content/uploads/sites/2/2023/02/Yuri_Gagarin_on_his_way_to_the_launch_pad_pillars.jpg" alt="Yuri Gagarin" style="height: 300px;"/>
+      <img src="https://akm-img-a-in.tosshub.com/indiatoday/yuri_647_041216090204.jpg?size=1200:675" alt="Valentina Tereshkova" style="height: 300px;"/>
+    </div>
+  </section>
+
+  <section>
+    <h2>International Collaborations</h2>
+    <p>
+      ROSCOSMOS collaborates with NASA, ESA, and other global partners. It is a core member of ISS operations and has previously partnered with India (ISRO), China (CNSA), and Europe (ESA) on lunar and Mars exploration missions.
+    </p>
+    <div class="image-gallery">
+      <img src="https://media.nature.com/lw1200/magazine-assets/d41586-023-01558-0/d41586-023-01558-0_25322064.jpg" alt="ISS Collaboration" style="height:400px"/>
+    </div>
+  </section>
+
+  <section>
+    <h2>Internships & Student Opportunities</h2>
+    <p>
+      ROSCOSMOS offers student outreach and technical internships through affiliated research institutions and universities in Russia.
+      International students can sometimes participate via bilateral space agreements or exchange programs.
+    </p>
+  </section>
+
+  <footer>
+    &copy; 2025 Cosmic Voyagers | Designed with ✫ in the stars
+  </footer>
+</body>
+</html>

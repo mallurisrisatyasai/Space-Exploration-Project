@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Space Suits | Cosmic Voyagers</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet" />
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Montserrat', sans-serif;
+      background: linear-gradient(to bottom, #0a0a20, #131342);
+      color: #fff;
+      overflow-x: hidden;
+    }
+    .stars {
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      background: url('https://raw.githubusercontent.com/VincentGarreau/particles.js/master/demo/img/stars.png') repeat;
+      animation: moveStars 60s linear infinite;
+      z-index: -1;
+    }
+    @keyframes moveStars {
+      from {background-position: 0 0;}
+      to {background-position: 10000px 10000px;}
+    }
+
+    nav {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 1000;
+      padding: 1.5rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      backdrop-filter: blur(10px);
+      background-color: rgba(10, 10, 32, 0.7);
+      transition: all 0.3s ease;
+      box-sizing: border-box;
+    }
+    nav.scrolled {
+      padding: 1rem 2rem;
+      background-color: rgba(10, 10, 32, 0.9);
+      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+    }
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .logo-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: linear-gradient(45deg, #8a2be2, #4169e1);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 1.5rem;
+    }
+    .logo-text {
+      font-size: 1.5rem;
+      font-weight: 700;
+      background: linear-gradient(to right, #8a2be2, #4169e1);
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .nav-links {
+      display: flex;
+      list-style: none;
+      gap: 1.5rem;
+      margin: 0;
+      padding: 0;
+      flex-wrap: wrap; /* Allow links to wrap if needed */
+    }
+    .nav-links a {
+      text-decoration: none;
+      color: #e0e0ff;
+      font-weight: 500;
+      position: relative;
+      padding: 0.5rem 0;
+      white-space: nowrap; /* Prevent text wrapping within links */
+    }
+    .nav-links a:hover {
+      color: #8a2be2;
+    }
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 2px;
+      bottom: 0;
+      left: 0;
+      background: linear-gradient(to right, #8a2be2, #4169e1);
+      transition: width 0.3s ease;
+    }
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+    .hamburger {
+      display: none;
+      font-size: 1.5rem;
+      background: none;
+      border: none;
+      color: #e0e0ff;
+      cursor: pointer;
+    }
+    @media (max-width: 768px) {
+      .hamburger {
+        display: block;
+      }
+      .nav-links {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background-color: rgba(10, 10, 32, 0.9);
+        padding: 1rem;
+        text-align: center;
+      }
+      .nav-links.active {
+        display: flex;
+      }
+      .nav-links li {
+        margin: 0.5rem 0;
+      }
+    }
+    @media (max-width: 1000px) and (min-width: 769px) {
+      .nav-links {
+        gap: 1rem; /* Reduce gap for intermediate screen sizes */
+      }
+      .logo-text {
+        font-size: 1.2rem; /* Slightly smaller logo text */
+      }
+      nav {
+        padding: 1rem 1.5rem; /* Adjust padding for better fit */
+      }
+    }
+
+    header {
+      text-align: center;
+      padding: 6rem 1rem 3rem;
+      color: #8a2be2;
+      animation: fadeInDown 1s ease-out;
+    }
+    h1 {
+      font-size: 3rem;
+      margin-bottom: 0.5rem;
+    }
+    section {
+      padding: 2rem 5%;
+      max-width: 1000px;
+      margin: auto;
+      line-height: 1.6;
+      animation: fadeInUp 1s ease-out;
+    }
+    h2 {
+      color: #4169e1;
+      margin-top: 2rem;
+    }
+    ul {
+      padding-left: 1.2rem;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 1rem 0;
+    }
+    th, td {
+      border: 1px solid #8a2be2;
+      padding: 0.75rem;
+      text-align: left;
+    }
+    th {
+      background-color: #1e1e3f;
+    }
+    .highlight {
+      color: #8a2be2;
+      font-weight: bold;
+    }
+    @keyframes fadeInDown {
+      from {
+        opacity: 0;
+        transform: translateY(-30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="stars"></div>
+  <nav>
+    <div class="logo">
+      <div class="logo-icon">🧑‍🚀</div>
+      <div class="logo-text">Cosmic Voyagers</div>
+    </div>
+    <button class="hamburger">☰</button>
+    <ul class="nav-links">
+      <li><a href="space-exploration-responsive.html">Home</a></li>
+      <li><a href="organisations.html">Organisations</a></li>
+      <li><a href="machinery.html">Machinery</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+  </nav>
+  <header>
+    <h1>🧑‍🚀 Space Suits</h1>
+    <p class="highlight">Protective Gear for Space Explorers</p>
+  </header>
+  <section>
+    <h2>🔹 What is a Space Suit?</h2>
+    <p>A <strong>space suit</strong> is a complex system of garments, equipment, and environmental systems that allow astronauts to survive and work outside the Earth's atmosphere. It provides life support, protection, mobility, and communication in the harsh environment of space.</p>
+
+    <h2>🔹 Key Functions of Space Suits</h2>
+    <ul>
+      <li>Provides oxygen and removes carbon dioxide</li>
+      <li>Regulates temperature and humidity</li>
+      <li>Protects from micrometeoroids and space radiation</li>
+      <li>Maintains pressure around the body</li>
+      <li>Enables mobility and dexterity for tasks</li>
+    </ul>
+
+    <h2>🔹 Components of a Space Suit</h2>
+    <ul>
+      <li><strong>Primary Life Support System (PLSS):</strong> Backpack unit providing oxygen, cooling, and communication</li>
+      <li><strong>Pressure Garment:</strong> Layers of fabric and insulation to maintain pressure and protect from debris</li>
+      <li><strong>Helmet:</strong> Transparent visor with sun protection and communication gear</li>
+      <li><strong>Gloves:</strong> Flexible and durable for handling tools</li>
+      <li><strong>Communications System:</strong> Radio for contact with spacecraft and mission control</li>
+    </ul>
+
+    <h2>🔹 Famous Space Suits</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Agency</th>
+          <th>Use</th>
+          <th>Notable Missions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Apollo A7L</td>
+          <td>NASA</td>
+          <td>Lunar surface exploration</td>
+          <td>Apollo 11, 12, 14-17</td>
+        </tr>
+        <tr>
+          <td>Extravehicular Mobility Unit (EMU)</td>
+          <td>NASA</td>
+          <td>Spacewalks (EVA) on ISS</td>
+          <td>ISS missions</td>
+        </tr>
+        <tr>
+          <td>Orlan</td>
+          <td>Roscosmos</td>
+          <td>Spacewalks on Mir and ISS</td>
+          <td>Mir, ISS missions</td>
+        </tr>
+        <tr>
+          <td>Z-2 Suit</td>
+          <td>NASA</td>
+          <td>Next-gen planetary exploration</td>
+          <td>Testing for Moon and Mars</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h2>🔹 Challenges in Space Suit Design</h2>
+    <ul>
+      <li>Balancing protection and mobility</li>
+      <li>Ensuring life support reliability</li>
+      <li>Weight and bulk limitations</li>
+      <li>Durability in harsh space conditions</li>
+    </ul>
+
+    <h2>🔹 Future Developments</h2>
+    <p>Innovations include lighter materials, improved mobility joints, better thermal regulation, and suits tailored for Moon, Mars, and deep space exploration.</p>
+
+    <h2>🔹 Fun Fact</h2>
+    <p>Apollo astronauts' suits had about 14 layers to protect them from extreme temperatures and micrometeoroids!</p>
+  </section>
+  <script>
+    const hamburger = document.querySelector('.hamburger');
+    const navLinks = document.querySelector('.nav-links');
+
+    hamburger.addEventListener('click', () => {
+      navLinks.classList.toggle('active');
+    });
+
+    // Add scroll event listener for nav.scrolled effect
+    window.addEventListener('scroll', () => {
+      const nav = document.querySelector('nav');
+      if (window.scrollY > 50) {
+        nav.classList.add('scrolled');
+      } else {
+        nav.classList.remove('scrolled');
+      }
+    });
+  </script>
+</body>
+</html>

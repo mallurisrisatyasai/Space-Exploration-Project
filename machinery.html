@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Machinery | Cosmic Voyagers</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" />
+  <style>
+    /* Preloader Styles */
+    #preloader {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgb(33, 33, 33);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+      transition: opacity 0.5s ease;
+    }
+
+    #preloader.hidden {
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .planet {
+      display: block;
+      width: 125px;
+      height: 125px;
+      position: relative;
+      transform-style: preserve-3d;
+      border-radius: 50%;
+      background: #fcc96b;
+      background: linear-gradient(180deg,
+          #fcc96b 0%, #fcc96b 15%, #f7ae01 15%, #f7ae01 19%,
+          #fcc96b 19%, #fcc96b 22%, #f7ae01 22%, #f7ae01 28%,
+          #fcc96b 28%, #fcc96b 31%, #fcc96b 33%, #fcc96b 36%,
+          #f7ae01 36%, #f7ae01 48%, #fcc96b 48%, #fcc96b 55%,
+          #f7ae01 55%, #f7ae01 66%, #fcc96b 66%, #fcc96b 70%,
+          #f7ae01 70%, #f7ae01 73%, #fcc96b 73%, #fcc96b 82%,
+          #f7ae01 82%, #c7ba9d 86%, #fcc96b 86%);
+      box-shadow: inset 0 0 25px rgba(0, 0, 0, 0.25),
+        inset 8px -4px 6px rgba(199, 128, 0, 0.5),
+        inset -8px 4px 8px rgba(255, 235, 199, 0.5),
+        inset 20px -5px 12px #f7ae01,
+        0 0 100px #ffffff59;
+      transform: rotateZ(-15deg);
+    }
+
+    .planet::before {
+      position: absolute;
+      content: "";
+      display: block;
+      width: 100%;
+      height: 100%;
+      box-sizing: border-box;
+      border: 16px solid #e1a519;
+      border-top-width: 0;
+      border-radius: 50%;
+      box-shadow: 0 -2px 0 #c18620;
+      animation: rings1 0.8s infinite linear;
+    }
+
+    .planet::after {
+      position: absolute;
+      content: "";
+      display: block;
+      width: 100%;
+      height: 100%;
+      box-sizing: border-box;
+      border: 8px solid #d48b0c;
+      border-top-width: 0;
+      border-radius: 50%;
+      box-shadow: 0 -2px 0 #b99309;
+      animation: rings2 0.8s infinite linear;
+    }
+
+    @keyframes rings1 {
+      0% {
+        transform: rotateX(65deg) rotateZ(0deg) scale(1.75);
+      }
+
+      100% {
+        transform: rotateX(65deg) rotateZ(360deg) scale(1.75);
+      }
+    }
+
+    @keyframes rings2 {
+      0% {
+        transform: rotateX(65deg) rotateZ(0deg) scale(1.7);
+      }
+
+      100% {
+        transform: rotateX(65deg) rotateZ(360deg) scale(1.7);
+      }
+    }
+
+    :root {
+      --bg-gradient: linear-gradient(to right, #0a0a20, #131342);
+      --text-primary: #ffffff;
+      --text-secondary: #e0e0e0;
+      --accent-primary: #8a2be2;
+      --accent-secondary: #4169e1;
+      --nav-bg: rgba(0, 0, 0, 0.7);
+      --shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+      --transition: all 0.3s ease;
+    }
+
+    [data-theme="dark"] {
+      --bg-gradient: linear-gradient(to right, #f5f5f5, #e0e0e0);
+      --text-primary: #1a1a1a;
+      --text-secondary: #4a4a4a;
+      --nav-bg: rgba(255, 255, 255, 0.9);
+      --accent-primary: #6a1bb2;
+      --accent-secondary: #2a4ba1;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Montserrat', sans-serif;
+    }
+
+    body {
+      position: relative;
+      background: var(--bg-gradient);
+      color: var(--text-primary);
+      overflow-x: hidden;
+      transition: var(--transition);
+    }
+
+    a {
+      text-decoration: none;
+    }
+
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      background: var(--nav-bg);
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 1000;
+      backdrop-filter: blur(5px);
+    }
+
+    .nav-logo a {
+      color: var(--text-primary);
+      text-decoration: none;
+      font-size: 1.5rem;
+      font-weight: 700;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+    }
+
+    .nav-links a {
+      color: var(--text-primary);
+      text-decoration: none;
+      margin: 0 1rem;
+      font-weight: 600;
+      transition: var(--transition);
+    }
+
+    .nav-links a:hover {
+      color: var(--accent-primary);
+    }
+
+    .theme-toggle {
+      background: none;
+      border: none;
+      color: var(--text-primary);
+      font-size: 1.2rem;
+      cursor: pointer;
+      margin-left: 1rem;
+    }
+
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      cursor: pointer;
+      gap: 5px;
+    }
+
+    .hamburger span {
+      width: 25px;
+      height: 3px;
+      background: var(--text-primary);
+      transition: var(--transition);
+    }
+
+    header {
+      text-align: center;
+      padding: 5rem 2rem 3rem;
+    }
+
+    header h1 {
+      font-size: 3rem;
+      color: var(--accent-primary);
+      animation: fadeIn 2s ease forwards;
+    }
+
+    header p {
+      font-size: 1.2rem;
+      color: var(--text-secondary);
+      margin-top: 0.5rem;
+      animation: fadeIn 3s ease forwards;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    section {
+      padding: 3rem 2rem;
+      max-width: 1200px;
+      margin: auto;
+    }
+
+    section h2 {
+      color: var(--accent-secondary);
+      font-size: 2rem;
+      margin-bottom: 1rem;
+      border-bottom: 2px solid var(--accent-primary);
+      padding-bottom: 0.5rem;
+    }
+
+    section p {
+      font-size: 1rem;
+      line-height: 1.6;
+      color: var(--text-secondary);
+      margin-bottom: 1rem;
+    }
+
+    .machinery-item {
+      margin-bottom: 3rem;
+      animation: fadeInUp 1s ease-in-out both;
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(40px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .machinery-card {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--accent-primary);
+      border-radius: 12px;
+      padding: 1.5rem;
+      margin-top: 1rem;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+      transition: all 0.8s ease-in-out;
+      transform: translateY(0);
+      backdrop-filter: blur(8px);
+    }
+
+    .machinery-card:hover {
+      transform: translateY(-12px) scale(1.02);
+      box-shadow: 0 10px 40px rgba(138, 43, 226, 0.4);
+      background: rgba(255, 255, 255, 0.1);
+    }
+
+    .machinery-card h3 {
+      color: var(--accent-primary);
+      margin-bottom: 0.8rem;
+      transition: color 0.6s ease;
+    }
+
+    .machinery-card p,
+    .machinery-card ul {
+      color: var(--text-secondary);
+      transition: color 0.6s ease, transform 0.6s ease;
+    }
+
+    .machinery-card:hover h3 {
+      color: #ffffff;
+    }
+
+    .machinery-card:hover p,
+    .machinery-card:hover ul {
+      color: #dddddd;
+    }
+
+    .machinery-card a {
+      color: inherit;
+      text-decoration: none;
+      /* Remove the underline */
+      display: block;
+    }
+
+        /* Scroll to Top Button */
+        .scroll-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(45deg, #8a2be2, #4169e1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s, visibility 0.3s, transform 0.3s;
+            z-index: 1000;
+            box-shadow: 0 5px 15px rgba(138, 43, 226, 0.4);
+        }
+
+        .scroll-to-top.show {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .scroll-to-top:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 25px rgba(138, 43, 226, 0.6);
+        }
+
+        .scroll-to-top svg {
+            width: 24px;
+            height: 24px;
+            fill: #fff;
+        }
+
+    @media (max-width: 768px) {
+      header h1 {
+        font-size: 2.2rem;
+      }
+
+      section h2 {
+        font-size: 1.5rem;
+      }
+
+      .nav-links {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: var(--nav-bg);
+        flex-direction: column;
+        padding: 1rem;
+        text-align: center;
+      }
+
+      .nav-links.active {
+        display: flex;
+      }
+
+      .hamburger {
+        display: flex;
+      }
+
+      .hamburger.active span:nth-child(1) {
+        transform: rotate(45deg) translate(5px, 5px);
+      }
+
+      .hamburger.active span:nth-child(2) {
+        opacity: 0;
+      }
+
+      .hamburger.active span:nth-child(3) {
+        transform: rotate(-45deg) translate(7px, -7px);
+      }
+    }
+
+    footer {
+      text-align: center;
+      padding: 2rem;
+      background: rgba(10, 10, 40, 1);
+      font-size: 0.9rem;
+      color: #ccc;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Preloader -->
+  <div id="preloader">
+    <div class="planet"></div>
+  </div>
+
+  <nav>
+    <div class="nav-logo"><a href="index.html">Cosmic Voyager</a></div>
+    <div class="nav-links" id="navLinks">
+      <a href="space-exploration-responsive.html">Home</a>
+      <a href="about.html">About us</a>
+      <a href="index.html">Gallery</a>
+      <a href="Organisations.html">Organsations</a>
+      <a href="machinery.html">Machinery</a>
+      <a href="contact.html">Contact</a>
+      <button class="theme-toggle" id="themeToggle" title="Change Theme">🌙</button>
+    </div>
+    <div class="hamburger" id="hamburger">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+  </nav>
+  <!-- Scroll to Top Button -->
+  <div id="scrollToTop" class="scroll-to-top">
+    <svg viewBox="0 0 24 24">
+      <path d="M12 5l-7 7h5v7h4v-7h5l-7-7z"></path>
+    </svg>
+  </div>
+
+  <header>
+    <h1>Space Machinery</h1>
+    <p>Explore the brilliant engineering behind space exploration tools</p>
+  </header>
+
+  <section id="intro">
+    <h2>What is Space Machinery?</h2>
+    <p>Space machinery encompasses a diverse array of engineered systems, both manned and unmanned, designed for space
+      missions. These include launch vehicles like rockets, exploratory robots such as rovers, orbital platforms like
+      space stations, protective gear like spacesuits, and scientific instruments like telescopes and robotic arms.
+      These technologies enable humanity to explore the cosmos, conduct groundbreaking research, and push the boundaries
+      of what’s possible beyond Earth.</p>
+    <p>Each piece of machinery is a marvel of engineering, built to withstand extreme conditions—vacuum, radiation, and
+      temperature swings—while performing precise tasks. From the raw power of rocket propulsion to the delicate
+      maneuvers of a rover’s sample collection, space machinery represents the pinnacle of human ingenuity.</p>
+  </section>
+
+  <section>
+    <a href="rockets.html">
+      <div class="machinery-card">
+        <h2 class="section-title">Rockets</h2>
+        <h3>Overview</h3>
+        <p>Rockets are vehicles designed to launch payloads into space using controlled explosions and high-speed
+          thrust. They are crucial for carrying satellites, probes, and humans beyond Earth.</p>
+      </div>
+    </a>
+  </section>
+
+  <section>
+    <a href="satellites.html">
+      <div class="machinery-card">
+        <h2 class="section-title">Satellites</h2>
+        <h3>Overview</h3>
+        <p>Satellites are man-made objects placed into orbit to perform tasks such as communication, weather
+          forecasting, Earth observation, and scientific research.</p>
+      </div>
+    </a>
+  </section>
+
+  <section id="rovers" class="machinery-item">
+    <a href="rovers.html">
+      <div class="machinery-card">
+        <h2 class="section-title">Rovers</h2>
+        <h3>Overview</h3>
+        <p>Rovers are robotic vehicles that explore the surface of other planets and moons. They carry scientific
+          instruments to study terrain, climate, and geological activity.</p>
+      </div>
+    </a>
+  </section>
+
+  <section id="stations" class="machinery-item">
+    <a href="stations.html">
+      <div class="machinery-card">
+        <h2 class="section-title">Space Stations</h2>
+        <h3>Overview</h3>
+        <p>
+          Space stations are large, habitable satellites orbiting Earth that support long-duration missions for
+          astronauts.
+          They serve as research laboratories for studying microgravity, biology, space medicine, and new technologies
+          essential for future deep space exploration.
+        </p>
+      </div>
+    </a>
+  </section>
+
+  <section id="suits" class="machinery-item">
+    <a href="suits.html">
+      <div class="machinery-card">
+        <h2>Space Suits</h2>
+        <h3>Overview</h3>
+        <p>
+          Space suits are complex, life-supporting garments that protect astronauts from the harsh conditions of space.
+          They provide oxygen, regulate temperature, shield from radiation, and enable mobility during spacewalks and
+          surface missions.
+        </p>
+      </div>
+    </a>
+  </section>
+
+  <script>
+
+    const preloader = document.getElementById("preloader");
+    const mainContent = document.getElementById("main-content");
+
+
+    setTimeout(function () {
+
+      preloader.classList.add("hidden");
+
+      mainContent.style.display = "block";
+
+      setTimeout(() => {
+        preloader.style.display = "none";
+      }, 500);
+    }, 1000);
+
+    const hamburger = document.getElementById('hamburger');
+    const navLinks = document.getElementById('navLinks');
+    hamburger.addEventListener('click', () => {
+      hamburger.classList.toggle('active');
+      navLinks.classList.toggle('active');
+    });
+
+    document.querySelectorAll('nav a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        target.scrollIntoView({ behavior: 'smooth' });
+        if (window.innerWidth <= 768) {
+          hamburger.classList.remove('active');
+          navLinks.classList.remove('active');
+        }
+      });
+    });
+
+    const scrollToTopBtn = document.getElementById("scrollToTop");
+
+    window.addEventListener("scroll", () => {
+      if (window.scrollY > 300) {
+        scrollToTopBtn.classList.add("show");
+      } else {
+        scrollToTopBtn.classList.remove("show");
+      }
+    });
+
+    scrollToTopBtn.addEventListener("click", () => {
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+      });
+    });
+
+    const themeToggle = document.getElementById('themeToggle');
+    themeToggle.addEventListener('click', () => {
+      const currentTheme = document.documentElement.getAttribute('data-theme');
+      document.documentElement.setAttribute('data-theme', currentTheme === 'dark' ? 'light' : 'dark');
+      themeToggle.textContent = currentTheme === 'dark' ? '☀️' : '🌙';
+      localStorage.setItem('theme', currentTheme === 'dark' ? 'light' : 'dark');
+    });
+
+    const savedTheme = localStorage.getItem('theme') || 'dark';
+    document.documentElement.setAttribute('data-theme', savedTheme);
+    themeToggle.textContent = savedTheme === 'dark' ? '🌙' : '☀️';
+
+    const images = document.querySelectorAll('img[loading="lazy"]');
+    const observer = new IntersectionObserver((entries, observer) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const img = entry.target;
+          img.src = img.dataset.src || img.src;
+          observer.unobserve(img);
+        }
+      });
+    });
+    images.forEach(img => observer.observe(img));
+  </script>
+  <footer>
+    <p>&copy; 2025 Cosmic Voyagers. All rights reserved.</p>
+  </footer>
+</body>
+
+</html>

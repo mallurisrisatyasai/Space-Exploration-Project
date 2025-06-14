@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link rel="icon" type="image/png" href="https://cdn-icons-png.flaticon.com/128/3594/3594083.png">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>About Us | Cosmic Voyager</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        /* Preloader Styles */
+        #preloader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgb(33, 33, 33);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: opacity 0.5s ease;
+        }
+
+        #preloader.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .planet {
+            display: block;
+            width: 125px;
+            height: 125px;
+            position: relative;
+            transform-style: preserve-3d;
+            border-radius: 50%;
+            background: #fcc96b;
+            background: linear-gradient(180deg,
+                    #fcc96b 0%, #fcc96b 15%, #f7ae01 15%, #f7ae01 19%,
+                    #fcc96b 19%, #fcc96b 22%, #f7ae01 22%, #f7ae01 28%,
+                    #fcc96b 28%, #fcc96b 31%, #fcc96b 33%, #fcc96b 36%,
+                    #f7ae01 36%, #f7ae01 48%, #fcc96b 48%, #fcc96b 55%,
+                    #f7ae01 55%, #f7ae01 66%, #fcc96b 66%, #fcc96b 70%,
+                    #f7ae01 70%, #f7ae01 73%, #fcc96b 73%, #fcc96b 82%,
+                    #f7ae01 82%, #c7ba9d 86%, #fcc96b 86%);
+            box-shadow: inset 0 0 25px rgba(0, 0, 0, 0.25),
+                inset 8px -4px 6px rgba(199, 128, 0, 0.5),
+                inset -8px 4px 8px rgba(255, 235, 199, 0.5),
+                inset 20px -5px 12px #f7ae01,
+                0 0 100px #ffffff59;
+            transform: rotateZ(-15deg);
+        }
+
+        .planet::before {
+            position: absolute;
+            content: "";
+            display: block;
+            width: 100%;
+            height: 100%;
+            box-sizing: border-box;
+            border: 16px solid #e1a519;
+            border-top-width: 0;
+            border-radius: 50%;
+            box-shadow: 0 -2px 0 #c18620;
+            animation: rings1 0.8s infinite linear;
+        }
+
+        .planet::after {
+            position: absolute;
+            content: "";
+            display: block;
+            width: 100%;
+            height: 100%;
+            box-sizing: border-box;
+            border: 8px solid #d48b0c;
+            border-top-width: 0;
+            border-radius: 50%;
+            box-shadow: 0 -2px 0 #b99309;
+            animation: rings2 0.8s infinite linear;
+        }
+
+        @keyframes rings1 {
+            0% {
+                transform: rotateX(65deg) rotateZ(0deg) scale(1.75);
+            }
+
+            100% {
+                transform: rotateX(65deg) rotateZ(360deg) scale(1.75);
+            }
+        }
+
+        @keyframes rings2 {
+            0% {
+                transform: rotateX(65deg) rotateZ(0deg) scale(1.7);
+            }
+
+            100% {
+                transform: rotateX(65deg) rotateZ(360deg) scale(1.7);
+            }
+        }
+
+        /* Hide main content initially */
+        #main-content {
+            display: none;
+        }
+
+        /* Base Styles and CSS Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Montserrat', sans-serif;
+            transition: all 0.3s ease;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: radial-gradient(circle at bottom, #0a0a20, #05010d);
+            color: white;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        .stars {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: -1;
+            background: transparent url('https://assets.codepen.io/1538474/stars.png') repeat top center;
+            animation: moveStars 100s linear infinite;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            padding: 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            backdrop-filter: blur(10px);
+            background-color: rgba(10, 10, 32, 0.7);
+        }
+
+        nav.scrolled {
+            padding: 1rem;
+            background-color: rgba(10, 10, 32, 0.9);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: linear-gradient(45deg, #8a2be2, #4169e1);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .logo-text {
+            font-size: 1.5rem;
+            font-weight: 700;
+            background: linear-gradient(to right, #8a2be2, #4169e1);
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #e0e0ff;
+            font-weight: 500;
+            position: relative;
+            padding: 0.5rem 0;
+        }
+
+        .nav-links a:hover {
+            color: #8a2be2;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background: linear-gradient(to right, #8a2be2, #4169e1);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            z-index: 1001;
+        }
+
+        .bar {
+            width: 30px;
+            height: 3px;
+            background: linear-gradient(to right, #8a2be2, #4169e1);
+            border-radius: 3px;
+            transition: all 0.3s ease;
+        }
+
+        .hamburger.active .bar:nth-child(1) {
+            transform: translateY(8px) rotate(45deg);
+        }
+
+        .hamburger.active .bar:nth-child(2) {
+            opacity: 0;
+        }
+
+        .hamburger.active .bar:nth-child(3) {
+            transform: translateY(-8px) rotate(-45deg);
+        }
+
+        /* Scroll to Top Button */
+        .scroll-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(45deg, #8a2be2, #4169e1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s, visibility 0.3s, transform 0.3s;
+            z-index: 1000;
+            box-shadow: 0 5px 15px rgba(138, 43, 226, 0.4);
+        }
+
+        .scroll-to-top.show {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .scroll-to-top:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 25px rgba(138, 43, 226, 0.6);
+        }
+
+        .scroll-to-top svg {
+            width: 24px;
+            height: 24px;
+            fill: #fff;
+        }
+
+        .hero {
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -2;
+        }
+
+        .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            z-index: -1;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            color: white;
+            z-index: 1;
+            text-shadow: 0 0 15px #8a2be2;
+        }
+
+        .about-section {
+            padding: 100px 50px 50px;
+            max-width: 1000px;
+            margin: auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            align-items: center;
+            position: relative;
+        }
+
+        .about-section img {
+            width: 100%;
+            border-radius: 20px;
+            box-shadow: 0 0 30px rgba(138, 43, 226, 0.5);
+        }
+
+        .about-section .text {
+            animation: fadeInUp 1.5s ease-in-out;
+        }
+
+        .about-section h2 {
+            color: #8a2be2;
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .about-section p {
+            line-height: 1.7;
+            font-size: 1.1rem;
+        }
+
+        .support-section {
+            background: rgba(255, 255, 255, 0.03);
+            padding: 80px 20px;
+            text-align: center;
+        }
+
+        .support-section h2 {
+            color: #8a2be2;
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .support-section p {
+            max-width: 700px;
+            margin: auto;
+            font-size: 1.1rem;
+            color: #ccc;
+        }
+
+        .support-section a {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 20px;
+            background: #8a2be2;
+            color: white;
+            text-decoration: none;
+            border-radius: 30px;
+            transition: background 0.3s;
+        }
+
+        .support-section a:hover {
+            background: #6f1fd1;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes moveStars {
+            from {
+                background-position: 0 0;
+            }
+
+            to {
+                background-position: 10000px 5000px;
+            }
+        }
+
+        footer {
+            text-align: center;
+            padding: 2rem;
+            color: #aaa;
+            font-size: 0.9rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 992px) {
+            .nav-links {
+                position: fixed;
+                top: 70px;
+                right: 0;
+                height: calc(100vh - 70px);
+                width: 60%;
+                background: rgba(10, 10, 32, 0.95);
+                flex-direction: column;
+                align-items: center;
+                justify-content: flex-start;
+                padding-top: 2rem;
+                transform: translateX(100%);
+                transition: transform 0.3s ease;
+            }
+
+            .nav-links.active {
+                transform: translateX(0%);
+            }
+
+            .hamburger {
+                display: flex;
+            }
+
+            .scroll-to-top {
+                bottom: 20px;
+                right: 20px;
+                width: 40px;
+                height: 40px;
+            }
+
+            .scroll-to-top svg {
+                width: 20px;
+                height: 20px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .about-section {
+                grid-template-columns: 1fr;
+                padding: 80px 20px;
+            }
+        }
+    </style>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            // Show preloader initially
+            const preloader = document.getElementById("preloader");
+            const mainContent = document.getElementById("main-content");
+
+            // Simulate content loading
+            setTimeout(function () {
+                preloader.classList.add("hidden");
+                mainContent.style.display = "block";
+                setTimeout(() => {
+                    preloader.style.display = "none";
+                }, 500);
+            }, 1000);
+
+            // Scroll to Top Button Functionality
+            const scrollToTopBtn = document.getElementById("scrollToTop");
+            window.addEventListener("scroll", () => {
+                if (window.scrollY > 300) {
+                    scrollToTopBtn.classList.add("show");
+                } else {
+                    scrollToTopBtn.classList.remove("show");
+                }
+            });
+
+            scrollToTopBtn.addEventListener("click", () => {
+                window.scrollTo({
+                    top: 0,
+                    behavior: "smooth"
+                });
+            });
+
+            // Hamburger Menu Functionality
+            const hamburger = document.querySelector('.hamburger');
+            const navLinks = document.querySelector('.nav-links');
+
+            hamburger.addEventListener('click', () => {
+                hamburger.classList.toggle('active');
+                navLinks.classList.toggle('active');
+            });
+
+            // Close menu on link click (mobile)
+            document.querySelectorAll('.nav-links a').forEach(link => {
+                link.addEventListener('click', () => {
+                    hamburger.classList.remove('active');
+                    navLinks.classList.remove('active');
+                });
+            });
+        });
+    </script>
+</head>
+
+<body>
+    <!-- Preloader -->
+    <div id="preloader">
+        <div class="planet"></div>
+    </div>
+
+    <!-- Main Content -->
+    <div id="main-content">
+        <div class="stars"></div>
+
+        <!-- Navigation -->
+        <nav id="navbar">
+            <div class="logo">
+                <div class="logo-icon">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <circle cx="12" cy="12" r="4"></circle>
+                        <line x1="21.17" y1="8" x2="12" y2="8"></line>
+                        <line x1="3.95" y1="6.06" x2="8.54" y2="14"></line>
+                        <line x1="10.88" y1="21.94" x2="15.46" y2="14"></line>
+                    </svg>
+                </div>
+                <div class="logo-text"><a href="space-exploration-responsive.html"
+                        title="Redirect to Cosmic Voyager (Home Page)">COSMIC VOYAGER</a></div>
+            </div>
+            <ul class="nav-links">
+                <li><a href="space-exploration-responsive.html">Home</a></li>
+                <li><a href="about.html">About us</a></li>
+                <li><a href="index.html">Gallery</a></li>
+                <li><a href="Organisations.html">Organsations</a></li>
+                <li><a href="machinery.html">Machinery</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </nav>
+
+        <!-- Scroll to Top Button -->
+        <div id="scrollToTop" class="scroll-to-top">
+            <svg viewBox="0 0 24 24">
+                <path d="M12 5l-7 7h5v7h4v-7h5l-7-7z"></path>
+            </svg>
+        </div>
+
+        <section class="hero">
+            <video autoplay muted loop playsinline>
+                <source src="https://videos.pexels.com/video-files/26774312/12004600_2560_1440_24fps.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+            <div class="overlay"></div>
+            <h1>We Explore Beyond the Stars</h1>
+        </section>
+
+        <section class="about-section">
+            <div class="text">
+                <h2>Who We Are</h2>
+                <p>Cosmic Voyager is a futuristic initiative built by young minds who believe in the beauty of space
+                    exploration. We curate, educate, and inspire space science enthusiasts through stunning visuals, real
+                    missions, and advanced tech-driven knowledge. We're not just a website — we're a mission into the
+                    future.</p>
+            </div>
+            <img src="https://cdn.pixabay.com/photo/2016/10/29/09/53/abstract-1780273_640.png" alt="Space Image">
+        </section>
+
+        <section class="about-section">
+            <img src="https://www.freethink.com/wp-content/uploads/2024/01/image.jpeg?quality=75&w=1280" alt="Galaxy">
+            <div class="text">
+                <h2>Our Mission</h2>
+                <p>Our mission is to bring space closer to everyone — from students to professionals, dreamers to doers. We
+                    aim to educate the world about ISRO, NASA, ESA, and more, using modern tech like web design,
+                    interactivity, and graphics that leave you starstruck.</p>
+            </div>
+        </section>
+
+        <section class="about-section">
+            <div class="text">
+                <h2>Why Cosmic Voyager?</h2>
+                <p>We're passionate. We're cosmic. And most importantly, we believe everyone should feel the wonder of the
+                    universe. Every scroll, every page, every pixel — it's crafted to give you a journey through space like
+                    never before. Buckle up, because we’re just getting started.</p>
+            </div>
+            <img src="https://issnationallab.org/wp-content/uploads/2024/05/astronaut-spacewalk.jpg" alt="Mission Control">
+        </section>
+
+        <section class="support-section">
+            <h2>Need Help or Want to Collaborate?</h2>
+            <p>We're here to help fellow explorers! Whether you're a student with questions, a teacher with feedback, or a
+                developer wanting to contribute — reach out and join our mission.</p>
+            <a href="mailto:spacexploreamrita@gmail.com">Contact Support</a>
+        </section>
+
+        <footer>
+            <p>© 2025 Cosmic Voyagers. All rights reserved.</p>
+        </footer>
+    </div>
+</body>
+</html>

@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="icon" type="image/png" href="https://cdn-icons-png.flaticon.com/128/3594/3594083.png">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>ESA - Cosmic Voyagers</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet" />
+  <link rel="icon" type="image/png" href="https://cdn-icons-png.flaticon.com/128/3594/3594083.png" />
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Montserrat', sans-serif;
+      background: linear-gradient(to bottom, #0a0a20, #131342);
+      color: #ffffff;
+      overflow-x: hidden;
+    }
+    #bg-video {
+      position: fixed;
+      right: 0;
+      bottom: 0;
+      min-width: 100%;
+      min-height: 100%;
+      z-index: -2;
+      object-fit: cover;
+      opacity: 0.2;
+    }
+    .stars {
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      background: url('starback.html') repeat;
+      animation: twinkle 100s linear infinite;
+      z-index: -1;
+      opacity: 0.3;
+    }
+    @keyframes twinkle {
+      0% { background-position: 0 0; }
+      100% { background-position: -10000px 5000px; }
+    }
+    nav {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      background: rgba(10, 10, 40, 0.95);
+      padding: 1rem;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 4px 15px rgba(138, 43, 226, 0.3);
+    }
+    nav a {
+      color: #fff;
+      text-decoration: none;
+      font-weight: 600;
+      transition: color 0.3s ease;
+      background: linear-gradient(to right, #8a2be2, #4169e1);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    nav a:hover {
+      color: #8a2be2;
+      text-shadow: 0 0 10px rgba(138, 43, 226, 0.7);
+    }
+    header {
+      text-align: center;
+      padding: 2rem;
+      background: rgba(10, 10, 40, 0.9);
+      box-shadow: 0 4px 20px rgba(138, 43, 226, 0.4);
+    }
+    header h1 {
+      font-size: 3rem;
+      background: linear-gradient(to right, #8a2be2, #4169e1);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    section {
+      padding: 2rem 10%;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    section h2 {
+      font-size: 2rem;
+      color: #4169e1;
+      margin-bottom: 1rem;
+    }
+    section p {
+      font-size: 1.1rem;
+      line-height: 1.8;
+    }
+    .image-gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.5rem;
+      margin-top: 1.5rem;
+    }
+    .image-gallery img {
+      width: 100%;
+      height: 250px;
+      object-fit: cover;
+      border-radius: 1rem;
+      box-shadow: 0 4px 20px rgba(65, 105, 225, 0.5);
+      transition: transform 0.3s ease;
+    }
+    .image-gallery img:hover {
+      transform: scale(1.05);
+    }
+    footer {
+      text-align: center;
+      padding: 1rem;
+      background: rgba(10, 10, 40, 0.8);
+      font-size: 0.9rem;
+      color: #ccc;
+    }
+  </style>
+</head>
+<body>
+  <video autoplay muted loop id="bg-video">
+    <source src="assets/esa-bg.mp4" type="video/mp4">
+  </video>
+  <div class="stars"></div>
+  <nav>
+    <a href="organisations.html">Organisations</a>
+    <a href="isro.html">ISRO</a>
+    <a href="nasa.html">NASA</a>
+    <a href="esa.html">ESA</a>
+    <a href="roscosmos.html">ROSCOSMOS</a>
+    <a href="cnsa.html">CNSA</a>
+    <a href="jaxa.html">JAXA</a>
+    <a href="cnes.html">CNES</a>
+    <a href="ukspace.html">UK</a>
+    <a href="dlr.html">DLR</a>
+    <a href="kari.html">KARI</a>
+  </nav>
+
+  <header>
+    <h1>ESA - European Space Agency</h1>
+  </header>
+
+  <section>
+    <h2>History & Overview</h2>
+    <p>
+      Established in 1975, the ESA is a multinational organization dedicated to the peaceful exploration of space.
+      Headquartered in Paris, ESA coordinates the space activities of 22 European countries and collaborates with global agencies.
+    </p>
+    <div class="image-gallery">
+      <img src="https://www.esa.int/var/esa/storage/images/esa_multimedia/images/2001/05/esa_logo/9173490-7-eng-GB/ESA_Logo_pillars.jpg" alt="ESA Logo" />
+    </div>
+  </section>
+
+  <section>
+    <h2>Famous Rockets</h2>
+    <p>
+      ESA developed the Ariane series, including the <strong>Ariane 5</strong> and upcoming <strong>Ariane 6</strong> launchers,
+      which have been crucial for deploying satellites and supporting international missions.
+    </p>
+    <div class="image-gallery">
+      <img src="https://www.esa.int/var/esa/storage/images/esa_multimedia/images/2018/08/ariane_5_v243_100th_launch_-_2/17709177-1-eng-GB/Ariane_5_V243_100th_launch_-_2_pillars.jpg" alt="Ariane 5 Launch" style="height:470px"/>
+    </div>
+  </section>
+
+  <section>
+    <h2>Satellites</h2>
+    <p>
+      ESA has launched and manages many Earth-observation and scientific satellites like <strong>Envisat</strong>,
+      <strong>Sentinel</strong> series under the Copernicus program, and <strong>Gaia</strong> for stellar mapping.
+    </p>
+    <div class="image-gallery">
+      <img src="https://www.esa.int/var/esa/storage/images/esa_multimedia/videos/2019/10/gaia_astronomical_revolution/21106023-7-eng-GB/Gaia_astronomical_revolution_pillars.jpg" alt="Gaia Spacecraft" style="height:500px"/>
+    </div>
+  </section>
+
+  <section>
+    <h2>Involvement with ISS</h2>
+    <p>
+      ESA contributes to the ISS with modules like <strong>Columbus Laboratory</strong> and the <strong>Automated Transfer Vehicle (ATV)</strong>.
+      European astronauts regularly participate in ISS missions through ESA-NASA partnerships.
+    </p>
+    <div class="image-gallery">
+      <img src="https://www.dlr.de/en/images/missions/view-columbus-laboratory-from-atlantis/@@images/image-3032-16fc0521a79250099543d5bead01dadd.jpeg" alt="Columbus Module" style="height:430px" />
+    </div>
+  </section>
+
+  <section>
+    <h2>Major Missions</h2>
+    <p>
+      ESA’s major missions include <strong>Rosetta</strong> (comet landing), <strong>Mars Express</strong>,
+      <strong>Solar Orbiter</strong>, and <strong>JUICE</strong> (Jupiter Icy Moons Explorer).
+    </p>
+    <div class="image-gallery">
+      <img src="https://www.dlr.de/en/images/2014/1/philae-landing-on-comet_13339/@@images/image-1000-0acec99c3dbed4f4948880ace87eba2f.jpeg" alt="Rosetta Probe" style="height:360px"/>
+      <img src="https://i.guim.co.uk/img/media/1fe4fde4c5bf95d32021b1589fc720b6b8554709/240_0_3750_2250/master/3750.jpg?width=1200&height=1200&quality=85&auto=format&fit=crop&s=2b4678bacef4ba2f3d63d96d69f9bc88" alt="JUICE Mission" style="height:360px"/>
+    </div>
+  </section>
+
+  <section>
+    <h2>Astronauts</h2>
+    <p>
+      ESA has trained many astronauts including <strong>Thomas Pesquet</strong>, <strong>Alexander Gerst</strong>, and <strong>Samantha Cristoforetti</strong>,
+      contributing to missions aboard the ISS and beyond.
+    </p>
+    <div class="image-gallery">
+      <img src="https://d1nslcd7m2225b.cloudfront.net/Pictures/1024x536/5/9/0/1282590_thomas-pesquet-c-wiki-commons.jpg" alt="Thomas Pesquet" style="height:300px"/>
+      <img src="https://www.esa.int/var/esa/storage/images/esa_multimedia/images/2013/11/european_space_agency_astronaut_alexander_gerst3/13413070-2-eng-GB/European_Space_Agency_astronaut_Alexander_Gerst_pillars.jpg" alt="Alexander Gerst" style="height:300px"/>
+    </div>
+  </section>
+
+  <section>
+    <h2>International Collaborations</h2>
+    <p>
+      ESA partners with NASA, Roscosmos, JAXA, ISRO, and CNES. It is actively involved in joint missions like James Webb Space Telescope (with NASA) and ISS programs.
+    </p>
+    <div class="image-gallery">
+      <img src="https://i0.wp.com/spacenews.com/wp-content/uploads/2022/09/nelson-aschbacher.jpg?w=879&quality=89&ssl=1" alt="ESA NASA Collaboration" style="height:600px"/>
+    </div>
+  </section>
+
+  <section>
+    <h2>Internships & Student Opportunities</h2>
+    <p>
+      ESA offers <strong>Young Graduate Trainee (YGT)</strong> programs, <strong>ESA Academy</strong>, and internships for students and graduates.
+      These initiatives aim to train the future workforce in aerospace, robotics, and satellite systems.
+    </p>
+    <div class="image-gallery">
+      <img src="https://www.esa.int/var/esa/storage/images/esa_multimedia/images/2024/10/esa_student_internships_2025/26393559-1-eng-GB/ESA_Student_Internships_2025_pillars.png" alt="ESA Internships" style="height:300px"/>
+    </div>
+  </section>
+
+  <footer>
+    &copy; 2025 Cosmic Voyagers | Designed with ✫ in the stars
+  </footer>
+</body>
+</html>

@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="icon" type="image/png" href="https://cdn-icons-png.flaticon.com/128/3594/3594083.png">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Sierra Space - Cosmic Voyagers</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet" />
+  <link rel="icon" type="image/png" href="https://cdn-icons-png.flaticon.com/128/3594/3594083.png" />
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Montserrat', sans-serif;
+      background: linear-gradient(to bottom, #0a0a20, #131342);
+      color: #ffffff;
+      overflow-x: hidden;
+    }
+    #bg-video {
+      position: fixed;
+      right: 0;
+      bottom: 0;
+      min-width: 100%;
+      min-height: 100%;
+      z-index: -2;
+      object-fit: cover;
+      opacity: 0.2;
+    }
+    .stars {
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      background: url('starback.html') repeat;
+      animation: twinkle 100s linear infinite;
+      z-index: -1;
+      opacity: 0.3;
+    }
+    @keyframes twinkle {
+      0% { background-position: 0 0; }
+      100% { background-position: -10000px 5000px; }
+    }
+    nav {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      background: rgba(10, 10, 40, 0.95);
+      padding: 1rem;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 4px 15px rgba(138, 43, 226, 0.3);
+    }
+    nav a {
+      color: #fff;
+      text-decoration: none;
+      font-weight: 600;
+      transition: color 0.3s ease;
+      background: linear-gradient(to right, #8a2be2, #4169e1);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    nav a:hover {
+      color: #8a2be2;
+      text-shadow: 0 0 10px rgba(138, 43, 226, 0.7);
+    }
+    header {
+      text-align: center;
+      padding: 2rem;
+      background: rgba(10, 10, 40, 0.9);
+      box-shadow: 0 4px 20px rgba(138, 43, 226, 0.4);
+    }
+    header h1 {
+      font-size: 3rem;
+      background: linear-gradient(to right, #8a2be2, #4169e1);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    section {
+      padding: 2rem 10%;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    section h2 {
+      font-size: 2rem;
+      color: #4169e1;
+      margin-bottom: 1rem;
+    }
+    section p {
+      font-size: 1.1rem;
+      line-height: 1.8;
+    }
+    .image-gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.5rem;
+      margin-top: 1.5rem;
+    }
+    .image-gallery img {
+      width: 100%;
+      height: 250px;
+      object-fit: cover;
+      border-radius: 1rem;
+      box-shadow: 0 4px 20px rgba(65, 105, 225, 0.5);
+      transition: transform 0.3s ease;
+    }
+    .image-gallery img:hover {
+      transform: scale(1.05);
+    }
+    footer {
+      text-align: center;
+      padding: 1rem;
+      background: rgba(10, 10, 40, 0.8);
+      font-size: 0.9rem;
+      color: #ccc;
+    }
+  </style>
+</head>
+<body>
+  <video autoplay muted loop id="bg-video">
+    <source src="assets/sierra-space-bg.mp4" type="video/mp4">
+  </video>
+  <div class="stars"></div>
+
+  <nav>
+    <a href="organisations.html">Organisations</a>
+    <a href="spacex.html">SpaceX</a>
+    <a href="blueorigin.html">Blue Origin</a>
+    <a href="virgingalactic.html">Virgin Galactic</a>
+    <a href="rocketlab.html">Rocket Lab</a>
+    <a href="firefly.html">Firefly Aerospace</a>
+    <a href="sierra.html">Sierra Space</a>
+  </nav>
+
+  <header>
+    <h1>Sierra Space</h1>
+  </header>
+
+  <section>
+    <h2>History & Overview</h2>
+    <p>
+      Sierra Space is an American space technology company that focuses on developing solutions for space missions, transportation, and space stations. The company is a subsidiary of Sierra Nevada Corporation and has been a leading player in the development of the Dream Chaser spaceplane, which is designed for cargo missions to the International Space Station (ISS).
+    </p>
+    <div class="image-gallery">
+      <img src="https://issnationallab.org/wp-content/uploads/2024/03/Sierra-Space-Logo-Black-PNG49.jpg" alt="Sierra Space Logo" />
+    </div>
+  </section>
+
+  <section>
+    <h2>Famous Rockets</h2>
+    <p>
+      Sierra Space's primary rocket is the Dream Chaser, a reusable spaceplane designed to carry cargo to and from the International Space Station. The Dream Chaser is known for its ability to return cargo safely to Earth via a runway landing.
+    </p>
+    <div class="image-gallery">
+      <img src="https://i0.wp.com/spacenews.com/wp-content/uploads/2022/05/dc-shootingstar.jpg?fit=879%2C485&quality=89&ssl=1" alt="Dream Chaser Rocket" style="height: 400px;"/>
+    </div>
+  </section>
+
+  <section>
+    <h2>Satellites</h2>
+    <p>
+      Sierra Space is focused on developing satellite systems and services for both governmental and commercial customers. These satellites support missions ranging from Earth observation to scientific research and communication.
+    </p>
+    <div class="image-gallery">
+      <img src="https://image.cnbcfm.com/api/v1/image/107399137-1712748758089-Sierra_Space_Eclipse_4424.png?v=1712766116&w=1920&h=1080" alt="Sierra Space Satellite" style="height: 400px;"/>
+    </div>
+  </section>
+
+  <section>
+    <h2>Involvement with ISS</h2>
+    <p>
+      Sierra Space's Dream Chaser spaceplane plays a crucial role in cargo missions to the ISS, delivering supplies and research materials. The Dream Chaser can dock with the space station and return to Earth after completing its mission.
+    </p>
+    <div class="image-gallery">
+      <img src="https://planetary.s3.amazonaws.com/web/assets/pictures/20130815_dream-chaser-docked.jpg" alt="Sierra Space ISS" style="height: 400px;"/>
+    </div>
+  </section>
+
+  <section>
+    <h2>Major Missions</h2>
+    <p>
+      Sierra Space has been involved in various key missions, including cargo resupply missions to the ISS using the Dream Chaser. The company continues to innovate in the field of space transportation with a focus on sustainability and reusability.
+    </p>
+    <div class="image-gallery">
+      <img src="https://scitechdaily.com/images/Sierra-Space-Dream-Chaser-DC1-Tenacity.jpg" alt="Dream Chaser Orbital Mission" style="height: 500px;"/>
+    </div>
+  </section>
+
+  <section>
+    <h2>Astronauts</h2>
+    <p>
+      Sierra Space has not yet embarked on a human spaceflight program but plays a critical role in the space community through its cargo missions to the ISS and its technological developments in spaceplanes and satellites.
+    </p>
+  </section>
+
+  <section>
+    <h2>International Collaborations</h2>
+    <p>
+      Sierra Space collaborates with various international space agencies, including NASA and the European Space Agency (ESA), for cargo resupply missions to the ISS and other space exploration initiatives. The company is also involved in partnerships to develop next-generation space technologies.
+    </p>
+    <div class="image-gallery">
+      <img src="https://www.sierraspace.com/wp-content/uploads/elementor/thumbs/Untitled5-r258ylym3bprkzx9zfinq4k8ga24v529zpnsw96p1c.jpg" alt="Sierra Space International Collaboration" style="height: 400px;"/>
+    </div>
+  </section>
+
+  <section>
+    <h2>Internships & Student Opportunities</h2>
+    <p>
+      Sierra Space offers internship programs for students interested in aerospace engineering, space technology, and related fields. These programs provide hands-on experience working on cutting-edge space missions and technologies.
+    </p>
+  </section>
+
+  <footer>
+    &copy; 2025 Cosmic Voyagers | Designed with ✫ in the stars
+  </footer>
+</body>
+</html>
