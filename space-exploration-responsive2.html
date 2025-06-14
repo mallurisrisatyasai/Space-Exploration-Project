@@ -6,8 +6,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cosmic Voyager | Space Exploration</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" />
     <style>
-
+        /* Preloader Styles */
         #preloader {
             position: fixed;
             top: 0;
@@ -99,18 +100,36 @@
             }
         }
 
-
-        #main-content {
-            display: none;
+        /* Theme Variables */
+        :root {
+            --bg-gradient: linear-gradient(to bottom, #0a0a20, #131342);
+            --text-primary: #e0e0ff;
+            --text-secondary: #a088ff;
+            --nav-bg: rgba(10, 10, 32, 0.7);
+            --card-bg: rgba(30, 30, 70, 0.4);
+            --accent-primary: #8a2be2;
+            --accent-secondary: #4169e1;
+            --shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            --transition: all 0.3s ease;
         }
 
+        [data-theme="dark"] {
+            --bg-gradient: linear-gradient(to bottom, #f5f5f5, #e0e0e0);
+            --text-primary: #1a1a1a;
+            --text-secondary: #4a4a4a;
+            --nav-bg: rgba(255, 255, 255, 0.9);
+            --card-bg: rgba(200, 200, 200, 0.4);
+            --accent-primary: #6a1bb2;
+            --accent-secondary: #2a4ba1;
+        }
 
+        /* Base Styles and CSS Reset */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
             font-family: 'Montserrat', sans-serif;
-            transition: all 0.3s ease;
+            transition: var(--transition);
         }
 
         html {
@@ -118,16 +137,17 @@
         }
 
         body {
-            background: linear-gradient(to bottom, #0a0a20, #131342);
+            background: var(--bg-gradient);
             background-image: url('https://live.staticflickr.com/3669/19402296239_35e3b9fe23_h.jpg');
             background-repeat: no-repeat;
             background-size: cover;
-            color: #e0e0ff;
+            color: var(--text-primary);
             line-height: 1.6;
             overflow-x: hidden;
             background-attachment: fixed;
         }
 
+        /* Star Animation Background */
         .stars {
             position: fixed;
             top: 0;
@@ -142,7 +162,7 @@
             position: absolute;
             width: 2px;
             height: 2px;
-            background-color: #fff;
+            background-color: var(--text-primary);
             border-radius: 50%;
             animation: twinkle 5s infinite;
         }
@@ -161,6 +181,7 @@
             }
         }
 
+        /* Navigation */
         nav {
             position: fixed;
             top: 0;
@@ -171,13 +192,13 @@
             justify-content: space-between;
             align-items: center;
             backdrop-filter: blur(10px);
-            background-color: rgba(10, 10, 32, 0.7);
+            background-color: var(--nav-bg);
         }
 
         nav.scrolled {
             padding: 1rem;
-            background-color: rgba(10, 10, 32, 0.9);
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+            background-color: var(--nav-bg);
+            box-shadow: var(--shadow);
         }
 
         .logo {
@@ -190,7 +211,7 @@
             width: 40px;
             height: 40px;
             border-radius: 50%;
-            background: linear-gradient(45deg, #8a2be2, #4169e1);
+            background: linear-gradient(45deg, var(--accent-primary), var(--accent-secondary));
             display: flex;
             justify-content: center;
             align-items: center;
@@ -199,7 +220,7 @@
         .logo-text {
             font-size: 1.5rem;
             font-weight: 700;
-            background: linear-gradient(to right, #8a2be2, #4169e1);
+            background: linear-gradient(to right, var(--accent-primary), var(--accent-secondary));
             background-clip: text;
             -webkit-text-fill-color: transparent;
         }
@@ -208,18 +229,19 @@
             display: flex;
             list-style: none;
             gap: 2rem;
+            align-items: center;
         }
 
         .nav-links a {
             text-decoration: none;
-            color: #e0e0ff;
+            color: var(--text-primary);
             font-weight: 500;
             position: relative;
             padding: 0.5rem 0;
         }
 
         .nav-links a:hover {
-            color: #8a2be2;
+            color: var(--accent-primary);
         }
 
         .nav-links a::after {
@@ -229,12 +251,21 @@
             height: 2px;
             bottom: 0;
             left: 0;
-            background: linear-gradient(to right, #8a2be2, #4169e1);
+            background: linear-gradient(to right, var(--accent-primary), var(--accent-secondary));
             transition: width 0.3s ease;
         }
 
         .nav-links a:hover::after {
             width: 100%;
+        }
+
+        .theme-toggle {
+            background: none;
+            border: none;
+            color: var(--text-primary);
+            font-size: 1.2rem;
+            cursor: pointer;
+            margin-left: 1rem;
         }
 
         .hamburger {
@@ -248,9 +279,9 @@
         .bar {
             width: 30px;
             height: 3px;
-            background: linear-gradient(to right, #8a2be2, #4169e1);
+            background: linear-gradient(to right, var(--accent-primary), var(--accent-secondary));
             border-radius: 3px;
-            transition: all 0.3s ease;
+            transition: var(--transition);
         }
 
         .hamburger.active .bar:nth-child(1) {
@@ -265,13 +296,14 @@
             transform: translateY(-8px) rotate(-45deg);
         }
 
+        /* Scroll to Top Button */
         .scroll-to-top {
             position: fixed;
             bottom: 30px;
             right: 30px;
             width: 50px;
             height: 50px;
-            background: linear-gradient(45deg, #8a2be2, #4169e1);
+            background: linear-gradient(45deg, var(--accent-primary), var(--accent-secondary));
             border-radius: 50%;
             display: flex;
             align-items: center;
@@ -281,7 +313,7 @@
             visibility: hidden;
             transition: opacity 0.3s, visibility 0.3s, transform 0.3s;
             z-index: 1000;
-            box-shadow: 0 5px 15px rgba(138, 43, 226, 0.4);
+            box-shadow: var(--shadow);
         }
 
         .scroll-to-top.show {
@@ -297,9 +329,10 @@
         .scroll-to-top svg {
             width: 24px;
             height: 24px;
-            fill: #fff;
+            fill: var(--text-primary);
         }
 
+        /* Hero Section */
         .hero {
             height: 100vh;
             display: flex;
@@ -330,7 +363,7 @@
             font-weight: 800;
             margin-bottom: 1.5rem;
             line-height: 1.2;
-            background: linear-gradient(to right, #e0e0ff, #a088ff);
+            background: linear-gradient(to right, var(--text-primary), var(--text-secondary));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
@@ -338,6 +371,7 @@
         .hero p {
             font-size: clamp(1rem, 2vw, 1.25rem);
             margin-bottom: 2rem;
+            color: var(--text-secondary);
             opacity: 0.9;
         }
 
@@ -360,15 +394,15 @@
         }
 
         .btn-primary {
-            background: linear-gradient(45deg, #8a2be2, #4169e1);
-            color: rgb(255, 255, 255);
-            box-shadow: 0 5px 15px rgba(138, 43, 226, 0.4);
+            background: linear-gradient(45deg, var(--accent-primary), var(--accent-secondary));
+            color: var(--text-primary);
+            box-shadow: var(--shadow);
         }
 
         .btn-secondary {
             background: transparent;
-            color: #847c7c;
-            border: 2px solid #8a2be2;
+            color: var(--text-secondary);
+            border: 2px solid var(--accent-primary);
         }
 
         .btn::before {
@@ -378,7 +412,7 @@
             left: -100%;
             width: 100%;
             height: 100%;
-            background: linear-gradient(45deg, #4169e1, #8a2be2);
+            background: linear-gradient(45deg, var(--accent-secondary), var(--accent-primary));
             transition: left 0.5s;
             z-index: -1;
         }
@@ -393,10 +427,11 @@
         }
 
         .btn-secondary:hover {
-            color: white;
+            color: var(--text-primary);
             border-color: transparent;
         }
 
+        /* Mission Section */
         .section {
             padding: 100px 5%;
         }
@@ -409,7 +444,7 @@
 
         .section-title h2 {
             font-size: clamp(2rem, 4vw, 2.5rem);
-            background: linear-gradient(to right, #8a2be2, #4169e1);
+            background: linear-gradient(to right, var(--accent-primary), var(--accent-secondary));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             padding-bottom: 1rem;
@@ -420,7 +455,7 @@
             position: absolute;
             width: 80px;
             height: 3px;
-            background: linear-gradient(to right, #8a2be2, #4169e1);
+            background: linear-gradient(to right, var(--accent-primary), var(--accent-secondary));
             bottom: 0;
             left: 50%;
             transform: translateX(-50%);
@@ -439,10 +474,10 @@
         }
 
         .mission-card {
-            background: rgba(30, 30, 70, 0.4);
+            background: var(--card-bg);
             border-radius: 20px;
             overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            box-shadow: var(--shadow);
             position: relative;
             isolation: isolate;
             border: 1px solid rgba(255, 255, 255, 0.1);
@@ -483,20 +518,25 @@
         .mission-content h3 {
             font-size: 1.5rem;
             margin-bottom: 1rem;
-            background: linear-gradient(to right, #e0e0ff, #a088ff);
+            background: linear-gradient(to right, var(--text-primary), var(--text-secondary));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
 
         .mission-date {
             font-size: 0.85rem;
-            color: #a088ff;
+            color: var(--text-secondary);
             margin-bottom: 1rem;
             display: block;
         }
 
+        .mission-content p {
+            color: var(--text-secondary);
+        }
+
+        /* Planet Section */
         .planets {
-            background: linear-gradient(to bottom, #131342, #0a0a20);
+            background: var(--bg-gradient);
             position: relative;
         }
 
@@ -538,7 +578,7 @@
             width: 100%;
             height: auto;
             border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            box-shadow: var(--shadow);
             transition: transform 0.5s, box-shadow 0.5s;
         }
 
@@ -554,9 +594,13 @@
         .planet-info h3 {
             font-size: 2rem;
             margin-bottom: 1.5rem;
-            background: linear-gradient(to right, #e0e0ff, #a088ff);
+            background: linear-gradient(to right, var(--text-primary), var(--text-secondary));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
+        }
+
+        .planet-info p {
+            color: var(--text-secondary);
         }
 
         .planet-stats {
@@ -567,7 +611,7 @@
         }
 
         .stat-item {
-            background: rgba(30, 30, 70, 0.4);
+            background: var(--card-bg);
             padding: 1rem;
             border-radius: 10px;
             border: 1px solid rgba(255, 255, 255, 0.1);
@@ -576,14 +620,16 @@
         .stat-value {
             font-size: 1.5rem;
             font-weight: 700;
-            color: #a088ff;
+            color: var(--text-secondary);
         }
 
         .stat-label {
             font-size: 0.85rem;
+            color: var(--text-secondary);
             opacity: 0.8;
         }
 
+        /* Responsive */
         @media (max-width: 992px) {
             .nav-links {
                 position: fixed;
@@ -591,7 +637,7 @@
                 right: 0;
                 height: calc(100vh - 70px);
                 width: 60%;
-                background: rgba(10, 10, 32, 0.95);
+                background: var(--nav-bg);
                 flex-direction: column;
                 align-items: center;
                 justify-content: flex-start;
@@ -651,17 +697,18 @@
         footer {
             text-align: center;
             padding: 2rem;
-            background: rgba(10, 10, 40, 1);
+            background: var(--nav-bg);
             font-size: 0.9rem;
-            color: #ccc;
+            color: var(--text-secondary);
         }
     </style>
     <script>
         document.addEventListener("DOMContentLoaded", function () {
-        
+            // Show preloader initially
             const preloader = document.getElementById("preloader");
             const mainContent = document.getElementById("main-content");
 
+            // Simulate content loading
             setTimeout(function () {
                 preloader.classList.add("hidden");
                 mainContent.style.display = "block";
@@ -670,6 +717,7 @@
                 }, 500);
             }, 1000);
 
+            // Scroll to Top Button Functionality
             const scrollToTopBtn = document.getElementById("scrollToTop");
             window.addEventListener("scroll", () => {
                 if (window.scrollY > 300) {
@@ -686,6 +734,7 @@
                 });
             });
 
+            // Hamburger Menu Functionality
             const hamburger = document.querySelector('.hamburger');
             const navLinks = document.querySelector('.nav-links');
 
@@ -694,28 +743,59 @@
                 navLinks.classList.toggle('active');
             });
 
+            // Close menu on link click (mobile)
             document.querySelectorAll('.nav-links a').forEach(link => {
                 link.addEventListener('click', () => {
                     hamburger.classList.remove('active');
                     navLinks.classList.remove('active');
                 });
             });
+
+            // Theme toggle
+            const themeToggle = document.getElementById('themeToggle');
+            themeToggle.addEventListener('click', () => {
+                const currentTheme = document.documentElement.getAttribute('data-theme');
+                const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+                document.documentElement.setAttribute('data-theme', newTheme);
+                themeToggle.textContent = newTheme === 'dark' ? '🌙' : '☀️';
+                localStorage.setItem('theme', newTheme);
+            });
+
+            // Load saved theme
+            const savedTheme = localStorage.getItem('theme') || 'dark';
+            document.documentElement.setAttribute('data-theme', savedTheme);
+            themeToggle.textContent = savedTheme === 'dark' ? '🌙' : '☀️';
+
+            // Generate stars for background
+            const starsContainer = document.getElementById('stars');
+            for (let i = 0; i < 100; i++) {
+                const star = document.createElement('div');
+                star.className = 'star';
+                star.style.left = `${Math.random() * 100}%`;
+                star.style.top = `${Math.random() * 100}%`;
+                star.style.animationDelay = `${Math.random() * 5}s`;
+                starsContainer.appendChild(star);
+            }
         });
     </script>
 </head>
 
 <body>
+    <!-- Preloader -->
     <div id="preloader">
         <div class="planet"></div>
     </div>
 
+    <!-- Main Content -->
     <div id="main-content">
+        <!-- Star Background -->
         <div class="stars" id="stars"></div>
 
+        <!-- Navigation -->
         <nav id="navbar">
             <div class="logo">
                 <div class="logo-icon">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--text-primary)" stroke-width="2"
                         stroke-linecap="round" stroke-linejoin="round">
                         <circle cx="12" cy="12" r="10"></circle>
                         <circle cx="12" cy="12" r="4"></circle>
@@ -730,10 +810,11 @@
             <ul class="nav-links">
                 <li><a href="#home">Home</a></li>
                 <li><a href="about.html">About Us</a></li>
-                <li><a href="index.html" target="_blank">Gallery</a></li>
+                <li><a href="index1.html" target="_blank">Gallery</a></li>
                 <li><a href="organisations.html">Organisations</a></li>
                 <li><a href="machinery.html">Machinery</a></li>
                 <li><a href="contact.html">Contact</a></li>
+                <li><button class="theme-toggle" id="themeToggle" title="Change Theme">🌙</button></li>
             </ul>
             <div class="hamburger">
                 <span class="bar"></span>
@@ -742,29 +823,33 @@
             </div>
         </nav>
 
+        <!-- Scroll to Top Button -->
         <div id="scrollToTop" class="scroll-to-top">
             <svg viewBox="0 0 24 24">
                 <path d="M12 5l-7 7h5v7h4v-7h5l-7-7z"></path>
             </svg>
         </div>
 
+        <!-- Hero Section -->
         <section class="hero" id="home">
             <div class="hero-content">
                 <h1>Journey Beyond The Stars</h1>
                 <p>Explore the wonders of our universe, from neighboring planets to distant galaxies. Join us on a
                     cosmic adventure that spans billions of light years.</p>
                 <div class="cta-buttons">
-                    <a href="index.html" class="btn btn-primary">Explore Gallery</a>
+                    <a href="#missions" class="btn btn-primary">Explore Missions</a>
                     <a href="#planets" class="btn btn-secondary">Discover Cosmos</a>
                 </div>
             </div>
         </section>
 
+        <!-- Missions Section -->
         <section class="section" id="missions">
             <div class="section-title">
                 <h2>INTERNET ARTICLES</h2>
             </div>
             <div class="missions-grid">
+                <!-- Mars Rover -->
                 <a href="https://mars.nasa.gov/mars2020/" target="_blank" class="mission-link">
                     <div class="mission-card">
                         <img src="https://images.newscientist.com/wp-content/uploads/2021/02/26010720/25-feb_peserverance4.jpg"
@@ -778,6 +863,7 @@
                     </div>
                 </a>
 
+                <!-- James Webb Space Telescope -->
                 <a href="https://webb.nasa.gov/" target="_blank" class="mission-link">
                     <div class="mission-card">
                         <img src="https://www.slashgear.com/img/gallery/heres-how-james-webb-telescope-will-detect-exoplanets/l-intro-1657751982.jpg"
@@ -791,6 +877,7 @@
                     </div>
                 </a>
 
+                <!-- Artemis Program -->
                 <a href="https://www.nasa.gov/specials/artemis/" target="_blank" class="mission-link">
                     <div class="mission-card">
                         <img src="https://orbitaltoday.com/wp-content/uploads/2024/12/Orion-on-the-moon.jpg"
@@ -806,6 +893,7 @@
             </div>
         </section>
 
+        <!-- Planets Section -->
         <section class="section planets" id="planets">
             <div class="section-title">
                 <h2>Exploring Our Solar System</h2>
